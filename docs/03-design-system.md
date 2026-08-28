@@ -1,0 +1,238 @@
+# Design System
+
+The visual direction from brief §04, made concrete: **Brooklyn.
+Community-driven. Modern. Bold. Warm. Food-centered. Established. Human.**
+
+Source of truth is `prototype/assets/css/tokens.css`. That file is copied
+verbatim into the Squarespace Custom CSS — the values below are documentation
+of it, not a second definition.
+
+---
+
+## 1. Designing against the generic nonprofit template
+
+The brief asks the site to *"avoid the look of a generic nonprofit template."*
+That is only actionable if you name what the template actually looks like:
+
+| The template does this | EBMA does this instead |
+|---|---|
+| Pale blue / teal / soft gradients | Warm near-black and cream |
+| Thin, light-weight headlines | 800–900 weight display type |
+| Everything centred | Left-aligned, asymmetric |
+| Rounded cards with icon circles, 3-up | Hard edges, full-bleed, photo-led |
+| Stock photos of anonymous smiles | Real EBMA photography, credited |
+| Type sized to fit politely | Campaign-poster scale |
+
+If a section starts drifting toward the left column, it is off-direction.
+
+---
+
+## 2. Palette
+
+Photography supplies most of the colour. The interface is a restrained frame.
+
+| Token | Hex | Role |
+|---|---|---|
+| `--ebma-ink` | `#12100E` | Warm near-black. Primary dark ground. |
+| `--ebma-ink-soft` | `#2A2622` | Raised surfaces on dark. |
+| `--ebma-cream` | `#F7F2E8` | Warm off-white. Primary paper. |
+| `--ebma-cream-deep` | `#EDE4D3` | Subtle banding between cream sections. |
+| `--ebma-radish` | `#8E1F3C` | Deep radish/burgundy. Primary accent **on cream**. |
+| `--ebma-radish-deep` | `#6E1129` | Hover / pressed. |
+| `--ebma-green` | `#2F5D3A` | Natural green. Secondary accent. |
+| `--ebma-clay` | `#B85C38` | Earth tone. Tertiary, decorative. |
+| `--ebma-radish-on-dark` | `#C9455F` | Radish accent **on dark grounds**. |
+| `--ebma-clay-on-dark` | `#C46B45` | Clay accent **on dark grounds**. |
+
+### Why there are on-dark variants
+
+The base radish and clay are tuned for cream paper. On near-black they fail
+WCAG AA — radish lands at **2.18:1** and clay at **4.18:1**. Both were caught by
+the automated audit, not by eye. The lightened tints carry the same hues onto
+dark grounds at **4.07:1** and **5.00:1**.
+
+You never select these by hand. Dark surfaces set `--ebma-accent-campaign` and
+`--ebma-accent-eyebrow` in one place in `components.css`, so an accent cannot be
+dropped onto a ground it fails against.
+
+### Verified contrast
+
+Every foreground/background pair rendered on the homepage, measured in a real
+browser by `verify-contrast` (see §7). **21/21 pass. 0 failures.**
+
+| Pair | Ratio | Needs | |
+|---|---|---|---|
+| Cream on ink | 17.01 | 4.5 | ✅ |
+| Ink on cream | 17.01 | 4.5 | ✅ |
+| Cream on ink-deep | 17.73 | 4.5 | ✅ |
+| Muted cream `#C9C0B3` on ink | 10.55 | 4.5 | ✅ |
+| Cream on radish | 7.80 | 4.5 | ✅ |
+| Radish on cream | 7.80 | 4.5 | ✅ |
+| Radish on cream-deep | 6.90 | 4.5 | ✅ |
+| Muted ink `#58514A` on cream | 6.99 | 4.5 | ✅ |
+| Muted ink on cream-deep | 6.18 | 4.5 | ✅ |
+| Green on cream | 6.85 | 4.5 | ✅ |
+| **Clay-on-dark on ink** | 5.00 | 4.5 | ✅ |
+| **Clay-on-dark on ink-deep** | 5.21 | 4.5 | ✅ |
+| **Radish-on-dark on ink** (large) | 4.07 | 3.0 | ✅ |
+
+⚠️ **`--ebma-clay` on cream is 4.07:1** — below AA for body text. It is a
+decorative tone on light grounds (rules, focus rings, dashes). Never set small
+cream-ground text in clay; use `--ebma-radish` (7.80:1).
+
+---
+
+## 3. Typography
+
+**Display — Archivo.** A grotesque with a genuine 900 weight and tight
+apertures. It holds up at poster scale, which most Google fonts do not.
+
+**Body — Inter.** Neutral, highly legible at small sizes, wide language
+coverage.
+
+Both are in Squarespace's built-in library. **Set them in Design → Fonts as well
+as in the CSS**, so the team can adjust without touching code.
+
+Alternates, if Kelvin wants options:
+
+| | Display | Body | Character |
+|---|---|---|---|
+| **A (recommended)** | Archivo | Inter | Modern, neutral, workhorse |
+| **B** | Anton / Oswald | Public Sans | Louder, more condensed, poster-forward |
+| **C** | Archivo | Source Serif 4 | Warmer, more editorial, "established" |
+
+### Scale
+
+All sizes are fluid `clamp()` — poster-huge on desktop, never overflowing a
+320px phone.
+
+| Token | Range | Use |
+|---|---|---|
+| `--ebma-fs-campaign` | 2.75 → 8.5rem | Campaign statements only |
+| `--ebma-fs-h1` | 2.25 → 4.75rem | Page titles |
+| `--ebma-fs-h2` | 1.85 → 3.25rem | Section headings |
+| `--ebma-fs-h3` | 1.3 → 1.75rem | Card and index titles |
+| `--ebma-fs-stat` | 3 → 6rem | Stat numbers |
+| `--ebma-fs-lead` | 1.075 → 1.375rem | Standfirst |
+| `--ebma-fs-body` | 1.0625rem | Body |
+| `--ebma-fs-eyebrow` | 0.75rem | Tracked-out labels |
+
+**Never set a heading below weight 600.** Weight is what carries "bold" and
+"established"; a light headline reads as the template.
+
+### Campaign type
+
+The signature of the design. Brief §04: *"Key statements can behave like
+campaign posters."*
+
+```html
+<h1 class="ebma-campaign">
+  <span class="ebma-campaign__line">Food.</span>
+  <span class="ebma-campaign__line">Community.</span>
+  <span class="ebma-campaign__line ebma-campaign__accent">Opportunity.</span>
+</h1>
+```
+
+Rules that make it work:
+
+1. **Every line is its own `<span>`.** A campaign statement never wraps by
+   accident — the breaks are a design decision.
+2. **Never add a `max-width`** to a campaign block. A character constraint on
+   top of explicit breaks re-wraps each line to one word and turns the
+   statement into a column. (This happened during the build.)
+3. **One accent line per statement**, at most.
+4. **Two or three per page, maximum.** Their power is that they are rare.
+
+Sanctioned statements, from the brief:
+`FOOD. COMMUNITY. OPPORTUNITY.` · `EAST BROOKLYN FEEDS EAST BROOKLYN.` ·
+`BUILDING A STRONGER FOOD SYSTEM.` ·
+`WE ARE NOT SIMPLY RESPONDING TO FOOD INSECURITY.`
+
+---
+
+## 4. Photography
+
+Brief §04: real EBMA photography does most of the storytelling.
+
+EBMA's library will arrive from many phones, many events and several years.
+Without a unifying treatment that reads as scrappy; with one it reads as
+**established** — which is the word in the brief.
+
+- **Grade:** `--ebma-photo-grade` — `saturate(1.04) contrast(1.06)
+  brightness(0.98)`, applied to every image including native Squarespace image
+  blocks.
+- **Warm wash:** `--ebma-photo-warmth` — a 10% clay multiply layer that pulls
+  mixed white balances together.
+- **Crops:** editorial, never square by default — `--portrait` (4:5),
+  `--landscape` (3:2), `--tall` (3:4), `--wide` (16:9).
+- **Captions:** real photography earns a credit. Use `.ebma-caption`.
+
+### Scrims
+
+Type sits on photography constantly, so contrast cannot depend on which image
+was uploaded.
+
+- `--ebma-scrim-bottom` — carries the hero headline.
+- `--ebma-scrim-top` — **guarantees the navigation stays legible.** The header
+  is transparent over the hero, so the *top* of the image is what matters. A
+  bottom-only scrim leaves the nav to vanish the first time someone uploads a
+  bright, sunny market photograph.
+
+Both are applied together on the hero, in the prototype and in Squarespace.
+
+---
+
+## 5. Components
+
+| Class | Purpose |
+|---|---|
+| `.ebma-campaign` | Poster statement (see above) |
+| `.ebma-eyebrow` | Tracked-out label with a rule; every section's entry point |
+| `.ebma-btn` + `--primary` `--ghost` `--invert` `--solid-cream` | Buttons. Two levels only — a third invites clutter |
+| `.ebma-arrow-link` | Oversized text link with a travelling arrow |
+| `.ebma-stats` / `.ebma-stat` | Impact tiles, hairline rules not card borders |
+| `.ebma-stat--tbd` | **Visibly provisional metric.** Dashed outline, dimmed. Cannot ship by accident |
+| `.ebma-marquee` | Scrolling statement band |
+| `.ebma-cards` / `.ebma-card` | Photo-led programme cards, capped at 3 columns |
+| `.ebma-index` | Editorial index — replaces bullet lists |
+| `.ebma-photo` | Graded, cropped image frame |
+| `.ebma-reveal` | Scroll-in animation (fail-visible, see §6) |
+
+---
+
+## 6. Accessibility
+
+Not a launch checklist item — built into the tokens.
+
+- **Contrast:** every rendered pair verified at AA. See §2.
+- **Focus:** 3px clay outline, 3px offset, on everything focusable. Squarespace's
+  default focus style is overridden.
+- **Motion:** `prefers-reduced-motion` stops the marquee, the counters, the
+  card zooms and the reveals. Verified.
+- **Skip link:** first focusable element on every page.
+- **Reveals fail visible.** The hiding rule is scoped to `.ebma-js`, which
+  `ebma.js` adds *only* after confirming it can animate. No JS, an old browser,
+  a blocked script, an observer that never fires — content shows. A 4-second
+  safety timer reveals anything still hidden. Verified with JS fully disabled:
+  all 24 blocks visible.
+
+  The opposite arrangement — hide in CSS, reveal in JS — can silently blank a
+  whole page. On a site whose purpose is telling people how to get food, that
+  is the wrong failure mode.
+- **Counters** animate to the number already in the DOM, so the real figure is
+  always present for screen readers.
+
+---
+
+## 7. Verification
+
+```bash
+cd prototype && python3 -m http.server 8099 &
+node verify-contrast.mjs      # 21/21 AA pairs
+node verify-render.mjs        # 3 widths, overflow + console errors
+node verify-fallbacks.mjs     # reduced-motion and no-JS
+cd ../squarespace && python3 -m http.server 8098 &
+node _test/verify.mjs         # 17/17 Squarespace marker checks
+```
+
+See `docs/06-launch-qa.md` for the pre-launch pass on the real site.

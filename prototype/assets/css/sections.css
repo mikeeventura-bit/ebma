@@ -1,0 +1,192 @@
+/* ==========================================================================
+   EBMA — Section Layouts
+   Homepage sections. Shared by the prototype AND the Squarespace build.
+   ========================================================================== */
+
+/* --- Shared section shell ------------------------------------------------ */
+.ebma-section { padding-block: var(--ebma-section-y); }
+.ebma-section--flush { padding-block: 0; }
+.ebma-section--ink   { background: var(--ebma-ink);   color: var(--ebma-text-invert); }
+.ebma-section--cream { background: var(--ebma-cream); color: var(--ebma-text); }
+.ebma-section--deep  { background: var(--ebma-cream-deep); color: var(--ebma-text); }
+
+.ebma-wrap { width: 100%; max-width: var(--ebma-maxw); margin-inline: auto; padding-inline: var(--ebma-gutter); }
+
+/* Section header: eyebrow + heading + optional lead. Left-aligned always —
+   centered headings are the tell of a template. */
+.ebma-section-head { margin-bottom: var(--ebma-space-12); max-width: 46ch; }
+.ebma-section-head .ebma-lead { margin-top: var(--ebma-space-6); color: var(--ebma-text-muted); }
+.ebma-section--ink .ebma-section-head .ebma-lead { color: var(--ebma-muted-invert); }
+
+/* --------------------------------------------------------------------------
+   HERO (brief §06)
+   Full-bleed photograph, campaign headline, two CTAs. Type is bottom-left,
+   not centered — it reads as a poster, not a hero banner.
+   -------------------------------------------------------------------------- */
+.ebma-hero {
+  position: relative;
+  min-height: min(92svh, 900px);
+  display: flex;
+  align-items: flex-end;
+  background: var(--ebma-ink);
+  color: var(--ebma-text-invert);
+  overflow: hidden;
+}
+.ebma-hero__media { position: absolute; inset: 0; }
+.ebma-hero__media img { width: 100%; height: 100%; object-fit: cover; filter: var(--ebma-photo-grade); }
+/* Two scrims: the top one keeps the transparent header legible over ANY
+   hero photograph the team uploads; the bottom one carries the headline. */
+.ebma-hero__media::after {
+  content: ""; position: absolute; inset: 0;
+  background: var(--ebma-scrim-top), var(--ebma-scrim-bottom);
+}
+.ebma-hero__inner {
+  position: relative; z-index: 2;
+  width: 100%;
+  padding-block: var(--ebma-space-16) var(--ebma-space-12);
+}
+.ebma-hero .ebma-campaign { margin-bottom: var(--ebma-space-6); }
+.ebma-hero__sub {
+  font-size: var(--ebma-fs-lead);
+  font-weight: var(--ebma-w-medium);
+  line-height: 1.4;
+  max-width: 30ch;
+  margin: 0 0 var(--ebma-space-8);
+}
+.ebma-hero__actions { display: flex; flex-wrap: wrap; gap: var(--ebma-space-4); }
+
+/* Scroll cue — small, quiet, optional. */
+.ebma-hero__cue {
+  position: absolute; right: var(--ebma-gutter); bottom: var(--ebma-space-12);
+  z-index: 2;
+  font-size: var(--ebma-fs-eyebrow);
+  letter-spacing: var(--ebma-tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--ebma-muted-invert);
+  writing-mode: vertical-rl;
+  display: none;
+}
+@media (min-width: 1024px) { .ebma-hero__cue { display: block; } }
+
+/* --------------------------------------------------------------------------
+   IMPACT AT A GLANCE
+   -------------------------------------------------------------------------- */
+.ebma-impact { background: var(--ebma-ink); color: var(--ebma-text-invert); }
+.ebma-impact .ebma-wrap { padding-inline: 0; }
+.ebma-impact__head { padding: var(--ebma-space-12) var(--ebma-gutter) var(--ebma-space-8); }
+.ebma-impact__foot {
+  padding: var(--ebma-space-8) var(--ebma-gutter) var(--ebma-space-12);
+  display: flex; flex-wrap: wrap; gap: var(--ebma-space-6);
+  align-items: center; justify-content: space-between;
+}
+.ebma-impact__foot p { margin: 0; font-size: var(--ebma-fs-small); color: var(--ebma-muted-invert); max-width: 60ch; }
+
+/* --------------------------------------------------------------------------
+   POSITIONING STATEMENT (brief §03)
+   "We are not simply responding to food insecurity."
+   -------------------------------------------------------------------------- */
+/* No max-width here. Campaign line breaks are set explicitly in the markup
+   with .ebma-campaign__line — adding a character constraint on top of that
+   re-wraps each line to one word and turns the statement into a column. */
+.ebma-statement__inner { max-width: none; }
+.ebma-statement .ebma-lead { margin-top: var(--ebma-space-8); max-width: 46ch; }
+
+/* --------------------------------------------------------------------------
+   SPLIT — photo one side, copy the other. Asymmetric on purpose.
+   Used for Origin Story and Black Radish.
+   -------------------------------------------------------------------------- */
+.ebma-split { display: grid; gap: var(--ebma-space-12); align-items: center; }
+@media (min-width: 900px) {
+  .ebma-split { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: clamp(3rem, 6vw, 6rem); }
+  .ebma-split--reverse > *:first-child { order: 2; }
+}
+.ebma-split__copy > * + * { margin-top: var(--ebma-space-6); }
+
+/* Stacked photo pair — gives a split more editorial texture than one image. */
+.ebma-photo-pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--ebma-space-4); align-items: start; }
+.ebma-photo-pair > :last-child { margin-top: var(--ebma-space-12); }
+
+/* --------------------------------------------------------------------------
+   BLACK RADISH FEATURE (brief §07)
+   Its own identity inside EBMA's system: darkest ground, clay accent,
+   maximum photographic presence.
+   -------------------------------------------------------------------------- */
+.ebma-radish-feature { background: #0B0A09; color: var(--ebma-text-invert); position: relative; }
+.ebma-radish-feature .ebma-eyebrow { color: var(--ebma-clay-on-dark); }
+.ebma-radish-feature__lockup {
+  font-family: var(--ebma-font-display);
+  font-size: clamp(2.5rem, 7.5vw, 5.5rem);
+  font-weight: var(--ebma-w-campaign);
+  line-height: 0.9;
+  letter-spacing: var(--ebma-tracking-campaign);
+  text-transform: uppercase;
+  margin: 0 0 var(--ebma-space-6);
+}
+.ebma-radish-feature__list { list-style: none; margin: var(--ebma-space-8) 0; padding: 0; }
+.ebma-radish-feature__list li {
+  padding-block: var(--ebma-space-3);
+  border-bottom: 1px solid var(--ebma-rule-invert);
+  color: var(--ebma-muted-invert);
+  line-height: 1.45;
+}
+.ebma-radish-feature__list li::before {
+  content: "—"; color: var(--ebma-clay-on-dark);
+  margin-right: var(--ebma-space-3);
+}
+/* Handoff note: the storefront is a separate site. Make that legible. */
+.ebma-handoff {
+  font-size: var(--ebma-fs-small);
+  color: var(--ebma-muted-invert);
+  margin-top: var(--ebma-space-6);
+}
+.ebma-handoff a { color: var(--ebma-cream); }
+
+/* --------------------------------------------------------------------------
+   DONATION IMPACT (brief §10)
+   -------------------------------------------------------------------------- */
+.ebma-support { background: var(--ebma-radish); color: var(--ebma-cream); }
+.ebma-support .ebma-eyebrow { color: var(--ebma-cream); }
+.ebma-support__grid { display: grid; gap: var(--ebma-space-12); }
+@media (min-width: 900px) { .ebma-support__grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(3rem, 6vw, 6rem); } }
+.ebma-support__list { list-style: none; margin: 0; padding: 0; columns: 1; }
+@media (min-width: 640px) { .ebma-support__list { columns: 2; column-gap: var(--ebma-space-8); } }
+.ebma-support__list li {
+  break-inside: avoid;
+  padding-block: var(--ebma-space-4);
+  border-bottom: 1px solid rgba(247, 242, 232, 0.28);
+  font-weight: var(--ebma-w-medium);
+  line-height: 1.4;
+}
+.ebma-support__actions { margin-top: var(--ebma-space-8); display: flex; flex-wrap: wrap; gap: var(--ebma-space-4); }
+
+/* --------------------------------------------------------------------------
+   PARTNERS
+   -------------------------------------------------------------------------- */
+.ebma-partners__list {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: var(--ebma-space-6) var(--ebma-space-12);
+  align-items: center;
+}
+.ebma-partners__list li {
+  font-family: var(--ebma-font-display);
+  font-size: var(--ebma-fs-h3);
+  font-weight: var(--ebma-w-display);
+  text-transform: uppercase;
+  letter-spacing: var(--ebma-tracking-tight);
+  color: var(--ebma-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   NEWSLETTER
+   -------------------------------------------------------------------------- */
+.ebma-signup__form { display: flex; flex-wrap: wrap; gap: var(--ebma-space-3); margin-top: var(--ebma-space-8); max-width: 34rem; }
+.ebma-signup__form input[type="email"] {
+  flex: 1 1 16rem;
+  font: inherit;
+  padding: 1em 1.1em;
+  border: var(--ebma-border) solid var(--ebma-rule);
+  border-radius: var(--ebma-radius);
+  background: var(--ebma-cream);
+  color: var(--ebma-text);
+}
+.ebma-signup__form input[type="email"]::placeholder { color: var(--ebma-text-muted); }

@@ -1,0 +1,172 @@
+/* ==========================================================================
+   EBMA — SQUARESPACE 7.1 ADAPTATION LAYER
+   --------------------------------------------------------------------------
+   Everything above this point is the shared design system, identical to the
+   prototype. Everything below adapts it to Squarespace's own markup.
+
+   THE CORE TECHNIQUE — THE MARKER DIV
+   Squarespace 7.1 gives you no way to put a class on a native section. So:
+
+     1. Add ONE Code Block to an otherwise-normal section containing only
+        the marker, e.g.  <div class="ebma-mark ebma-mark--stats"></div>
+     2. The rules below scope the whole section off that marker using :has().
+
+   The result is a custom-designed section whose CONTENT the team still edits
+   normally in the editor. That matters more here than anywhere: EBMA is
+   volunteer-run, and a site they cannot update themselves is a failed
+   redesign. Reach for a full Code Block only for the few things Squarespace
+   genuinely cannot express.
+
+   Browser support: :has() is supported in all current browsers and inside
+   the Squarespace editor iframe.
+   ========================================================================== */
+
+/* Markers are structural, never visible. */
+.ebma-mark { display: none !important; }
+
+/* --- Global type ---------------------------------------------------------
+   Also set these in Design -> Fonts so the team can adjust without CSS. */
+body, .sqs-block-html p, .sqs-block-html li { font-family: var(--ebma-font-body); }
+h1, h2, h3, h4 { font-family: var(--ebma-font-display); letter-spacing: var(--ebma-tracking-tight); }
+
+/* --- Section grounds -----------------------------------------------------
+   Set the background in the section's own settings where you can; these are
+   for the grounds Squarespace's palette cannot express exactly. */
+.page-section:has(.ebma-mark--ink) {
+  background: var(--ebma-ink) !important;
+  color: var(--ebma-text-invert);
+  --ebma-accent-campaign: var(--ebma-radish-on-dark);
+  --ebma-accent-eyebrow:  var(--ebma-clay-on-dark);
+}
+.page-section:has(.ebma-mark--ink) h1,
+.page-section:has(.ebma-mark--ink) h2,
+.page-section:has(.ebma-mark--ink) h3,
+.page-section:has(.ebma-mark--ink) p { color: var(--ebma-text-invert); }
+
+.page-section:has(.ebma-mark--cream) { background: var(--ebma-cream) !important; color: var(--ebma-text); }
+.page-section:has(.ebma-mark--deep)  { background: var(--ebma-cream-deep) !important; color: var(--ebma-text); }
+
+/* --- Native headings inside a marked section -----------------------------
+   This is what lets a plain Squarespace Text Block render as campaign type.
+   The team types normally; the CSS does the design. */
+.page-section:has(.ebma-mark--campaign) h1,
+.page-section:has(.ebma-mark--campaign) h2 {
+  font-family: var(--ebma-font-display);
+  font-weight: var(--ebma-w-campaign);
+  font-size: var(--ebma-fs-campaign);
+  line-height: var(--ebma-lh-campaign);
+  letter-spacing: var(--ebma-tracking-campaign);
+  text-transform: uppercase;
+  margin-left: -0.045em;
+}
+
+/* --- Squarespace buttons -------------------------------------------------
+   Restyle the native button block so the team keeps using it normally. */
+.sqs-block-button-element,
+.sqs-button-element--primary,
+.sqs-button-element--secondary {
+  font-family: var(--ebma-font-body) !important;
+  font-weight: var(--ebma-w-bold) !important;
+  font-size: var(--ebma-fs-small) !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  border-radius: var(--ebma-radius) !important;
+  padding: 1.05em 1.9em !important;
+  transition: background-color var(--ebma-dur) var(--ebma-ease),
+              color var(--ebma-dur) var(--ebma-ease),
+              border-color var(--ebma-dur) var(--ebma-ease) !important;
+}
+.sqs-button-element--primary {
+  background: var(--ebma-radish) !important;
+  color: var(--ebma-cream) !important;
+  border: var(--ebma-border) solid var(--ebma-radish) !important;
+}
+.sqs-button-element--primary:hover {
+  background: var(--ebma-radish-deep) !important;
+  border-color: var(--ebma-radish-deep) !important;
+}
+.sqs-button-element--secondary {
+  background: transparent !important;
+  color: var(--ebma-ink) !important;
+  border: var(--ebma-border) solid currentColor !important;
+}
+.page-section:has(.ebma-mark--ink) .sqs-button-element--secondary {
+  color: var(--ebma-cream) !important;
+}
+
+/* --- Site header ---------------------------------------------------------
+   Transparent over a dark hero, solid on scroll. Enable "Fixed position" and
+   the transparent-header option in Design -> Header, then this styles it. */
+.header-announcement-bar-wrapper { transition: background-color var(--ebma-dur) var(--ebma-ease); }
+.header .header-nav-item a,
+.header .header-title-text a {
+  font-family: var(--ebma-font-body);
+  font-weight: var(--ebma-w-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: var(--ebma-fs-small);
+}
+.header .header-title-text a {
+  font-family: var(--ebma-font-display);
+  font-weight: var(--ebma-w-campaign);
+}
+
+/* --- Footer -------------------------------------------------------------- */
+.sections .page-section:last-child:has(.ebma-mark--footer) { background: var(--ebma-ink) !important; }
+
+/* --- Images --------------------------------------------------------------
+   Apply the unifying grade to every Squarespace image block, so a library
+   shot on a dozen different phones still reads as one system. */
+.sqs-block-image img,
+.section-background img,
+.sqs-gallery img { filter: var(--ebma-photo-grade); }
+
+/* Hero section background: guarantee nav legibility over ANY photograph the
+   team uploads. Without a top scrim a bright hero hides the navigation. */
+.page-section:has(.ebma-mark--hero) .section-background::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: var(--ebma-scrim-top), var(--ebma-scrim-bottom);
+}
+.page-section:has(.ebma-mark--hero) .section-background { position: relative; }
+.page-section:has(.ebma-mark--hero) .content-wrapper { position: relative; z-index: 2; }
+
+/* --- Hero copy inside a Code Block ---------------------------------------
+   In Squarespace the hero photograph is the SECTION background, not an
+   element, so the copy block carries its own colour context. */
+.ebma-hero-copy {
+  color: var(--ebma-text-invert);
+  --ebma-accent-campaign: var(--ebma-radish-on-dark);
+  --ebma-accent-eyebrow:  var(--ebma-clay-on-dark);
+}
+.ebma-hero-copy .ebma-campaign { margin-bottom: var(--ebma-space-6); }
+.ebma-hero-copy .ebma-hero__sub { margin-bottom: var(--ebma-space-8); }
+
+/* --- Stats section from native text blocks -------------------------------
+   Drop the marker in, then add one Text Block per stat: the number as an H2
+   and the label as a paragraph. */
+.page-section:has(.ebma-mark--stats) .fluid-engine h2 {
+  font-size: var(--ebma-fs-stat);
+  font-weight: var(--ebma-w-campaign);
+  line-height: 0.9;
+  letter-spacing: var(--ebma-tracking-campaign);
+  color: var(--ebma-cream);
+  margin: 0;
+}
+.page-section:has(.ebma-mark--stats) .fluid-engine p {
+  font-size: var(--ebma-fs-small);
+  color: var(--ebma-muted-invert);
+  margin-top: var(--ebma-space-4);
+  line-height: 1.35;
+}
+
+/* --- Accessibility -------------------------------------------------------
+   Squarespace ships a weak focus style. This restores a visible one. */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 3px solid var(--ebma-clay) !important;
+  outline-offset: 3px !important;
+}
+
+/* --- Editor-only note ----------------------------------------------------
+   Code Blocks render as a grey placeholder INSIDE the editor and only appear
+   correctly on the live site or in Preview. That is expected Squarespace
+   behaviour, not a broken paste. */

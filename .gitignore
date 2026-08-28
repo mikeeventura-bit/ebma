@@ -1,0 +1,5 @@
+node_modules/
+package-lock.json
+prototype/shots/
+prototype/contrast-results.json
+.DS_Store

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Squarespace 7.1 markup simulation — EBMA kit test</title>
+<!--
+  This page reproduces Squarespace 7.1's DOM structure (.page-section,
+  .content-wrapper, .fluid-engine, .sqs-block-*) and loads the GENERATED
+  custom-css.css against it. It exists to prove the marker-div technique and
+  the native-block overrides actually match real Squarespace markup, rather
+  than assuming they do. It is a test fixture, not a deliverable page.
+-->
+<link rel="stylesheet" href="../custom-css.css">
+<style>body{margin:0;font-family:system-ui,sans-serif}</style>
+</head>
+<body>
+
+<!-- HERO: native section background + hero marker + hero copy code block -->
+<section class="page-section" id="s-hero" data-section-id="hero">
+  <div class="section-background"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23d9cfc0'/%3E%3C/svg%3E" alt=""></div>
+  <div class="content-wrapper">
+    <div class="sqs-block code-block"><div class="sqs-block-content">
+      <div class="ebma-mark ebma-mark--hero"></div>
+    </div></div>
+    <div class="sqs-block code-block"><div class="sqs-block-content">
+      <div class="ebma-hero-copy">
+        <h1 class="ebma-campaign">
+          <span class="ebma-campaign__line">Food.</span>
+          <span class="ebma-campaign__line ebma-campaign__accent">Opportunity.</span>
+        </h1>
+        <p class="ebma-hero__sub">Building a stronger food system in East Brooklyn.</p>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- STATS: native text blocks styled purely by the marker -->
+<section class="page-section" id="s-stats" data-section-id="stats">
+  <div class="content-wrapper">
+    <div class="sqs-block code-block"><div class="sqs-block-content">
+      <div class="ebma-mark ebma-mark--ink ebma-mark--stats"></div>
+    </div></div>
+    <div class="fluid-engine">
+      <div class="sqs-block html-block"><div class="sqs-block-content">
+        <h2>10</h2>
+        <p>Young people employed through the Summer Youth Program</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPAIGN: a plain native H2 promoted to campaign type by the marker -->
+<section class="page-section" id="s-campaign" data-section-id="campaign">
+  <div class="content-wrapper">
+    <div class="sqs-block code-block"><div class="sqs-block-content">
+      <div class="ebma-mark ebma-mark--cream ebma-mark--campaign"></div>
+    </div></div>
+    <div class="sqs-block html-block"><div class="sqs-block-content">
+      <h2>East Brooklyn feeds East Brooklyn.</h2>
+    </div></div>
+  </div>
+</section>
+
+<!-- NATIVE BUTTONS -->
+<section class="page-section" id="s-buttons" data-section-id="buttons">
+  <div class="content-wrapper">
+    <div class="sqs-block button-block"><div class="sqs-block-content">
+      <a class="sqs-block-button-element sqs-button-element--primary" href="#">Donate</a>
+      <a class="sqs-block-button-element sqs-button-element--secondary" href="#">Our Work</a>
+    </div></div>
+  </div>
+</section>
+
+</body>
+</html>

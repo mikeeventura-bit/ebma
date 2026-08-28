@@ -1,0 +1,154 @@
+/* ==========================================================================
+   EBMA — PROTOTYPE ONLY
+   --------------------------------------------------------------------------
+   DO NOT COPY THIS FILE INTO SQUARESPACE.
+
+   Everything here is chrome that Squarespace 7.1 provides natively — the
+   reset, the header/nav, the footer. In the live build these are configured
+   in the Squarespace admin (Design -> Header, Edit Footer) and only lightly
+   restyled via custom-css.css. Keeping them isolated here is what stops the
+   prototype and the live site from drifting apart.
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  font-family: var(--ebma-font-body);
+  font-size: var(--ebma-fs-body);
+  font-weight: var(--ebma-w-body);
+  line-height: var(--ebma-lh-body);
+  color: var(--ebma-text);
+  background: var(--ebma-cream);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; }
+a { color: var(--ebma-radish); }
+
+/* --- Header / nav -------------------------------------------------------- */
+.p-header {
+  position: fixed; inset: 0 0 auto; z-index: 100;
+  transition: background-color var(--ebma-dur) var(--ebma-ease),
+              border-color var(--ebma-dur) var(--ebma-ease);
+  border-bottom: 1px solid transparent;
+}
+.p-header__inner {
+  max-width: var(--ebma-maxw); margin-inline: auto;
+  padding: var(--ebma-space-4) var(--ebma-gutter);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--ebma-space-6);
+}
+.p-logo {
+  font-family: var(--ebma-font-display);
+  font-weight: var(--ebma-w-campaign);
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ebma-cream);
+  transition: color var(--ebma-dur) var(--ebma-ease);
+}
+.p-logo span { display: block; }
+.p-nav { display: none; gap: var(--ebma-space-6); align-items: center; }
+@media (min-width: 940px) { .p-nav { display: flex; } }
+.p-nav a {
+  font-size: var(--ebma-fs-small);
+  font-weight: var(--ebma-w-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: var(--ebma-cream);
+  padding-block: var(--ebma-space-2);
+  border-bottom: 2px solid transparent;
+  transition: color var(--ebma-dur) var(--ebma-ease), border-color var(--ebma-dur) var(--ebma-ease);
+}
+.p-nav a:hover, .p-nav a[aria-current="page"] { border-bottom-color: currentColor; }
+
+/* Solid state once scrolled past the hero. */
+.p-header.is-stuck { background: var(--ebma-cream); border-bottom-color: var(--ebma-rule); }
+.p-header.is-stuck .p-logo,
+.p-header.is-stuck .p-nav a { color: var(--ebma-ink); }
+.p-header.is-stuck .ebma-btn--invert { color: var(--ebma-ink); border-color: var(--ebma-ink); }
+.p-header.is-stuck .ebma-btn--invert:hover { background: var(--ebma-ink); color: var(--ebma-cream); }
+
+/* Pages without a dark hero start solid. */
+.p-header--solid { background: var(--ebma-cream); border-bottom-color: var(--ebma-rule); }
+.p-header--solid .p-logo, .p-header--solid .p-nav a { color: var(--ebma-ink); }
+
+.p-menu-btn {
+  display: inline-flex; align-items: center; gap: var(--ebma-space-2);
+  background: none; border: 0; cursor: pointer; padding: var(--ebma-space-2);
+  font: inherit; font-size: var(--ebma-fs-small); font-weight: var(--ebma-w-bold);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: inherit;
+}
+@media (min-width: 940px) { .p-menu-btn { display: none; } }
+
+/* --- Footer -------------------------------------------------------------- */
+.p-footer {
+  /* Dark surface: retarget accents to their AA tints. In Squarespace the
+     footer is handled by the .ebma-mark--footer rule instead. */
+  --ebma-accent-campaign: var(--ebma-radish-on-dark);
+  --ebma-accent-eyebrow:  var(--ebma-clay-on-dark);
+  background: var(--ebma-ink); color: var(--ebma-text-invert); padding-block: var(--ebma-space-16) var(--ebma-space-8); }
+.p-footer__grid { display: grid; gap: var(--ebma-space-12); }
+@media (min-width: 800px) { .p-footer__grid { grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)); } }
+.p-footer h2 { font-family: var(--ebma-font-display); font-size: var(--ebma-fs-h3); font-weight: var(--ebma-w-display); text-transform: uppercase; letter-spacing: var(--ebma-tracking-tight); margin: 0 0 var(--ebma-space-4); }
+.p-footer__col h3 {
+  font-size: var(--ebma-fs-eyebrow); letter-spacing: var(--ebma-tracking-eyebrow);
+  text-transform: uppercase; color: var(--ebma-clay-on-dark); margin: 0 0 var(--ebma-space-4);
+}
+.p-footer ul { list-style: none; margin: 0; padding: 0; }
+.p-footer li { margin-bottom: var(--ebma-space-3); }
+.p-footer a:not(.ebma-btn) { color: var(--ebma-muted-invert); text-decoration: none; }
+.p-footer a:not(.ebma-btn):hover { color: var(--ebma-cream); text-decoration: underline; }
+.p-footer__meta {
+  margin-top: var(--ebma-space-16); padding-top: var(--ebma-space-6);
+  border-top: 1px solid var(--ebma-rule-invert);
+  display: flex; flex-wrap: wrap; gap: var(--ebma-space-4) var(--ebma-space-8);
+  justify-content: space-between;
+  font-size: var(--ebma-fs-small); color: var(--ebma-muted-invert);
+}
+
+/* --- Prototype notice ----------------------------------------------------
+   Pinned to the BOTTOM. A top banner collided with the fixed header and
+   pushed the hero down, distorting the very design it describes.          */
+.p-notice {
+  position: fixed; inset: auto 0 0 0; z-index: 200;
+  margin: 0;
+  background: var(--ebma-clay); color: #fff;
+  font-size: var(--ebma-fs-eyebrow); line-height: 1.5; text-align: center;
+  padding: var(--ebma-space-3) var(--ebma-gutter);
+  box-shadow: 0 -8px 24px rgba(18,16,14,0.18);
+}
+.p-notice a { color: #fff; }
+
+/* --- Placeholder imagery -------------------------------------------------
+   Every placeholder states the shot the brief calls for, so the asset list
+   and the design never disagree. See docs/05-assets-checklist.md.          */
+.p-ph {
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  padding: var(--ebma-space-6);
+  background:
+    repeating-linear-gradient(135deg, rgba(247,242,232,0.05) 0 12px, transparent 12px 24px),
+    var(--ebma-ink-soft);
+  color: var(--ebma-muted-invert);
+  font-size: var(--ebma-fs-eyebrow);
+  letter-spacing: var(--ebma-tracking-eyebrow);
+  text-transform: uppercase;
+  line-height: 1.6;
+  width: 100%; height: 100%;
+  min-height: 180px;
+}
+.p-ph span { max-width: 26ch; }
+
+/* Placeholders standing in for full-bleed hero / cover imagery. */
+.ebma-hero__media .p-ph { position: absolute; inset: 0; }
+.p-ph--hero {
+  align-items: flex-start;
+  justify-content: flex-end;
+  text-align: right;
+  padding: var(--ebma-space-8) var(--ebma-gutter);
+  opacity: 0.55;
+}
