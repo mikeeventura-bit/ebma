@@ -102,26 +102,123 @@
     requestAnimationFrame(frame);
   }
 
-  /* --- 4. Marquee duplication --------------------------------------------
-     A seamless loop needs the track's content twice. Duplicating in JS keeps
-     the markup (and the editable content in Squarespace) written only once.
-     The duplicate is aria-hidden so it is not announced twice.              */
+  /* --- 4. Navigation dropdowns -------------------------------------------
+     The menus were pure CSS: :hover plus :focus-within. Clicking a toggle
+     gives the button focus, :focus-within stays true, and the menu is stuck
+     open until focus moves elsewhere. aria-expanded was also hardcoded false,
+     so assistive technology was told "closed" while the menu was open.
+
+     Ownership moves to JS. CSS keeps a :hover fallback for pointer devices so
+     the menus still work if this never runs.                                */
+  function initNav() {
+    var items = Array.prototype.slice.call(document.querySelectorAll(".p-nav__item"));
+    if (!items.length) return;
+
+    document.documentElement.classList.add("ebma-nav-js");
+
+    function close(item) {
+      item.classList.remove("is-open");
+      var t = item.querySelector(".p-nav__toggle");
+      if (t) t.setAttribute("aria-expanded", "false");
+    }
+    function closeAll(except) {
+      items.forEach(function (i) { if (i !== except) close(i); });
+    }
+
+    items.forEach(function (item) {
+      var toggle = item.querySelector(".p-nav__toggle");
+      if (!toggle) return;
+      toggle.setAttribute("aria-expanded", "false");
+
+      toggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var open = item.classList.contains("is-open");
+        closeAll(item);
+        item.classList.toggle("is-open", !open);
+        toggle.setAttribute("aria-expanded", String(!open));
+      });
+
+      // Tabbing out of the menu entirely closes it.
+      item.addEventListener("focusout", function (e) {
+        if (!item.contains(e.relatedTarget)) close(item);
+      });
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest(".p-nav__item")) closeAll();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape") return;
+      var open = document.querySelector(".p-nav__item.is-open");
+      if (!open) return;
+      close(open);
+      var t = open.querySelector(".p-nav__toggle");
+      if (t) t.focus();
+    });
+  }
+
+  /* --- 5. Marquee ---------------------------------------------------------
+     A seamless loop needs one repeat of the content to be at least as wide as
+     the visible area. With six 180px tiles the set was 1080px against a
+     1440px viewport, so translateX(-50%) scrolled past the end and exposed a
+     gap: the "stop" that was reported.
+
+     So: repeat the original set until the track is at least twice the
+     container, then translate by exactly one set width. Seamless at any tile
+     size, logo count or viewport. Duration scales with distance so the speed
+     stays constant as logos are added.                                       */
   function initMarquee() {
     document.querySelectorAll("[data-ebma-marquee]").forEach(function (track) {
       if (track.dataset.ebmaMarqueeReady) return;
-      var clone = track.cloneNode(true);
-      clone.setAttribute("aria-hidden", "true");
-      while (clone.firstChild) track.appendChild(clone.firstChild);
+
+      var originals = Array.prototype.slice.call(track.children);
+      if (!originals.length) return;
+
+      var container = track.parentElement;
+      var setWidth = track.scrollWidth;
+      if (!setWidth) return;
+
+      var needed = Math.max(2, Math.ceil((container.offsetWidth * 2) / setWidth) + 1);
+      for (var copy = 1; copy < needed; copy++) {
+        originals.forEach(function (node) {
+          var clone = node.cloneNode(true);
+          clone.setAttribute("aria-hidden", "true");
+          track.appendChild(clone);
+        });
+      }
+
+      // One set is the distance to travel before the loop repeats exactly.
+      track.style.setProperty("--ebma-marquee-shift", setWidth + "px");
+      track.style.setProperty("--ebma-marquee-duration", Math.round(setWidth / 45) + "s");
       track.dataset.ebmaMarqueeReady = "1";
     });
   }
 
   function init() {
     initHeader();
+    initNav();
     initReveal();
     initCounters();
     initMarquee();
   }
+
+  // Re-measure the marquee when the viewport changes width.
+  var resizeTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      document.querySelectorAll("[data-ebma-marquee]").forEach(function (t) {
+        var shift = parseFloat(t.style.getPropertyValue("--ebma-marquee-shift"));
+        if (!shift) return;
+        var container = t.parentElement;
+        if (t.scrollWidth < container.offsetWidth * 2) {
+          delete t.dataset.ebmaMarqueeReady;
+          initMarquee();
+        }
+      });
+    }, 250);
+  });
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);

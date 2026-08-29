@@ -96,6 +96,7 @@ cd prototype && python3 -m http.server 8099 &
 node verify-contrast.mjs     # 21/21 WCAG AA pairs
 node verify-render.mjs       # 1440/768/390: overflow, console errors, screenshots
 node verify-fallbacks.mjs    # prefers-reduced-motion, JS disabled
+node verify-behaviour.mjs    # 10/10: dropdown open/close/escape, marquee loop
 node verify-rules.mjs        # 9/9 house rules: uppercase, poster rarity, brand
                              # separation, badge, type hierarchy, section
                              # separation, no em dashes, §02 paths, §05 page set

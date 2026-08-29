@@ -4,13 +4,19 @@
      A scrolling band of partner logos reads as credibility. (A scrolling band
      of slogans, which this replaces, read as noise.)
 
-     Deliberately restrained: 180px tiles, logos capped at 44px tall and held
+     Restrained but legible: 240px tiles, logos capped at 56px tall and held
      back in opacity, so the strip sits behind the content in the hierarchy
      rather than competing with it. It fades out at both edges and stops
      entirely for anyone who has asked their system to reduce motion.
 
-     The track is duplicated by ebma.js, so write each logo ONCE. The clone is
+     The track is repeated by ebma.js, so write each logo ONCE. The clones are
      marked aria-hidden and the logos are not announced twice.
+
+     The script repeats the set until the track is at least twice the width of
+     its container, then scrolls by exactly one repeat. That is what makes the
+     loop seamless: with too few logos the set is narrower than the screen and
+     a gap appears at the end of each cycle. Six logos or more is comfortable;
+     fewer still works, it just repeats more often.
 
      TO ADD A LOGO: upload the file in Squarespace (Design -> Custom Files, or
      any image block, then copy its URL) and paste the URL into a new item.

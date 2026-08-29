@@ -129,8 +129,11 @@ a { color: var(--ebma-radish); }
 .p-header.is-stuck .p-nav__donate,
 .p-header--solid .p-nav__donate { border-left-color: var(--ebma-rule); }
 
-/* Dropdowns. CSS-driven so they work without JS; kept open on focus-within
-   so they are reachable by keyboard. */
+/* Dropdowns.
+   Open state is owned by JS (.is-open) once the script has run, which is what
+   lets a click close the menu again. The :hover and :focus-within rules below
+   are scoped to :not(.ebma-nav-js) so they act as a no-JS fallback only: with
+   both active, focus-within would pin the menu open and defeat the toggle. */
 .p-nav__item { position: relative; display: flex; align-items: center; }
 .p-nav__toggle {
   display: inline-flex; align-items: center; gap: 0.35em;
@@ -146,9 +149,10 @@ a { color: var(--ebma-radish); }
 }
 .p-header.is-stuck .p-nav__toggle, .p-header--solid .p-nav__toggle { color: var(--ebma-ink); }
 .p-nav__item:hover .p-nav__toggle,
-.p-nav__item:focus-within .p-nav__toggle { border-bottom-color: currentColor; }
+.p-nav__item.is-open .p-nav__toggle { border-bottom-color: currentColor; }
 .p-nav__caret { transition: transform var(--ebma-dur) var(--ebma-ease); }
-.p-nav__item:hover .p-nav__caret, .p-nav__item:focus-within .p-nav__caret { transform: rotate(180deg); }
+.p-nav__item:hover .p-nav__caret,
+.p-nav__item.is-open .p-nav__caret { transform: rotate(180deg); }
 
 .p-nav__menu {
   position: absolute; top: 100%; left: 50%; transform: translate(-50%, 6px);
@@ -162,7 +166,12 @@ a { color: var(--ebma-radish); }
   transition: opacity 180ms var(--ebma-ease), transform 180ms var(--ebma-ease), visibility 180ms;
 }
 .p-nav__item:hover .p-nav__menu,
-.p-nav__item:focus-within .p-nav__menu {
+.p-nav__item.is-open .p-nav__menu {
+  opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0);
+}
+/* No-JS fallback: keyboard users can still reach the menu. Dropped as soon as
+   ebma.js adds .ebma-nav-js, so it never fights the click-to-close toggle. */
+html:not(.ebma-nav-js) .p-nav__item:focus-within .p-nav__menu {
   opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0);
 }
 .p-nav__menu li { margin: 0; }
@@ -195,8 +204,11 @@ a { color: var(--ebma-radish); }
 .p-header.is-stuck .p-nav__donate,
 .p-header--solid .p-nav__donate { border-left-color: var(--ebma-rule); }
 
-/* Dropdowns. CSS-driven so they work without JS; kept open on focus-within
-   so they are reachable by keyboard. */
+/* Dropdowns.
+   Open state is owned by JS (.is-open) once the script has run, which is what
+   lets a click close the menu again. The :hover and :focus-within rules below
+   are scoped to :not(.ebma-nav-js) so they act as a no-JS fallback only: with
+   both active, focus-within would pin the menu open and defeat the toggle. */
 .p-nav__item { position: relative; display: flex; align-items: center; }
 .p-nav__toggle {
   display: inline-flex; align-items: center; gap: 0.35em;
@@ -212,9 +224,10 @@ a { color: var(--ebma-radish); }
 }
 .p-header.is-stuck .p-nav__toggle, .p-header--solid .p-nav__toggle { color: var(--ebma-ink); }
 .p-nav__item:hover .p-nav__toggle,
-.p-nav__item:focus-within .p-nav__toggle { border-bottom-color: currentColor; }
+.p-nav__item.is-open .p-nav__toggle { border-bottom-color: currentColor; }
 .p-nav__caret { transition: transform var(--ebma-dur) var(--ebma-ease); }
-.p-nav__item:hover .p-nav__caret, .p-nav__item:focus-within .p-nav__caret { transform: rotate(180deg); }
+.p-nav__item:hover .p-nav__caret,
+.p-nav__item.is-open .p-nav__caret { transform: rotate(180deg); }
 
 .p-nav__menu {
   position: absolute; top: 100%; left: 50%; transform: translate(-50%, 6px);
@@ -228,7 +241,12 @@ a { color: var(--ebma-radish); }
   transition: opacity 180ms var(--ebma-ease), transform 180ms var(--ebma-ease), visibility 180ms;
 }
 .p-nav__item:hover .p-nav__menu,
-.p-nav__item:focus-within .p-nav__menu {
+.p-nav__item.is-open .p-nav__menu {
+  opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0);
+}
+/* No-JS fallback: keyboard users can still reach the menu. Dropped as soon as
+   ebma.js adds .ebma-nav-js, so it never fights the click-to-close toggle. */
+html:not(.ebma-nav-js) .p-nav__item:focus-within .p-nav__menu {
   opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0);
 }
 .p-nav__menu li { margin: 0; }

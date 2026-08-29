@@ -40,9 +40,12 @@ Sentence case throughout. Uppercase belongs on the small eyebrow label only.
 
 ### Utility bar
 
-A thin dark band above the header: phone `347.450.4446`, 501(c)(3) status, and
-"Shop Black Radish Grocery →". The storefront link lives here deliberately: in
-the utility bar it reads as a **separate destination**, not as an EBMA page.
+A thin dark band above the header: phone `347.450.4446` and 501(c)(3) status.
+
+The storefront link was removed. At nav level "Shop Black Radish Grocery" asks
+a question the chrome cannot answer, shop or donate, and the site's job is
+donations. The one remaining pointer to the store is the handoff line inside the
+Black Radish section, where the relationship is explained.
 
 ### The two money flows
 
@@ -71,18 +74,12 @@ Structure exactly as brief §06 specifies. Set in **sentence case** with
 to infrastructure. Sentence case with one accent word is the house construction;
 all-caps at weight 900 is what made the first pass shout.
 
-### 2. Where we serve
+### 2. Impact at a glance
+> **The work, in numbers.**
 
-> **Serving** Ocean Hill · Brownsville · East New York · Cypress Hills ·
-> Breukelen Houses · Starrett City
-
-A quiet cream strip. It answers brief §02's *"who and where we serve"*, which
-nothing else above the fold does, and it separates the hero from the impact
-section: both sit on ink, and with nothing between them they read as one dark
-mass. `[VERIFY]` the neighbourhood list with EBMA.
-
-### 3. Impact at a glance
-> **THE WORK, IN NUMBERS.**
+Sits on the light ground. The hero and impact were both on ink with nothing
+between them and read as one dark mass; giving impact its own ground separates
+them at the source and gives the page a dark/light rhythm.
 
 | Value | Label | Note |
 |---|---|---|

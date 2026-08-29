@@ -77,6 +77,18 @@
    IMPACT AT A GLANCE
    -------------------------------------------------------------------------- */
 .ebma-impact { background: var(--ebma-ink); color: var(--ebma-text-invert); }
+
+/* Light variant. The hero and impact both sat on ink with nothing between
+   them, so they read as one dark mass. Giving impact its own ground fixes
+   that at the source rather than wedging a divider between them, and gives
+   the page a dark/light rhythm it was missing. */
+.ebma-impact--light {
+  background: var(--ebma-cream-deep);
+  color: var(--ebma-text);
+  --ebma-accent-eyebrow: var(--ebma-radish);
+}
+.ebma-impact--light .ebma-impact__foot p { color: var(--ebma-text-muted); }
+.ebma-impact--light .ebma-h2 { color: var(--ebma-text); }
 .ebma-impact .ebma-wrap { padding-inline: 0; }
 .ebma-impact__head { padding: var(--ebma-space-12) var(--ebma-gutter) var(--ebma-space-8); }
 .ebma-impact__foot {

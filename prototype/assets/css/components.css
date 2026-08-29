@@ -215,10 +215,11 @@
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: var(--ebma-space-3);
 }
-/* Raised surface, not the section ground: with gap-based tiles rather than
-   hairline rules, ink-on-ink made the tiles disappear entirely. */
+/* Raised surface, never the section ground: with gap-based tiles rather than
+   hairline rules, tile-on-ground made the tiles disappear entirely.
+   Impact now sits on the cream ground, so the tiles are cream on cream-deep. */
 .ebma-stat {
-  background: var(--ebma-ink-soft);
+  background: var(--ebma-cream);
   padding: var(--ebma-space-8) var(--ebma-space-6);
   border-radius: var(--ebma-radius-card);
 }
@@ -228,7 +229,7 @@
   font-weight: var(--ebma-w-campaign);
   line-height: 0.9;
   letter-spacing: var(--ebma-tracking-campaign);
-  color: var(--ebma-cream);
+  color: var(--ebma-ink);
   display: block;
 }
 .ebma-stat__unit { font-size: 0.45em; vertical-align: 0.55em; margin-left: 0.1em; }
@@ -236,22 +237,22 @@
   font-size: var(--ebma-fs-small);
   font-weight: var(--ebma-w-medium);
   line-height: 1.35;
-  color: var(--ebma-muted-invert);
+  color: var(--ebma-text-muted);
   margin-top: var(--ebma-space-4);
 }
 .ebma-stat__note {
   font-size: var(--ebma-fs-eyebrow);
   letter-spacing: var(--ebma-tracking-eyebrow);
   text-transform: uppercase;
-  color: var(--ebma-clay-on-dark);
+  color: var(--ebma-radish);
   margin-top: var(--ebma-space-2);
 }
 /* A metric the team hasn't verified yet (brief marks several TBD). Visibly
    provisional so it can never ship by accident. */
-.ebma-stat--tbd .ebma-stat__value { color: var(--ebma-muted-invert); opacity: 0.5; }
+.ebma-stat--tbd .ebma-stat__value { color: var(--ebma-text-muted); opacity: 0.55; }
 .ebma-stat--tbd {
   background: transparent;
-  outline: 1px dashed var(--ebma-clay-on-dark);
+  outline: 1px dashed var(--ebma-clay);
   outline-offset: -1px;
   border-radius: var(--ebma-radius-card);
 }
@@ -451,65 +452,9 @@
 }
 
 
-/* --------------------------------------------------------------------------
-   12. WHERE WE SERVE BAND
-   A quiet static strip between the hero and the impact section. Two purposes:
-   it answers brief §02's "who and where we serve", which nothing else above
-   the fold does, and it separates two ink-grounded sections that otherwise
-   run together as one dark mass.
-
-   The house pattern for this slot is a calm credibility strip (Premier Gas
-   puts trust marks there, Undiscovered Destinations "AS FEATURED IN"), not a
-   scrolling band.
-   -------------------------------------------------------------------------- */
-.ebma-serve {
-  background: var(--ebma-cream);
-  color: var(--ebma-text);
-  border-block: 1px solid var(--ebma-rule);
-  padding-block: var(--ebma-space-6);
-}
-.ebma-serve__inner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--ebma-space-3) var(--ebma-space-6);
-}
-.ebma-serve__label {
-  font-size: var(--ebma-fs-eyebrow);
-  font-weight: var(--ebma-w-bold);
-  letter-spacing: var(--ebma-tracking-eyebrow);
-  text-transform: uppercase;
-  color: var(--ebma-radish);
-  margin: 0;
-  flex: none;
-}
-.ebma-serve__list {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--ebma-space-3) var(--ebma-space-5, 1.25rem);
-  margin: 0;
-  padding: 0;
-}
-.ebma-serve__list li {
-  font-size: var(--ebma-fs-body);
-  font-weight: var(--ebma-w-medium);
-  color: var(--ebma-text);
-  display: flex;
-  align-items: center;
-  gap: var(--ebma-space-3);
-}
-.ebma-serve__list li + li:before {
-  content: "";
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--ebma-radish);
-  flex: none;
-  opacity: 0.55;
-}
 
 /* --------------------------------------------------------------------------
-   13. PARTNER LOGO MARQUEE
+   12. PARTNER LOGO MARQUEE
    A scrolling band of partner logos reads as credibility. (A scrolling band of
    slogans, which this replaces, read as noise.)
 
@@ -530,25 +475,30 @@
   display: flex;
   width: max-content;
   align-items: center;
-  animation: ebma-logos-scroll 46s linear infinite;
+  /* Distance and duration are written by ebma.js from the measured width of
+     one repeat, so the loop closes exactly whatever the tile size or count.
+     The fallbacks only apply before the script runs. */
+  animation: ebma-logos-scroll var(--ebma-marquee-duration, 40s) linear infinite;
 }
 .ebma-logos__item {
   flex: none;
-  width: 180px;                 /* modest tile: enough for a mark, not a feature */
-  padding-inline: var(--ebma-space-6);
+  width: 240px;                 /* enough for a mark with allowance around it */
+  padding-inline: var(--ebma-space-8);
   display: grid;
   place-items: center;
 }
 .ebma-logos__item img {
   max-width: 100%;
-  max-height: 44px;             /* caps tall marks so the band stays even */
+  max-height: 56px;             /* caps tall marks so the band stays even */
   width: auto;
   height: auto;
   opacity: 0.55;
   transition: opacity var(--ebma-dur) var(--ebma-ease);
 }
 .ebma-logos__item img:hover { opacity: 1; }
-@keyframes ebma-logos-scroll { to { transform: translateX(-50%); } }
+@keyframes ebma-logos-scroll {
+  to { transform: translateX(calc(var(--ebma-marquee-shift, 50%) * -1)); }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .ebma-logos__track { animation: none; transform: none; }

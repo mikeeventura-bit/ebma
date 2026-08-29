@@ -118,7 +118,9 @@ Design → Header:
 - Enable **Fixed position**
 - Enable the transparent/overlay option so it sits over the hero
 - Build About / Our work / Get involved as **folders** so they get dropdowns.
-  Black Radish, Impact and News stay single pages at the top level.
+  Black Radish, Impact and News are **not** top-level: Impact and News sit in
+  the About folder, and Black Radish is reached from the homepage feature
+  section. See the nav decision in `docs/01-audit.md`.
 
 **Brief §05 defines exactly eight pages**: Home, About, Our Work, Black Radish,
 Impact, News/Stories, Get Involved, Donate. Folder children must be **anchor
