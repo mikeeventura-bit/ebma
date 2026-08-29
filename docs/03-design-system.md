@@ -98,8 +98,17 @@ cream-ground text in clay; use `--ebma-radish` (7.80:1).
 
 ## 3. Typography
 
+**The wordmark is the type anchor.** EBMA's existing logo is ultra-heavy
+condensed caps on two lines, justified to equal width. The display face is
+chosen to relate to it, not to compete with it — which is also why headings sit
+at weight 800 rather than 900: at 900 they start to read as wordmark rather
+than as heading.
+
 **Display — Archivo.** A grotesque with a genuine 900 weight and tight
-apertures. It holds up at poster scale, which most Google fonts do not.
+apertures. It holds up at scale, which most Google fonts do not. If the
+wordmark's actual typeface can be identified (see the asset checklist), revisit
+this — a display face drawn from the same family as the logo would tie the
+system together more tightly than Archivo does.
 
 **Body — Inter.** Neutral, highly legible at small sizes, wide language
 coverage.

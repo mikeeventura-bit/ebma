@@ -69,6 +69,27 @@ photographs become searchable.
 
 ---
 
+## Logo — needed before launch
+
+EBMA's wordmark is ultra-heavy condensed caps, set on two lines optically
+justified to the same width. The prototype currently **rebuilds it in a
+webfont as a stand-in**, which is not acceptable for production: a wordmark
+built from live type reflows if the face fails to load, and will never match
+the original letterforms exactly.
+
+- [ ] **Wordmark as SVG** — vector, outlined text (not live type)
+- [ ] **Black version** for cream/light grounds
+- [ ] **Cream or white version** for the ink header, hero and footer
+- [ ] A stacked and, if one exists, a single-line horizontal lockup
+- [ ] Favicon / app icon derivation — 512×512 PNG minimum
+- [ ] **The typeface name**, if known. The wordmark is the brand's type anchor;
+      knowing the face lets the site's display type relate to it rather than
+      merely coexist with it.
+- [ ] Minimum clear space and minimum size rules, if the org has them
+
+Until the SVG arrives, do not export the CSS stand-in as an image and treat it
+as the logo.
+
 ## Organizational information
 
 - [ ] Updated mission statement

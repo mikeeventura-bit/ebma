@@ -61,18 +61,30 @@ a { color: var(--ebma-radish); }
   padding: var(--ebma-space-4) var(--ebma-gutter);
   display: flex; align-items: center; justify-content: space-between; gap: var(--ebma-space-6);
 }
+/* --- Wordmark ------------------------------------------------------------
+   Reproduces EBMA's existing logo: ultra-heavy condensed caps on two lines,
+   optically justified to the same width, with the lines nearly touching.
+   Line 2 is set larger because "MUTUAL AID" is three characters shorter than
+   "EAST BROOKLYN" — that size difference is what squares the block off.
+
+   THIS IS A TYPE STAND-IN. Production needs the real wordmark as SVG, in
+   black and in cream — see docs/05-assets-checklist.md. A logo rebuilt in
+   webfont is not the logo: it will reflow if the face fails to load. */
 .p-logo {
+  display: inline-block;
   font-family: var(--ebma-font-display);
-  font-weight: var(--ebma-w-campaign);
-  font-size: 0.9rem;
-  letter-spacing: 0.02em;
-  line-height: 1.05;
+  font-weight: 900;
+  font-size: 0.78rem;
+  letter-spacing: -0.02em;
+  line-height: 0.88;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--ebma-cream);
   transition: color var(--ebma-dur) var(--ebma-ease);
+  font-stretch: condensed;
 }
-.p-logo span { display: block; }
+.p-logo span { display: block; white-space: nowrap; }
+.p-logo span:last-child { font-size: 1.29em; }  /* squares the two lines off */
 .p-nav { display: none; gap: var(--ebma-space-6); align-items: center; }
 @media (min-width: 940px) { .p-nav { display: flex; } }
 /* Sentence case at 17px, near-zero tracking — the house standard. Uppercase
@@ -235,6 +247,7 @@ a { color: var(--ebma-radish); }
   background: var(--ebma-ink); color: var(--ebma-text-invert); padding-block: var(--ebma-space-16) var(--ebma-space-8); }
 .p-footer__grid { display: grid; gap: var(--ebma-space-12); }
 @media (min-width: 800px) { .p-footer__grid { grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)); } }
+.p-footer .p-logo { font-size: 1.35rem; margin-bottom: var(--ebma-space-4); }
 .p-footer h2 { font-family: var(--ebma-font-display); font-size: var(--ebma-fs-h3); font-weight: var(--ebma-w-display); letter-spacing: var(--ebma-tracking-tight); margin: 0 0 var(--ebma-space-4); }
 .p-footer__col h3 {
   font-size: var(--ebma-fs-eyebrow); letter-spacing: var(--ebma-tracking-eyebrow);
