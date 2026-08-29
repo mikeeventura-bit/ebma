@@ -73,18 +73,22 @@ a { color: var(--ebma-radish); }
 .p-logo {
   display: inline-block;
   font-family: var(--ebma-font-display);
+  /* Archivo is variable on BOTH axes. The logo is wide AND ultra-heavy with
+     very tight counters, so the width axis is pushed near its maximum — the
+     previous stand-in used weight alone and read far too narrow and light.
+     font-stretch did nothing here; the axis has to be driven directly. */
+  font-variation-settings: "wdth" 118, "wght" 900;
   font-weight: 900;
-  font-size: 0.78rem;
-  letter-spacing: -0.02em;
-  line-height: 0.88;
+  font-size: 0.74rem;
+  letter-spacing: -0.035em;
+  line-height: 0.84;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--ebma-cream);
   transition: color var(--ebma-dur) var(--ebma-ease);
-  font-stretch: condensed;
 }
 .p-logo span { display: block; white-space: nowrap; }
-.p-logo span:last-child { font-size: 1.29em; }  /* squares the two lines off */
+.p-logo span:last-child { font-size: 1.3em; }  /* squares the two lines off */
 .p-nav { display: none; gap: var(--ebma-space-6); align-items: center; }
 @media (min-width: 940px) { .p-nav { display: flex; } }
 /* Sentence case at 17px, near-zero tracking — the house standard. Uppercase
