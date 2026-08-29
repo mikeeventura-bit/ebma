@@ -54,7 +54,25 @@ const checks = await p.evaluate(() => {
   t('button stays sentence case', pri.textTransform, 'none', pri.textTransform === 'none');
   t('button is a pill', pri.borderRadius, '999px', pri.borderRadius === '999px');
 
-  // 9. image grade reaches native image blocks
+  // 9. Squarespace's OWN mobile nav is styled, not left at platform default.
+  //    The prototype's .p-mobile-nav does not exist here: the platform ships
+  //    its own burger and overlay, and that is what the kit has to restyle.
+  const mNav = cs('.header-menu-nav-item a');
+  t('mobile nav case', mNav.textTransform, 'none', mNav.textTransform === 'none');
+  t('mobile nav touch target', mNav.minHeight, '48px', mNav.minHeight === '48px');
+  t('mobile menu ground', cs('.header-menu').backgroundColor, 'rgb(247, 242, 232)',
+     cs('.header-menu').backgroundColor === 'rgb(247, 242, 232)');
+  t('mobile CTA is a pill', cs('.header-menu-cta .btn').borderRadius, '999px',
+     cs('.header-menu-cta .btn').borderRadius === '999px');
+  t('burger touch target', cs('.header-burger-btn').minHeight, '48px',
+     cs('.header-burger-btn').minHeight === '48px');
+
+  // 10. Squarespace's own scroll animations neutralised, so they cannot hold
+  //     an element at opacity 0 that our reveal has already shown.
+  t('sqsp animation neutralised', cs('[data-animation-role]').opacity, '1',
+     cs('[data-animation-role]').opacity === '1');
+
+  // 11. image grade reaches native image blocks
   const img = cs('#s-hero .section-background img');
   t('photo grade on native img', img.filter !== 'none', 'true', img.filter !== 'none');
 

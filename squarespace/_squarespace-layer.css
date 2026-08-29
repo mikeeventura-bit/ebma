@@ -222,3 +222,71 @@ h1, h2, h3, h4 {
   letter-spacing: 0 !important;
 }
 .header-actions .btn:hover { background: var(--ebma-radish-deep) !important; }
+
+/* --- Squarespace's own mobile navigation ---------------------------------
+   The prototype builds its own mobile panel (.p-mobile-nav) because it has no
+   platform to lean on. Squarespace does NOT use that markup: it ships its own
+   burger and full-screen overlay. Do not port the prototype's panel; style the
+   platform's, which is what these rules do.
+
+   Without them the site falls back to Squarespace's default mobile menu, which
+   will not match anything else on the page. Most EBMA visitors are on a phone,
+   so this is not a cosmetic detail.                                          */
+.header-burger-btn { min-height: 48px; min-width: 48px; }
+.header-burger .burger-inner > div {
+  background-color: currentColor !important;
+  height: 2px !important;
+}
+.header-menu {
+  background: var(--ebma-cream) !important;
+}
+.header-menu-bg { background: var(--ebma-cream) !important; }
+.header-menu-nav-item a,
+.header-menu-nav-item--external a {
+  font-family: var(--ebma-font-body) !important;
+  font-size: var(--ebma-fs-h3) !important;
+  font-weight: var(--ebma-w-medium) !important;
+  text-transform: none !important;
+  letter-spacing: 0.01em !important;
+  color: var(--ebma-ink) !important;
+  min-height: 48px;               /* touch target */
+  display: flex; align-items: center;
+}
+.header-menu-nav-folder .header-menu-nav-item a {
+  font-size: var(--ebma-fs-nav) !important;
+  color: var(--ebma-text-muted) !important;
+}
+.header-menu-nav-folder-content { padding-block: var(--ebma-space-2); }
+.header-menu-cta .btn {
+  background: var(--ebma-radish) !important;
+  color: var(--ebma-cream) !important;
+  border-radius: var(--ebma-radius-pill) !important;
+  border: 0 !important;
+  text-transform: none !important;
+  width: 100%;
+  justify-content: center;
+}
+
+/* --- Squarespace's own scroll animations ---------------------------------
+   Design -> Animations must be set to NONE. This kit supplies its own reveal,
+   and running both means elements animate twice, or Squarespace's animation
+   holds an element at opacity 0 that our observer has already revealed.
+   These rules are a safety net if the setting is missed, not a substitute
+   for changing it.                                                          */
+[data-animation-role],
+.sqs-animation,
+[data-animation] {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+/* --- Fixed header stack ---------------------------------------------------
+   In the prototype the announcement bar and header are wrapped in one fixed
+   element. Squarespace keeps them as separate siblings and handles the
+   stacking itself, so do NOT try to reproduce the wrapper. Enable
+   Design -> Header -> Fixed position and let the platform manage it; the hero
+   only needs enough top padding to clear both bars. */
+.page-section:has(.ebma-mark--hero) .content-wrapper {
+  padding-top: calc(var(--ebma-topbar-h, 7.5rem) + var(--ebma-space-8));
+}

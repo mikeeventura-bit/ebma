@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>East Brooklyn Mutual Aid: Food. Community. Opportunity.</title>
 <meta name="description" content="East Brooklyn Mutual Aid is building a stronger food system in East Brooklyn through community food access, Black Radish, farmer partnerships, youth employment and community markets.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="East Brooklyn Mutual Aid">
+<meta property="og:title" content="East Brooklyn Mutual Aid: Food. Community. Opportunity.">
+<meta property="og:description" content="East Brooklyn Mutual Aid is building a stronger food system in East Brooklyn through community food access, Black Radish, farmer partnerships, youth employment and community markets.">
+<meta property="og:image" content="assets/img/hero.svg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 fill=%22%2312100E%22/><text y=%2223%22 x=%2216%22 text-anchor=%22middle%22 font-family=%22Helvetica,Arial%22 font-size=%2216%22 font-weight=%22bold%22 fill=%22%23F7F2E8%22>E</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -79,8 +86,38 @@
       <span class="p-nav__donate"><a class="ebma-btn ebma-btn--primary" href="donate.html">Donate</a></span>
     </nav>
 
-    <button class="p-menu-btn" type="button" aria-expanded="false">Menu</button>
+    <button class="p-menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav">
+      <span class="p-menu-btn__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      Menu
+    </button>
   </div>
+
+    <div class="p-mobile-nav" id="mobile-nav" hidden>
+      <div class="p-mobile-nav__group">
+        <p class="p-mobile-nav__label">About</p>
+        <a href="about.html">About EBMA</a>
+        <a href="about.html#story">Our story</a>
+        <a href="about.html#leadership">Leadership</a>
+        <a href="impact.html">Impact</a>
+        <a href="stories.html">News &amp; stories</a>
+      </div>
+      <div class="p-mobile-nav__group">
+        <p class="p-mobile-nav__label">Our work</p>
+        <a href="our-work.html">All our work</a>
+        <a href="our-work.html#food-access">Food access</a>
+        <a href="our-work.html#youth">Youth employment</a>
+        <a href="our-work.html#markets">Markets</a>
+        <a href="our-work.html#partnerships">Partnerships</a>
+      </div>
+      <div class="p-mobile-nav__group">
+        <p class="p-mobile-nav__label">Get involved</p>
+        <a href="get-involved.html">Ways to get involved</a>
+        <a href="get-involved.html#volunteer">Volunteer</a>
+        <a href="get-involved.html#partner">Partner with us</a>
+        <a href="get-involved.html#give">Ways to give</a>
+      </div>
+      <a class="ebma-btn ebma-btn--primary" href="donate.html">Donate</a>
+    </div>
 </header>
 </div>
 
@@ -91,7 +128,7 @@
        =================================================================== -->
   <section class="ebma-hero" data-ebma-header-trigger>
     <div class="ebma-hero__media">
-      <img src="assets/img/hero.svg" alt="EBMA community members at a market or grocery delivery" loading="lazy" decoding="async">
+      <img width="2400" height="1350" src="assets/img/hero.svg" alt="EBMA community members at a market or grocery delivery" loading="lazy" decoding="async">
     </div>
     <div class="ebma-hero__inner">
       <div class="ebma-wrap">
@@ -172,35 +209,35 @@
 
       <div class="ebma-cards">
         <a class="ebma-card ebma-reveal" href="our-work.html">
-          <div class="ebma-photo ebma-photo--portrait"><img src="assets/img/deliveries.svg" alt="A volunteer handing grocery bags to a neighbor" loading="lazy" decoding="async"></div>
+          <div class="ebma-photo ebma-photo--portrait"><img width="1000" height="1250" src="assets/img/deliveries.svg" alt="A volunteer handing grocery bags to a neighbor" loading="lazy" decoding="async"></div>
           <p class="ebma-card__index">01</p>
           <h3 class="ebma-card__title">Food Access &amp; Deliveries</h3>
           <p class="ebma-card__body">Bi-weekly grocery deliveries to neighbors across Ocean Hill, Brownsville, East New York, Cypress Hills, Breukelen Houses and Starrett City.</p>
         </a>
 
         <a class="ebma-card ebma-reveal" href="black-radish.html">
-          <div class="ebma-photo ebma-photo--portrait"><img src="assets/img/black-radish.svg" alt="Black Radish produce crates and branded packaging at a market stall" loading="lazy" decoding="async"></div>
+          <div class="ebma-photo ebma-photo--portrait"><img width="1000" height="1250" src="assets/img/black-radish.svg" alt="Black Radish produce crates and branded packaging at a market stall" loading="lazy" decoding="async"></div>
           <p class="ebma-card__index">02</p>
           <h3 class="ebma-card__title">Black Radish</h3>
           <p class="ebma-card__body">Low-cost groceries sourced from Black distributors and regional farmers, delivered directly to New Yorkers who need them.</p>
         </a>
 
         <a class="ebma-card ebma-reveal" href="our-work.html">
-          <div class="ebma-photo ebma-photo--portrait"><img src="assets/img/farmers.svg" alt="A New York farmer on their farm" loading="lazy" decoding="async"></div>
+          <div class="ebma-photo ebma-photo--portrait"><img width="1000" height="1250" src="assets/img/farmers.svg" alt="A New York farmer on their farm" loading="lazy" decoding="async"></div>
           <p class="ebma-card__index">03</p>
           <h3 class="ebma-card__title">Farmers &amp; Producers</h3>
           <p class="ebma-card__body">Buying directly from New York farmers and producers, so the money that feeds East Brooklyn strengthens the region that grows it.</p>
         </a>
 
         <a class="ebma-card ebma-reveal" href="our-work.html">
-          <div class="ebma-photo ebma-photo--portrait"><img src="assets/img/youth.svg" alt="Young people working a community market" loading="lazy" decoding="async"></div>
+          <div class="ebma-photo ebma-photo--portrait"><img width="1000" height="1250" src="assets/img/youth.svg" alt="Young people working a community market" loading="lazy" decoding="async"></div>
           <p class="ebma-card__index">04</p>
           <h3 class="ebma-card__title">Youth Employment</h3>
           <p class="ebma-card__body">Paid work and real workforce exposure for young people, inside the food system their own neighborhoods depend on.</p>
         </a>
 
         <a class="ebma-card ebma-reveal" href="our-work.html">
-          <div class="ebma-photo ebma-photo--portrait"><img src="assets/img/markets.svg" alt="Shoppers at the RAMS farmers market" loading="lazy" decoding="async"></div>
+          <div class="ebma-photo ebma-photo--portrait"><img width="1000" height="1250" src="assets/img/markets.svg" alt="Shoppers at the RAMS farmers market" loading="lazy" decoding="async"></div>
           <p class="ebma-card__index">05</p>
           <h3 class="ebma-card__title">Markets &amp; Partnerships</h3>
           <p class="ebma-card__body">Farmers markets, community food events, and partnerships with schools and neighborhood organizations expanding what food access can mean.</p>
@@ -216,8 +253,8 @@
     <div class="ebma-wrap">
       <div class="ebma-split">
         <div class="ebma-photo-pair ebma-reveal">
-          <div class="ebma-photo ebma-photo--tall"><img src="assets/img/black-radish.svg" alt="Black Radish produce crates and branded packaging at a market stall" loading="lazy" decoding="async"></div>
-          <div class="ebma-photo ebma-photo--tall"><img src="assets/img/black-radish.svg" alt="Black Radish produce crates and branded packaging at a market stall" loading="lazy" decoding="async"></div>
+          <div class="ebma-photo ebma-photo--tall"><img width="1000" height="1250" src="assets/img/black-radish.svg" alt="Black Radish produce crates and branded packaging at a market stall" loading="lazy" decoding="async"></div>
+          <div class="ebma-photo ebma-photo--tall"><img width="1000" height="1250" src="assets/img/black-radish.svg" alt="Black Radish produce crates and branded packaging at a market stall" loading="lazy" decoding="async"></div>
         </div>
 
         <div class="ebma-split__copy ebma-reveal">
@@ -255,7 +292,7 @@
         </div>
 
         <figure class="ebma-reveal" style="margin:0">
-          <div class="ebma-photo ebma-photo--landscape"><img src="assets/img/origin.svg" alt="EBMA volunteers packing and distributing groceries in 2020" loading="lazy" decoding="async"></div>
+          <div class="ebma-photo ebma-photo--landscape"><img width="1600" height="1067" src="assets/img/origin.svg" alt="EBMA volunteers packing and distributing groceries in 2020" loading="lazy" decoding="async"></div>
           <figcaption class="ebma-caption">East Brooklyn Mutual Aid volunteers, 2020. Historical material is archived, not erased.</figcaption>
         </figure>
       </div>
@@ -403,12 +440,12 @@
 
     <div class="ebma-logos ebma-reveal">
       <div class="ebma-logos__track" data-ebma-marquee>
-        <div class="ebma-logos__item"><img src="assets/img/logo-ccc.svg" alt="CCC" loading="lazy" decoding="async"></div>
-        <div class="ebma-logos__item"><img src="assets/img/logo-rams.svg" alt="RAMS" loading="lazy" decoding="async"></div>
-        <div class="ebma-logos__item"><img src="assets/img/logo-black-yard-farm.svg" alt="Black Yard Farm" loading="lazy" decoding="async"></div>
-        <div class="ebma-logos__item"><img src="assets/img/logo-chestnut-commons.svg" alt="Chestnut Commons" loading="lazy" decoding="async"></div>
-        <div class="ebma-logos__item"><img src="assets/img/logo-partner-5.svg" alt="Partner name" loading="lazy" decoding="async"></div>
-        <div class="ebma-logos__item"><img src="assets/img/logo-partner-6.svg" alt="Partner name" loading="lazy" decoding="async"></div>
+        <div class="ebma-logos__item"><img width="360" height="96" src="assets/img/logo-ccc.svg" alt="CCC" loading="lazy" decoding="async"></div>
+        <div class="ebma-logos__item"><img width="360" height="96" src="assets/img/logo-rams.svg" alt="RAMS" loading="lazy" decoding="async"></div>
+        <div class="ebma-logos__item"><img width="360" height="96" src="assets/img/logo-black-yard-farm.svg" alt="Black Yard Farm" loading="lazy" decoding="async"></div>
+        <div class="ebma-logos__item"><img width="360" height="96" src="assets/img/logo-chestnut-commons.svg" alt="Chestnut Commons" loading="lazy" decoding="async"></div>
+        <div class="ebma-logos__item"><img width="360" height="96" src="assets/img/logo-partner-5.svg" alt="Partner name" loading="lazy" decoding="async"></div>
+        <div class="ebma-logos__item"><img width="360" height="96" src="assets/img/logo-partner-6.svg" alt="Partner name" loading="lazy" decoding="async"></div>
       </div>
     </div>
 

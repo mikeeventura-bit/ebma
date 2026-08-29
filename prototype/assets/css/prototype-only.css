@@ -23,7 +23,9 @@ body {
   background: var(--ebma-cream);
   -webkit-font-smoothing: antialiased;
 }
-img { max-width: 100%; }
+/* width/height attributes are present to reserve space and stop layout shift;
+   these keep the rendered size fluid regardless of the intrinsic values. */
+img { max-width: 100%; height: auto; }
 a { color: var(--ebma-radish); }
 
 /* --- Utility bar ---------------------------------------------------------
@@ -41,7 +43,10 @@ a { color: var(--ebma-radish); }
   display: flex; flex-wrap: wrap; gap: var(--ebma-space-3) var(--ebma-space-6);
   align-items: center; justify-content: space-between;
 }
-.p-utility a { color: var(--ebma-cream); text-decoration: none; }
+.p-utility a {
+  color: var(--ebma-cream); text-decoration: none;
+  display: inline-flex; align-items: center; min-height: 44px;  /* touch target */
+}
 .p-utility a:hover { text-decoration: underline; }
 .p-utility__group { display: flex; flex-wrap: wrap; gap: var(--ebma-space-3) var(--ebma-space-6); align-items: center; }
 .p-utility__sep { opacity: 0.35; }
@@ -73,7 +78,8 @@ a { color: var(--ebma-radish); }
    black and in cream: see docs/05-assets-checklist.md. A logo rebuilt in
    webfont is not the logo: it will reflow if the face fails to load. */
 .p-logo {
-  display: inline-block;
+  display: inline-flex; flex-direction: column; justify-content: center;
+  min-height: 44px;              /* touch target */
   font-family: var(--ebma-font-display);
   /* Archivo is variable on BOTH axes. The logo is wide AND ultra-heavy with
      very tight counters, so the width axis is pushed near its maximum: the
@@ -186,81 +192,75 @@ html:not(.ebma-nav-js) .p-nav__item:focus-within .p-nav__menu {
 .p-nav__menu a:hover { background: var(--ebma-cream-deep); }
 
 .p-menu-btn {
-  display: inline-flex; align-items: center; gap: var(--ebma-space-2);
-  background: none; border: 0; cursor: pointer; padding: var(--ebma-space-2);
+  display: inline-flex; align-items: center; gap: var(--ebma-space-3);
+  background: none; border: 0; cursor: pointer;
+  padding: var(--ebma-space-2) var(--ebma-space-2);
+  min-height: 48px;              /* touch target */
   font: inherit; font-size: var(--ebma-fs-small); font-weight: var(--ebma-w-bold);
   text-transform: uppercase; letter-spacing: 0.08em;
   color: inherit;
 }
-@media (min-width: 940px) { /* Donate is the primary action: a solid pill, set apart from the link row by
-   a real gap and a hairline rule. As an outline button at the same 24px gap
-   as the links it read as weaker than the navigation it sat in. */
-.p-nav__donate {
-  margin-left: var(--ebma-space-4);
-  padding-left: var(--ebma-space-6);
-  border-left: 1px solid var(--ebma-rule-invert);
-  display: flex; align-items: center;
-}
-.p-header.is-stuck .p-nav__donate,
-.p-header--solid .p-nav__donate { border-left-color: var(--ebma-rule); }
+@media (min-width: 940px) { .p-menu-btn { display: none; } }
 
-/* Dropdowns.
-   Open state is owned by JS (.is-open) once the script has run, which is what
-   lets a click close the menu again. The :hover and :focus-within rules below
-   are scoped to :not(.ebma-nav-js) so they act as a no-JS fallback only: with
-   both active, focus-within would pin the menu open and defeat the toggle. */
-.p-nav__item { position: relative; display: flex; align-items: center; }
-.p-nav__toggle {
-  display: inline-flex; align-items: center; gap: 0.35em;
-  background: none; border: 0; padding: var(--ebma-space-2) 0;
-  font: inherit;
-  font-size: var(--ebma-fs-nav);
-  font-weight: var(--ebma-w-medium);
-  letter-spacing: 0.01em;
-  color: var(--ebma-cream);
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: color var(--ebma-dur) var(--ebma-ease), border-color var(--ebma-dur) var(--ebma-ease);
-}
-.p-header.is-stuck .p-nav__toggle, .p-header--solid .p-nav__toggle { color: var(--ebma-ink); }
-.p-nav__item:hover .p-nav__toggle,
-.p-nav__item.is-open .p-nav__toggle { border-bottom-color: currentColor; }
-.p-nav__caret { transition: transform var(--ebma-dur) var(--ebma-ease); }
-.p-nav__item:hover .p-nav__caret,
-.p-nav__item.is-open .p-nav__caret { transform: rotate(180deg); }
+/* --- Mobile menu ---------------------------------------------------------
+   Below 940px the desktop nav is display:none, and the Menu button was wired
+   to nothing at all: a phone had no navigation whatsoever. Most of EBMA's
+   visitors arrive on one, which made this the worst defect on the page.
 
-.p-nav__menu {
-  position: absolute; top: 100%; left: 50%; transform: translate(-50%, 6px);
-  min-width: 15rem;
+   The panel is hidden with the `hidden` attribute rather than CSS alone, so
+   its links stay out of the tab order while it is closed.                   */
+.p-menu-btn__bars { position: relative; width: 20px; height: 14px; flex: none; }
+.p-menu-btn__bars span {
+  position: absolute; left: 0; right: 0; height: 2px; background: currentColor;
+  transition: transform var(--ebma-dur) var(--ebma-ease), opacity 160ms linear;
+}
+.p-menu-btn__bars span:nth-child(1) { top: 0; }
+.p-menu-btn__bars span:nth-child(2) { top: 6px; }
+.p-menu-btn__bars span:nth-child(3) { top: 12px; }
+.p-menu-btn[aria-expanded="true"] .p-menu-btn__bars span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.p-menu-btn[aria-expanded="true"] .p-menu-btn__bars span:nth-child(2) { opacity: 0; }
+.p-menu-btn[aria-expanded="true"] .p-menu-btn__bars span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.p-mobile-nav {
+  position: fixed;
+  inset: var(--ebma-topbar-h, 6rem) 0 0;
+  z-index: 99;
   background: var(--ebma-cream);
-  border-radius: var(--ebma-radius-card);
-  box-shadow: 0 24px 60px -28px rgba(18, 16, 14, 0.5);
-  padding: var(--ebma-space-3);
-  list-style: none; margin: 0;
-  opacity: 0; visibility: hidden; pointer-events: none;
-  transition: opacity 180ms var(--ebma-ease), transform 180ms var(--ebma-ease), visibility 180ms;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--ebma-space-4) var(--ebma-gutter) var(--ebma-space-16);
 }
-.p-nav__item:hover .p-nav__menu,
-.p-nav__item.is-open .p-nav__menu {
-  opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0);
-}
-/* No-JS fallback: keyboard users can still reach the menu. Dropped as soon as
-   ebma.js adds .ebma-nav-js, so it never fights the click-to-close toggle. */
-html:not(.ebma-nav-js) .p-nav__item:focus-within .p-nav__menu {
-  opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0);
-}
-.p-nav__menu li { margin: 0; }
-.p-nav__menu a {
-  display: block;
-  padding: var(--ebma-space-3) var(--ebma-space-4);
-  border-radius: var(--ebma-radius);
-  font-size: var(--ebma-fs-body);
-  color: var(--ebma-ink) !important;
-  border-bottom: 0 !important;
-}
-.p-nav__menu a:hover { background: var(--ebma-cream-deep); }
+.p-mobile-nav[hidden] { display: none; }
+@media (min-width: 940px) { .p-mobile-nav { display: none !important; } }
 
-.p-menu-btn { display: none; } }
+.p-mobile-nav__group { border-bottom: 1px solid var(--ebma-rule); padding-block: var(--ebma-space-4); }
+.p-mobile-nav__group:last-of-type { border-bottom: 0; }
+.p-mobile-nav__label {
+  font-family: var(--ebma-font-display);
+  font-size: var(--ebma-fs-h3);
+  font-weight: var(--ebma-w-display);
+  color: var(--ebma-ink);
+  margin: 0 0 var(--ebma-space-2);
+}
+.p-mobile-nav a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;              /* comfortably over the 44px touch minimum */
+  padding-block: var(--ebma-space-2);
+  font-size: var(--ebma-fs-nav);
+  color: var(--ebma-text-muted);
+  text-decoration: none;
+}
+.p-mobile-nav a:hover { color: var(--ebma-ink); }
+.p-mobile-nav .ebma-btn {
+  margin-top: var(--ebma-space-8);
+  width: 100%;
+  justify-content: center;
+  color: var(--ebma-cream);
+}
+
+/* The page behind the panel must not scroll under it. */
+body.p-nav-open { overflow: hidden; }
 
 /* --- Footer -------------------------------------------------------------- */
 .p-footer {
@@ -278,8 +278,11 @@ html:not(.ebma-nav-js) .p-nav__item:focus-within .p-nav__menu {
   text-transform: uppercase; color: var(--ebma-clay-on-dark); margin: 0 0 var(--ebma-space-4);
 }
 .p-footer ul { list-style: none; margin: 0; padding: 0; }
-.p-footer li { margin-bottom: var(--ebma-space-3); }
-.p-footer a:not(.ebma-btn) { color: var(--ebma-muted-invert); text-decoration: none; }
+.p-footer li { margin-bottom: 0; }
+.p-footer a:not(.ebma-btn) {
+  color: var(--ebma-muted-invert); text-decoration: none;
+  display: inline-flex; align-items: center; min-height: 44px;  /* touch target */
+}
 .p-footer a:not(.ebma-btn):hover { color: var(--ebma-cream); text-decoration: underline; }
 .p-footer__meta {
   margin-top: var(--ebma-space-16); padding-top: var(--ebma-space-6);

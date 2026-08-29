@@ -72,5 +72,31 @@
   </div>
 </section>
 
+<!-- SQUARESPACE'S OWN MOBILE NAV: the platform ships this, not our panel -->
+<div class="header-burger">
+  <button class="header-burger-btn burger" aria-label="Open menu">
+    <span class="burger-box"><span class="burger-inner header-menu-icon-doubleLineHamburger">
+      <div class="top-bun"></div><div class="patty"></div><div class="bottom-bun"></div>
+    </span></span>
+  </button>
+</div>
+<div class="header-menu">
+  <div class="header-menu-bg"></div>
+  <div class="header-menu-nav">
+    <nav class="header-menu-nav-list">
+      <div class="header-menu-nav-item"><a href="/about">About</a></div>
+      <div class="header-menu-nav-folder">
+        <div class="header-menu-nav-folder-content">
+          <div class="header-menu-nav-item"><a href="/impact">Impact</a></div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="header-menu-cta"><a class="btn" href="/donate">Donate</a></div>
+</div>
+
+<!-- An element Squarespace's own animation system would hold at opacity 0 -->
+<div data-animation-role="header" style="opacity:0;transform:translateY(20px)">animated</div>
+
 </body>
 </html>

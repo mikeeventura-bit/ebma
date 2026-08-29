@@ -158,7 +158,55 @@
     });
   }
 
-  /* --- 5. Marquee ---------------------------------------------------------
+  /* --- 5. Mobile navigation ----------------------------------------------
+     Below 940px the desktop nav is display:none and the Menu button was wired
+     to nothing at all, leaving a phone with no navigation. Most of EBMA's
+     visitors arrive on a phone, so this was the worst defect on the page.
+
+     The panel is hidden with the `hidden` attribute rather than CSS alone, so
+     its links stay out of the tab order while closed.                        */
+  function initMobileNav() {
+    var btn = document.querySelector(".p-menu-btn");
+    var panel = document.getElementById("mobile-nav");
+    if (!btn || !panel) return;
+
+    function setOpen(open) {
+      btn.setAttribute("aria-expanded", String(open));
+      panel.hidden = !open;
+      panel.classList.toggle("is-open", open);
+      document.body.classList.toggle("p-nav-open", open);
+    }
+
+    btn.addEventListener("click", function () {
+      var open = btn.getAttribute("aria-expanded") === "true";
+      setOpen(!open);
+      if (!open) {
+        var first = panel.querySelector("a");
+        if (first) first.focus();
+      }
+    });
+
+    // Following a link closes the panel, which matters for same-page anchors
+    // where no navigation happens to close it for us.
+    panel.addEventListener("click", function (e) {
+      if (e.target.closest("a")) setOpen(false);
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && btn.getAttribute("aria-expanded") === "true") {
+        setOpen(false);
+        btn.focus();
+      }
+    });
+
+    // Crossing back to the desktop breakpoint must not leave the body locked.
+    var mq = window.matchMedia("(min-width: 940px)");
+    var onChange = function (e) { if (e.matches) setOpen(false); };
+    if (mq.addEventListener) mq.addEventListener("change", onChange);
+    else if (mq.addListener) mq.addListener(onChange);
+  }
+
+  /* --- 6. Marquee ---------------------------------------------------------
      A seamless loop needs one repeat of the content to be at least as wide as
      the visible area. With six 180px tiles the set was 1080px against a
      1440px viewport, so translateX(-50%) scrolled past the end and exposed a
@@ -198,6 +246,7 @@
   function init() {
     initHeader();
     initNav();
+    initMobileNav();
     initReveal();
     initCounters();
     initMarquee();
