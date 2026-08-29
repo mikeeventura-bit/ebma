@@ -1,5 +1,5 @@
 /* ==========================================================================
-   EBMA — Design Tokens
+   EBMA, Design Tokens
    --------------------------------------------------------------------------
    SINGLE SOURCE OF TRUTH. Copied VERBATIM into the Squarespace Custom CSS
    panel (Design -> Custom CSS). No prototype-only rules in this file.
@@ -71,7 +71,7 @@
   --ebma-font-body:    "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   /* Weight carries "bold + established". Never go below 600 on a headline.
-     Headlines are 800 — 900 read as shouting once paired with all-caps. */
+     Headlines are 800, 900 read as shouting once paired with all-caps. */
   --ebma-w-body:      400;
   --ebma-w-medium:    500;
   --ebma-w-bold:      700;
@@ -108,7 +108,7 @@
   /* Scrims: type sits ON photography constantly. These guarantee contrast
      without flattening the image into a grey rectangle. */
   /* Top scrim. The header sits transparent over the hero, so the TOP of the
-     image — not the bottom — is what has to guarantee nav legibility. Without
+     image: not the bottom: is what has to guarantee nav legibility. Without
      this, a bright hero photograph makes the navigation vanish. */
   --ebma-scrim-top:      linear-gradient(to bottom,
                            rgba(18,16,14,0.74) 0%,

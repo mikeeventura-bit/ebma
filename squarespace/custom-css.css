@@ -1,7 +1,7 @@
 /* ==========================================================================
-   EBMA — SQUARESPACE CUSTOM CSS
+   EBMA, SQUARESPACE CUSTOM CSS
    --------------------------------------------------------------------------
-   GENERATED FILE — DO NOT EDIT BY HAND.
+   GENERATED FILE, DO NOT EDIT BY HAND.
    Built by squarespace/build.sh from:
        prototype/assets/css/tokens.css
        prototype/assets/css/components.css
@@ -21,7 +21,7 @@
 
 /* ===== tokens.css ===== */
 /* ==========================================================================
-   EBMA — Design Tokens
+   EBMA, Design Tokens
    --------------------------------------------------------------------------
    SINGLE SOURCE OF TRUTH. Copied VERBATIM into the Squarespace Custom CSS
    panel (Design -> Custom CSS). No prototype-only rules in this file.
@@ -93,7 +93,7 @@
   --ebma-font-body:    "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   /* Weight carries "bold + established". Never go below 600 on a headline.
-     Headlines are 800 — 900 read as shouting once paired with all-caps. */
+     Headlines are 800, 900 read as shouting once paired with all-caps. */
   --ebma-w-body:      400;
   --ebma-w-medium:    500;
   --ebma-w-bold:      700;
@@ -130,7 +130,7 @@
   /* Scrims: type sits ON photography constantly. These guarantee contrast
      without flattening the image into a grey rectangle. */
   /* Top scrim. The header sits transparent over the hero, so the TOP of the
-     image — not the bottom — is what has to guarantee nav legibility. Without
+     image: not the bottom: is what has to guarantee nav legibility. Without
      this, a bright hero photograph makes the navigation vanish. */
   --ebma-scrim-top:      linear-gradient(to bottom,
                            rgba(18,16,14,0.74) 0%,
@@ -177,7 +177,7 @@
 
 /* ===== components.css ===== */
 /* ==========================================================================
-   EBMA — Components
+   EBMA, Components
    Shared by the prototype AND the Squarespace build. Selector-agnostic:
    everything hangs off .ebma-* classes that exist in both worlds.
    ========================================================================== */
@@ -186,7 +186,7 @@
    1. CAMPAIGN TYPE  (brief §04)
    "Key statements can behave like campaign posters."
    This is the signature of the whole design. Poster-tight leading, 900 weight,
-   uppercase, negative tracking, and — critically — DELIBERATE LINE BREAKS.
+   uppercase, negative tracking, and: critically, DELIBERATE LINE BREAKS.
    A campaign statement never wraps by accident: each line is its own element.
    -------------------------------------------------------------------------- */
 .ebma-campaign {
@@ -202,7 +202,7 @@
   margin-left: -0.03em;
 }
 
-/* The poster exception. Uppercase belongs ONLY here, and only once per page —
+/* The poster exception. Uppercase belongs ONLY here, and only once per page : 
    brief §04 asks for campaign-poster statements, and rarity is what gives them
    their force. Applied to three sections in pass 1, it became the page's
    default voice instead of its emphasis. */
@@ -214,7 +214,7 @@
 }
 /* One line of a campaign statement. Stack them for controlled breaks. */
 .ebma-campaign__line { display: block; }
-/* Accent a single word/line in radish — used sparingly, once per statement. */
+/* Accent a single word/line in radish: used sparingly, once per statement. */
 /* Accent colour is contextual: dark surfaces set --ebma-accent-campaign to
    the AA-safe tint (see "Dark surfaces" below), so no modifier class is
    needed and an accent can never be dropped onto a ground it fails against. */
@@ -242,7 +242,7 @@
 .ebma-h2 { font-size: var(--ebma-fs-h2); font-weight: var(--ebma-w-display);  line-height: var(--ebma-lh-tight); }
 .ebma-h3 { font-size: var(--ebma-fs-h3); font-weight: var(--ebma-w-bold);     line-height: var(--ebma-lh-snug); }
 
-/* Eyebrow — the small tracked-out label above a heading. Structural, not decorative:
+/* Eyebrow, the small tracked-out label above a heading. Structural, not decorative:
    it gives every section a consistent entry point. */
 .ebma-eyebrow {
   font-family: var(--ebma-font-body);
@@ -256,13 +256,13 @@
   align-items: center;
   gap: var(--ebma-space-3);
 }
-.ebma-eyebrow::before {
+.ebma-eyebrow:before {
   content: ""; width: 2rem; height: var(--ebma-border);
   background: currentColor; flex: none;
 }
 .ebma-eyebrow--invert { color: var(--ebma-clay-on-dark); }
 
-/* Dark surfaces — one place that retargets every accent to its AA tint. */
+/* Dark surfaces: one place that retargets every accent to its AA tint. */
 .ebma-hero,
 .ebma-section--ink,
 .ebma-statement:not(.ebma-statement--cream),
@@ -304,13 +304,13 @@
   filter: var(--ebma-photo-grade);
 }
 /* Unifying warm wash. Sits above the image, below any type. */
-.ebma-photo::after {
+.ebma-photo:after {
   content: ""; position: absolute; inset: 0;
   background: var(--ebma-photo-warmth);
   mix-blend-mode: multiply;
   pointer-events: none;
 }
-/* Aspect presets — editorial crops, not squares. */
+/* Aspect presets: editorial crops, not squares. */
 .ebma-photo--portrait { aspect-ratio: 4 / 5; }
 .ebma-photo--square   { aspect-ratio: 1 / 1; }
 .ebma-photo--landscape{ aspect-ratio: 3 / 2; }
@@ -319,14 +319,14 @@
 
 /* Scrim for type sitting on an image. */
 .ebma-scrim { position: relative; }
-.ebma-scrim::before {
+.ebma-scrim:before {
   content: ""; position: absolute; inset: 0; z-index: 1;
   background: var(--ebma-scrim-bottom); pointer-events: none;
 }
-.ebma-scrim--side::before { background: var(--ebma-scrim-full); }
+.ebma-scrim--side:before { background: var(--ebma-scrim-full); }
 .ebma-scrim > * { position: relative; z-index: 2; }
 
-/* Caption — small, quiet, credits the moment. Real photography deserves it. */
+/* Caption: small, quiet, credits the moment. Real photography deserves it. */
 .ebma-caption {
   font-size: var(--ebma-fs-small);
   color: var(--ebma-text-muted);
@@ -336,7 +336,7 @@
 
 /* --------------------------------------------------------------------------
    4. BUTTONS
-   Square, heavy, confident. Two levels only — a third invites clutter.
+   Square, heavy, confident. Two levels only, a third invites clutter.
    -------------------------------------------------------------------------- */
 .ebma-btn {
   display: inline-flex; align-items: center; gap: var(--ebma-space-2);
@@ -368,7 +368,7 @@
 .ebma-btn--solid-cream { background: var(--ebma-cream); color: var(--ebma-ink); border-color: var(--ebma-cream); }
 .ebma-btn--solid-cream:hover { background: transparent; color: var(--ebma-cream); border-color: var(--ebma-cream); }
 
-/* Text link with an arrow — "DISCOVER BLACK RADISH ->" (brief §07) */
+/* Text link with an arrow, "DISCOVER BLACK RADISH ->" (brief §07) */
 .ebma-arrow-link {
   display: inline-flex; align-items: center; gap: var(--ebma-space-3);
   font-family: var(--ebma-font-display);
@@ -393,7 +393,7 @@
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: var(--ebma-space-3);
 }
-/* Raised surface, not the section ground — with gap-based tiles rather than
+/* Raised surface, not the section ground: with gap-based tiles rather than
    hairline rules, ink-on-ink made the tiles disappear entirely. */
 .ebma-stat {
   background: var(--ebma-ink-soft);
@@ -472,7 +472,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   8. LIST WITH RULES — "the work happening now" (brief §09)
+   8. LIST WITH RULES, "the work happening now" (brief §09)
    Editorial index rather than bullet points.
    -------------------------------------------------------------------------- */
 .ebma-index { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ebma-rule); }
@@ -499,9 +499,9 @@
 .ebma-index--invert .ebma-index__desc { color: var(--ebma-muted-invert); }
 
 /* --------------------------------------------------------------------------
-   9. MOTION — reveal on scroll
+   9. MOTION: reveal on scroll
    -------------------------------------------------------------------------- */
-/* Fail-visible. Content is NEVER hidden by CSS alone — the hiding rule is
+/* Fail-visible. Content is NEVER hidden by CSS alone, the hiding rule is
    scoped to .ebma-js, which ebma.js only adds when it has confirmed it can
    actually animate (IntersectionObserver present, motion not reduced).
    No JS, old browser, script blocked, observer never fires -> content shows.
@@ -537,18 +537,18 @@
   clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
-/* Motion is decoration here — never the only way meaning is conveyed. */
+/* Motion is decoration here: never the only way meaning is conveyed. */
 @media (prefers-reduced-motion: reduce) {
   .ebma-js .ebma-reveal { opacity: 1; transform: none; transition: none; }
   .ebma-card:hover .ebma-photo > img { transform: none; }
   .ebma-arrow-link:hover span[aria-hidden] { transform: none; }
-  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  *, *:before, *:after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
 
 
 /* --------------------------------------------------------------------------
    11. SUPPORT ROUTER  (brief §02, §10)
-   The four ways in — support, partner, volunteer, donate — as one card of
+   The four ways in: support, partner, volunteer, donate: as one card of
    labelled paths rather than a list of links. Each row states what it is and
    what it means, so a visitor picks in one read.
 
@@ -628,9 +628,115 @@
   .ebma-router__row:hover .ebma-router__go { transform: none; }
 }
 
+
+/* --------------------------------------------------------------------------
+   12. WHERE WE SERVE BAND
+   A quiet static strip between the hero and the impact section. Two purposes:
+   it answers brief §02's "who and where we serve", which nothing else above
+   the fold does, and it separates two ink-grounded sections that otherwise
+   run together as one dark mass.
+
+   The house pattern for this slot is a calm credibility strip (Premier Gas
+   puts trust marks there, Undiscovered Destinations "AS FEATURED IN"), not a
+   scrolling band.
+   -------------------------------------------------------------------------- */
+.ebma-serve {
+  background: var(--ebma-cream);
+  color: var(--ebma-text);
+  border-block: 1px solid var(--ebma-rule);
+  padding-block: var(--ebma-space-6);
+}
+.ebma-serve__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--ebma-space-3) var(--ebma-space-6);
+}
+.ebma-serve__label {
+  font-size: var(--ebma-fs-eyebrow);
+  font-weight: var(--ebma-w-bold);
+  letter-spacing: var(--ebma-tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--ebma-radish);
+  margin: 0;
+  flex: none;
+}
+.ebma-serve__list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ebma-space-3) var(--ebma-space-5, 1.25rem);
+  margin: 0;
+  padding: 0;
+}
+.ebma-serve__list li {
+  font-size: var(--ebma-fs-body);
+  font-weight: var(--ebma-w-medium);
+  color: var(--ebma-text);
+  display: flex;
+  align-items: center;
+  gap: var(--ebma-space-3);
+}
+.ebma-serve__list li + li:before {
+  content: "";
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--ebma-radish);
+  flex: none;
+  opacity: 0.55;
+}
+
+/* --------------------------------------------------------------------------
+   13. PARTNER LOGO MARQUEE
+   A scrolling band of partner logos reads as credibility. (A scrolling band of
+   slogans, which this replaces, read as noise.)
+
+   Deliberately restrained: modest tiles, generous allowance around each mark,
+   and logos held back in opacity so the strip sits behind the content in the
+   hierarchy rather than competing with it.
+
+   The track is duplicated by ebma.js so the loop is seamless and the copy is
+   written once; the clone is aria-hidden so logos are not announced twice.
+   -------------------------------------------------------------------------- */
+.ebma-logos {
+  overflow: hidden;
+  padding-block: var(--ebma-space-6);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.ebma-logos__track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  animation: ebma-logos-scroll 46s linear infinite;
+}
+.ebma-logos__item {
+  flex: none;
+  width: 180px;                 /* modest tile: enough for a mark, not a feature */
+  padding-inline: var(--ebma-space-6);
+  display: grid;
+  place-items: center;
+}
+.ebma-logos__item img {
+  max-width: 100%;
+  max-height: 44px;             /* caps tall marks so the band stays even */
+  width: auto;
+  height: auto;
+  opacity: 0.55;
+  transition: opacity var(--ebma-dur) var(--ebma-ease);
+}
+.ebma-logos__item img:hover { opacity: 1; }
+@keyframes ebma-logos-scroll { to { transform: translateX(-50%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .ebma-logos__track { animation: none; transform: none; }
+  .ebma-logos { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+  .ebma-logos__item img { opacity: 1; }
+}
+
 /* ===== sections.css ===== */
 /* ==========================================================================
-   EBMA — Section Layouts
+   EBMA, Section Layouts
    Homepage sections. Shared by the prototype AND the Squarespace build.
    ========================================================================== */
 
@@ -643,7 +749,7 @@
 
 .ebma-wrap { width: 100%; max-width: var(--ebma-maxw); margin-inline: auto; padding-inline: var(--ebma-gutter); }
 
-/* Section header: eyebrow + heading + optional lead. Left-aligned always —
+/* Section header: eyebrow + heading + optional lead. Left-aligned always : 
    centered headings are the tell of a template. */
 .ebma-section-head { margin-bottom: var(--ebma-space-12); max-width: 46ch; }
 .ebma-section-head .ebma-lead { margin-top: var(--ebma-space-6); color: var(--ebma-text-muted); }
@@ -652,11 +758,11 @@
 /* --------------------------------------------------------------------------
    HERO (brief §06)
    Full-bleed photograph, campaign headline, two CTAs. Type is bottom-left,
-   not centered — it reads as a poster, not a hero banner.
+   not centered, it reads as a poster, not a hero banner.
    -------------------------------------------------------------------------- */
 .ebma-hero {
   position: relative;
-  /* Reduced with the type scale — at 92svh the shorter sentence-case
+  /* Reduced with the type scale: at 92svh the shorter sentence-case
      headline floated in dead space rather than sitting in it. */
   min-height: min(76svh, 720px);
   display: flex;
@@ -669,14 +775,17 @@
 .ebma-hero__media img { width: 100%; height: 100%; object-fit: cover; filter: var(--ebma-photo-grade); }
 /* Two scrims: the top one keeps the transparent header legible over ANY
    hero photograph the team uploads; the bottom one carries the headline. */
-.ebma-hero__media::after {
+.ebma-hero__media:after {
   content: ""; position: absolute; inset: 0;
   background: var(--ebma-scrim-top), var(--ebma-scrim-bottom);
 }
 .ebma-hero__inner {
   position: relative; z-index: 2;
   width: 100%;
-  padding-block: var(--ebma-space-16) var(--ebma-space-12);
+  /* Top padding clears the fixed topbar (utility bar + header). A fixed 4rem
+     was shorter than the bar itself, so the headline sat under the nav. */
+  padding-block: calc(var(--ebma-topbar-h, 7.5rem) + var(--ebma-space-8))
+                 var(--ebma-space-12);
 }
 .ebma-hero .ebma-campaign { margin-bottom: var(--ebma-space-6); }
 .ebma-hero__sub {
@@ -688,7 +797,7 @@
 }
 .ebma-hero__actions { display: flex; flex-wrap: wrap; gap: var(--ebma-space-4); }
 
-/* Scroll cue — small, quiet, optional. */
+/* Scroll cue: small, quiet, optional. */
 .ebma-hero__cue {
   position: absolute; right: var(--ebma-gutter); bottom: var(--ebma-space-12);
   z-index: 2;
@@ -719,13 +828,13 @@
    "We are not simply responding to food insecurity."
    -------------------------------------------------------------------------- */
 /* No max-width here. Campaign line breaks are set explicitly in the markup
-   with .ebma-campaign__line — adding a character constraint on top of that
+   with .ebma-campaign__line: adding a character constraint on top of that
    re-wraps each line to one word and turns the statement into a column. */
 .ebma-statement__inner { max-width: none; }
 .ebma-statement .ebma-lead { margin-top: var(--ebma-space-8); max-width: 46ch; }
 
 /* --------------------------------------------------------------------------
-   SPLIT — photo one side, copy the other. Asymmetric on purpose.
+   SPLIT: photo one side, copy the other. Asymmetric on purpose.
    Used for Origin Story and Black Radish.
    -------------------------------------------------------------------------- */
 .ebma-split { display: grid; gap: var(--ebma-space-12); align-items: center; }
@@ -735,7 +844,7 @@
 }
 .ebma-split__copy > * + * { margin-top: var(--ebma-space-6); }
 
-/* Stacked photo pair — gives a split more editorial texture than one image. */
+/* Stacked photo pair: gives a split more editorial texture than one image. */
 .ebma-photo-pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--ebma-space-4); align-items: start; }
 .ebma-photo-pair > :last-child { margin-top: var(--ebma-space-12); }
 
@@ -747,7 +856,7 @@
 .ebma-radish-feature { background: #0B0A09; color: var(--ebma-text-invert); position: relative; }
 .ebma-radish-feature .ebma-eyebrow { color: var(--ebma-clay-on-dark); }
 /* Black Radish keeps its own identity (brief §07) but must never out-scale
-   the EBMA headline it sits beneath — that is how a sub-brand starts reading
+   the EBMA headline it sits beneath, that is how a sub-brand starts reading
    as the parent brand. */
 .ebma-radish-feature__lockup {
   font-family: var(--ebma-font-display);
@@ -764,8 +873,8 @@
   color: var(--ebma-muted-invert);
   line-height: 1.45;
 }
-.ebma-radish-feature__list li::before {
-  content: "—"; color: var(--ebma-clay-on-dark);
+.ebma-radish-feature__list li:before {
+  content: ": "; color: var(--ebma-clay-on-dark);
   margin-right: var(--ebma-space-3);
 }
 /* Handoff note: the storefront is a separate site. Make that legible. */
@@ -793,7 +902,7 @@
   padding-left: 1.25em;
   position: relative;
 }
-.ebma-support__list li::before {
+.ebma-support__list li:before {
   content: "\2014"; position: absolute; left: 0; opacity: 0.6;
 }
 .ebma-support__actions { margin-top: var(--ebma-space-8); display: flex; flex-wrap: wrap; gap: var(--ebma-space-4); }
@@ -828,16 +937,16 @@
   background: var(--ebma-cream);
   color: var(--ebma-text);
 }
-.ebma-signup__form input[type="email"]::placeholder { color: var(--ebma-text-muted); }
+.ebma-signup__form input[type="email"]:placeholder { color: var(--ebma-text-muted); }
 
 
 /* ==========================================================================
-   EBMA — SQUARESPACE 7.1 ADAPTATION LAYER
+   EBMA, SQUARESPACE 7.1 ADAPTATION LAYER
    --------------------------------------------------------------------------
    Everything above this point is the shared design system, identical to the
    prototype. Everything below adapts it to Squarespace's own markup.
 
-   THE CORE TECHNIQUE — THE MARKER DIV
+   THE CORE TECHNIQUE, THE MARKER DIV
    Squarespace 7.1 gives you no way to put a class on a native section. So:
 
      1. Add ONE Code Block to an otherwise-normal section containing only
@@ -850,7 +959,7 @@
    redesign. Reach for a full Code Block only for the few things Squarespace
    genuinely cannot express.
 
-   Browser support: :has() is supported in all current browsers and inside
+   Browser support:has() is supported in all current browsers and inside
    the Squarespace editor iframe.
    ========================================================================== */
 
@@ -862,7 +971,7 @@
 
    THE UPPERCASE RULE: uppercase belongs on the small tracked eyebrow label
    and nowhere else. Squarespace style packs like to set headings and nav in
-   caps — these rules undo that, because all-caps headings and nav were the
+   caps: these rules undo that, because all-caps headings and nav were the
    single cause of the first pass reading as loud. */
 body, .sqs-block-html p, .sqs-block-html li { font-family: var(--ebma-font-body); }
 h1, h2, h3, h4 {
@@ -965,7 +1074,7 @@ h1, h2, h3, h4 {
 
 /* Hero section background: guarantee nav legibility over ANY photograph the
    team uploads. Without a top scrim a bright hero hides the navigation. */
-.page-section:has(.ebma-mark--hero) .section-background::after {
+.page-section:has(.ebma-mark--hero) .section-background:after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: var(--ebma-scrim-top), var(--ebma-scrim-bottom);
 }
@@ -1017,7 +1126,7 @@ h1, h2, h3, h4 {
 /* --- Utility bar ---------------------------------------------------------
    Squarespace's Announcement Bar is the native home for this. Turn it on
    (Marketing -> Announcement Bar) and it picks up these rules. It carries
-   contact and trust signals so the main nav stays uncluttered — and it is
+   contact and trust signals so the main nav stays uncluttered: and it is
    the right place for the Black Radish storefront link, because it reads
    there as a separate destination rather than as an EBMA page. */
 .sqs-announcement-bar-dropzone .sqs-announcement-bar {

@@ -18,7 +18,7 @@ python3 -m http.server 8099 --directory .
 ## Verify it
 
 ```bash
-npm i playwright     # Chromium is already present — do NOT run playwright install
+npm i playwright     # Chromium is already present: do NOT run playwright install
 node verify-contrast.mjs    # every rendered fg/bg pair against WCAG AA
 node verify-render.mjs      # 1440 / 768 / 390, overflow + console errors + screenshots
 node verify-fallbacks.mjs   # prefers-reduced-motion, and JS fully disabled
@@ -32,10 +32,10 @@ JS disabled.**
 
 | File | Ships to Squarespace? |
 |---|---|
-| `assets/css/tokens.css` | **Yes** — verbatim |
-| `assets/css/components.css` | **Yes** — verbatim |
-| `assets/css/sections.css` | **Yes** — verbatim |
-| `assets/css/prototype-only.css` | **No** — reset, nav and footer chrome Squarespace supplies natively |
+| `assets/css/tokens.css` | **Yes**, verbatim |
+| `assets/css/components.css` | **Yes**, verbatim |
+| `assets/css/sections.css` | **Yes**, verbatim |
+| `assets/css/prototype-only.css` | **No**, reset, nav and footer chrome Squarespace supplies natively |
 
 Edit the shared three, then run `../squarespace/build.sh` to regenerate the
 paste-ready `squarespace/custom-css.css`. That is what keeps the prototype and
@@ -44,7 +44,7 @@ the live site from drifting apart. Never hand-edit the generated file.
 ## Fonts
 
 The pages load Archivo and Inter from Google Fonts. In a network-restricted
-environment they fall back to Helvetica/Liberation Sans — layout and hierarchy
+environment they fall back to Helvetica/Liberation Sans: layout and hierarchy
 are unaffected, but the campaign type will not show its true 900 weight. The
 published artifact renders with the real faces.
 

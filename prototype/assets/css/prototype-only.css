@@ -1,16 +1,16 @@
 /* ==========================================================================
-   EBMA — PROTOTYPE ONLY
+   EBMA, PROTOTYPE ONLY
    --------------------------------------------------------------------------
    DO NOT COPY THIS FILE INTO SQUARESPACE.
 
-   Everything here is chrome that Squarespace 7.1 provides natively — the
+   Everything here is chrome that Squarespace 7.1 provides natively: the
    reset, the header/nav, the footer. In the live build these are configured
    in the Squarespace admin (Design -> Header, Edit Footer) and only lightly
    restyled via custom-css.css. Keeping them isolated here is what stops the
    prototype and the live site from drifting apart.
    ========================================================================== */
 
-*, *::before, *::after { box-sizing: border-box; }
+*, *:before, *:after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
@@ -51,6 +51,8 @@ a { color: var(--ebma-radish); }
    The utility bar and header travel together as ONE fixed stack. Fixing only
    the header let it sit on top of the utility bar and collide with it. */
 .p-topbar { position: fixed; inset: 0 0 auto; z-index: 100; }
+:root { --ebma-topbar-h: 7.5rem; }
+@media (max-width: 940px) { :root { --ebma-topbar-h: 6rem; } }
 .p-header {
   transition: background-color var(--ebma-dur) var(--ebma-ease),
               border-color var(--ebma-dur) var(--ebma-ease);
@@ -65,16 +67,16 @@ a { color: var(--ebma-radish); }
    Reproduces EBMA's existing logo: ultra-heavy condensed caps on two lines,
    optically justified to the same width, with the lines nearly touching.
    Line 2 is set larger because "MUTUAL AID" is three characters shorter than
-   "EAST BROOKLYN" — that size difference is what squares the block off.
+   "EAST BROOKLYN", that size difference is what squares the block off.
 
    THIS IS A TYPE STAND-IN. Production needs the real wordmark as SVG, in
-   black and in cream — see docs/05-assets-checklist.md. A logo rebuilt in
+   black and in cream: see docs/05-assets-checklist.md. A logo rebuilt in
    webfont is not the logo: it will reflow if the face fails to load. */
 .p-logo {
   display: inline-block;
   font-family: var(--ebma-font-display);
   /* Archivo is variable on BOTH axes. The logo is wide AND ultra-heavy with
-     very tight counters, so the width axis is pushed near its maximum — the
+     very tight counters, so the width axis is pushed near its maximum: the
      previous stand-in used weight alone and read far too narrow and light.
      font-stretch did nothing here; the axis has to be driven directly. */
   font-variation-settings: "wdth" 118, "wght" 900;
@@ -91,7 +93,7 @@ a { color: var(--ebma-radish); }
 .p-logo span:last-child { font-size: 1.3em; }  /* squares the two lines off */
 .p-nav { display: none; gap: var(--ebma-space-6); align-items: center; }
 @media (min-width: 940px) { .p-nav { display: flex; } }
-/* Sentence case at 17px, near-zero tracking — the house standard. Uppercase
+/* Sentence case at 17px, near-zero tracking, the house standard. Uppercase
    at 0.08em was what made the previous nav shout. */
 .p-nav a:not(.ebma-btn) {
   font-size: var(--ebma-fs-nav);
@@ -282,31 +284,4 @@ a { color: var(--ebma-radish); }
 }
 .p-notice a { color: #fff; }
 
-/* --- Placeholder imagery -------------------------------------------------
-   Every placeholder states the shot the brief calls for, so the asset list
-   and the design never disagree. See docs/05-assets-checklist.md.          */
-.p-ph {
-  display: flex; align-items: center; justify-content: center; text-align: center;
-  padding: var(--ebma-space-6);
-  background:
-    repeating-linear-gradient(135deg, rgba(247,242,232,0.05) 0 12px, transparent 12px 24px),
-    var(--ebma-ink-soft);
-  color: var(--ebma-muted-invert);
-  font-size: var(--ebma-fs-eyebrow);
-  letter-spacing: var(--ebma-tracking-eyebrow);
-  text-transform: uppercase;
-  line-height: 1.6;
-  width: 100%; height: 100%;
-  min-height: 180px;
-}
-.p-ph span { max-width: 26ch; }
 
-/* Placeholders standing in for full-bleed hero / cover imagery. */
-.ebma-hero__media .p-ph { position: absolute; inset: 0; }
-.p-ph--hero {
-  align-items: flex-start;
-  justify-content: flex-end;
-  text-align: right;
-  padding: 9rem var(--ebma-gutter) 0;
-  opacity: 0.32;
-}

@@ -1,7 +1,7 @@
 # Squarespace 7.1 Build Guide
 
 How to build the design in EBMA's Squarespace account. Assumes **7.1 on a
-Business plan or higher** — Custom CSS and Code Injection are not available on
+Business plan or higher**, Custom CSS and Code Injection are not available on
 Personal.
 
 ---
@@ -12,25 +12,25 @@ Personal.
 > Squarespace genuinely cannot produce the design.**
 
 EBMA is volunteer-run. A beautiful site the team cannot update is a failed
-redesign — it goes stale in a year and we are back where the brief started.
+redesign, it goes stale in a year and we are back where the brief started.
 Every choice below is biased toward the team being able to change words,
 numbers and photographs themselves, in the normal editor, without help.
 
 ---
 
-## Step 0 — Before touching anything
+## Step 0, Before touching anything
 
 1. **Confirm the plan.** Design → Custom CSS must exist. If not, the site is on
    Personal and needs upgrading before any of this works.
 2. **Duplicate the site.** Settings → Website → Duplicate Site. Build on the
    duplicate, review, then apply to the live site. Never build live.
-3. **Confirm admin access** — the WEBSITE ACCESS decision in `01-audit.md`.
+3. **Confirm admin access**, the WEBSITE ACCESS decision in `01-audit.md`.
 4. **Screenshot the current site**, every page, full length. The audit needs a
    record and there is no undo for deleted pages.
 
 ---
 
-## Step 1 — Paste the foundations
+## Step 1, Paste the foundations
 
 | What | Where | File |
 |---|---|---|
@@ -44,7 +44,7 @@ the team adjust type later without a developer.
 
 ---
 
-## Step 2 — The marker-div technique
+## Step 2, The marker-div technique
 
 Squarespace 7.1 gives no way to put a class on a native section. So:
 
@@ -57,7 +57,7 @@ Squarespace 7.1 gives no way to put a class on a native section. So:
 The section is then custom-designed while its **content stays fully editable in
 the normal editor**. This is the load-bearing idea in the kit.
 
-Available markers — full list in `squarespace/blocks/00-markers.html`:
+Available markers: full list in `squarespace/blocks/00-markers.html`:
 
 | Marker | Effect |
 |---|---|
@@ -71,7 +71,7 @@ Available markers — full list in `squarespace/blocks/00-markers.html`:
 Combine freely on one marker div.
 
 > **Verified.** `squarespace/_test/` reproduces real 7.1 markup and asserts all
-> of this against the generated CSS — **17/17 passing**. `:has()` is supported
+> of this against the generated CSS, **17/17 passing**. `:has()` is supported
 > in all current browsers and inside the Squarespace editor iframe.
 
 > **Expected oddity:** Code Blocks render as a grey placeholder *inside the
@@ -81,25 +81,25 @@ Combine freely on one marker div.
 
 ---
 
-## Step 3 — Build the homepage
+## Step 3, Build the homepage
 
 Section by section. `[N]` = native and client-editable. `[C]` = Code Block.
 
 | # | Section | How | Source |
 |---|---|---|---|
-| 1 | **Hero** | `[C]` — blank section, hero photo as section background | `blocks/01-hero.html` + `--hero` marker |
-| 2 | **Impact at a glance** | `[N]` preferred — `--ink --stats` marker, one Text Block per stat (number as H2, label as paragraph) | `blocks/03-impact-stats.html` |
-| 3 | **Positioning statement** | `[C]` | `blocks/04-campaign-statement.html` |
-| 4 | **What we do** | `[N]` — Fluid Engine, 5 image+text cards, styled by the CSS | — |
-| 5 | **Black Radish** | `[C]` — needs the two-image offset pair | `blocks/05-black-radish-feature.html` |
-| 6 | **Origin story** | `[N]` — two-column image + text | — |
-| 7 | **2026: work happening now** | `[C]` — `--ink` marker | `blocks/06-work-index.html` |
-| 8 | **Where we are going** | `[C]` — the page's ONE poster statement | `blocks/04-campaign-statement.html` + `--poster` |
-| 9 | **Support router** | `[C]` — the four §02 paths | `blocks/08-support-router.html` |
-| 10 | **Partners** | `[N]` — `--deep` marker, logo grid | — |
-| 11 | **Newsletter** | `[N]` — Squarespace Newsletter Block, inherits button styling | — |
+| 1 | **Hero** | `[C]`, blank section, hero photo as section background | `blocks/01-hero.html` + `--hero` marker |
+| 2 | **Impact at a glance** | `[N]` preferred, `--ink --stats` marker, one Text Block per stat (number as H2, label as paragraph) | `blocks/03-impact-stats.html` |
+| 4 | **Positioning statement** | `[C]` | `blocks/04-campaign-statement.html` |
+| 5 | **What we do** | `[N]`, Fluid Engine, 5 image+text cards, styled by the CSS |, |
+| 6 | **Black Radish** | `[C]`, needs the two-image offset pair | `blocks/05-black-radish-feature.html` |
+| 7 | **Origin story** | `[N]`, two-column image + text |, |
+| 8 | **2026: work happening now** | `[C]`, `--ink` marker | `blocks/06-work-index.html` |
+| 9 | **Where we are going** | `[C]`, the page's ONE poster statement | `blocks/04-campaign-statement.html` + `--poster` |
+| 10 | **Support router** | `[C]`, the four §02 paths | `blocks/08-support-router.html` |
+| 11 | **Partners** | `[N]`, `--deep` marker, logo grid |, |
+| 12 | **Newsletter** | `[N]`, Squarespace Newsletter Block, inherits button styling |, |
 
-Sections 2, 4, 6, 10 and 11 — the ones that change most often — are all native.
+Sections 2, 4, 6, 10 and 11, the ones that change most often: are all native.
 That is deliberate.
 
 ### Utility bar
@@ -114,14 +114,20 @@ reads as a **separate destination**, which is exactly what it is.
 
 Design → Header:
 - Logo left, navigation right, Donate as a **button** (it renders as a solid
-  radish pill — it is the primary action on the site, so never an outline)
+  radish pill, it is the primary action on the site, so never an outline)
 - Enable **Fixed position**
 - Enable the transparent/overlay option so it sits over the hero
-- Build About / Our work / Get involved as **folders** so they get dropdowns;
-  Black Radish stays a single page at the top level
+- Build About / Our work / Get involved as **folders** so they get dropdowns.
+  Black Radish, Impact and News stay single pages at the top level.
+
+**Brief §05 defines exactly eight pages**: Home, About, Our Work, Black Radish,
+Impact, News/Stories, Get Involved, Donate. Folder children must be **anchor
+links into those pages** (`/our-work#youth`), never new pages. Adding a page to
+hit a tidier menu breaks the structure the client signed off.
+`verify-rules.mjs` asserts this.
 
 **Set the nav to sentence case.** If the style pack forces caps, the Custom CSS
-overrides it — but set it correctly in the panel too so the team sees the right
+overrides it: but set it correctly in the panel too so the team sees the right
 thing while editing.
 
 The CSS handles the transparent → solid transition on scroll, and the hero's
@@ -129,20 +135,20 @@ top scrim keeps the nav legible over any photograph.
 
 ---
 
-## Step 4 — The remaining pages
+## Step 4, The remaining pages
 
 Build these after the homepage is signed off, so the visual identity is settled
 first (brief §13, Phase 3 → Phase 4). Structure and copy: `02-content-and-copy.md`.
 
 About · Our Work · Black Radish · Impact · News/Stories · Get Involved · Donate
 
-**News/Stories should be a Squarespace Blog collection**, not static pages — it
+**News/Stories should be a Squarespace Blog collection**, not static pages, it
 is the one part of the site meant to change weekly, and a blog gives the team
 categories, RSS and an archive for free.
 
 ---
 
-## Step 5 — Redirects
+## Step 5, Redirects
 
 Settings → Advanced → **URL Mappings**. The full map is in `01-audit.md` §3.
 Do not skip this: EBMA has inbound links from funders and press going back to
@@ -155,7 +161,7 @@ Do not skip this: EBMA has inbound links from funders and press going back to
 Worth pasting into a note for whoever maintains the site:
 
 - **Campaign statements**: each line is its own `<span class="ebma-campaign__line">`.
-  To re-break a headline, change the spans — never let it wrap on its own, and
+  To re-break a headline, change the spans: never let it wrap on its own, and
   never add a width to it.
 - **Accent colours are automatic.** Don't hard-code a colour on an accent; the
   system picks the tint that passes contrast on that ground.
@@ -172,9 +178,9 @@ Worth pasting into a note for whoever maintains the site:
 |---|---|
 | Section styling missing | Marker Code Block absent, or the class is misspelled |
 | Code Block shows a grey box | Normal in the editor. Check Preview or the live site |
-| Custom CSS panel absent | Site is on Personal — needs Business or higher |
+| Custom CSS panel absent | Site is on Personal: needs Business or higher |
 | Counters don't animate | Footer injection missing, or reduced-motion is on (correct behaviour) |
-| Marquee doesn't scroll | Footer injection missing — it duplicates the track |
+| Marquee doesn't scroll | Footer injection missing, it duplicates the track |
 | Nav unreadable over hero | Hero section is missing the `--hero` marker, so it has no top scrim |
 
 
@@ -201,18 +207,29 @@ headline. `prototype/verify-rules.mjs` asserts this.
 ### 3. Keep EBMA and Black Radish separate
 
 ```
-donor    → EBMA         donation, funds the mission — including building Black Radish
+donor    → EBMA         donation, funds the mission: including building Black Radish
 customer → Black Radish purchase, low-cost groceries
 ```
 
 - Every Black Radish block carries "An initiative of East Brooklyn Mutual Aid".
 - **Never** a Donate CTA inside a Black Radish block.
-- **Never** a shop link inside an EBMA support block — it belongs in the utility bar.
+- **Never** a shop link inside an EBMA support block, it belongs in the utility bar.
 - The Black Radish lockup never out-scales the EBMA headline above it.
 
-### 4. The four §02 paths stay reachable
+### 4. Adjacent sections must not share a ground
+
+Two sections with the same background and nothing between them read as one
+section. This is what made the hero and impact run together. If you add or
+reorder sections, check the grounds alternate. `verify-rules.mjs` asserts it.
+
+### 5. No em dashes
+
+House style. Use a colon, a comma, parentheses, or rewrite the sentence.
+Asserted on rendered copy by `verify-rules.mjs`.
+
+### 6. The four §02 paths stay reachable
 
 Volunteer, Partner with us, Ways to give and Donate must all be one hover or tap
 from any page. If the nav is restructured, check them.
 
-Run `node prototype/verify-rules.mjs` after any change — it checks all four.
+Run `node prototype/verify-rules.mjs` after any change, it checks all four.

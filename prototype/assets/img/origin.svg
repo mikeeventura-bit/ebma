@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1067" width="1600" height="1067" role="img" aria-label="Archival COVID-era EBMA, 2020–21: volunteers packing or distributing.">
+<defs>
+<radialGradient id="origin-g0" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#2A2622" stop-opacity="0.58"/><stop offset="100%" stop-color="#2A2622" stop-opacity="0"/></radialGradient>
+<radialGradient id="origin-g1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#B85C38" stop-opacity="0.50"/><stop offset="100%" stop-color="#B85C38" stop-opacity="0"/></radialGradient>
+<radialGradient id="origin-g2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#B85C38" stop-opacity="0.51"/><stop offset="100%" stop-color="#B85C38" stop-opacity="0"/></radialGradient>
+<radialGradient id="origin-g3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8A7A66" stop-opacity="0.43"/><stop offset="100%" stop-color="#8A7A66" stop-opacity="0"/></radialGradient>
+<radialGradient id="origin-g4" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8A7A66" stop-opacity="0.58"/><stop offset="100%" stop-color="#8A7A66" stop-opacity="0"/></radialGradient>
+<radialGradient id="origin-g5" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#2A2622" stop-opacity="0.74"/><stop offset="100%" stop-color="#2A2622" stop-opacity="0"/></radialGradient>
+<radialGradient id="origin-g6" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#2A2622" stop-opacity="0.31"/><stop offset="100%" stop-color="#2A2622" stop-opacity="0"/></radialGradient>
+<filter id="origin-grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3"/><feColorMatrix type="saturate" values="0"/></filter>
+</defs>
+<rect width="1600" height="1067" fill="#12100E"/>
+<circle cx="1128" cy="313" r="772" fill="url(#origin-g0)"/>
+<circle cx="689" cy="300" r="711" fill="url(#origin-g1)"/>
+<circle cx="704" cy="179" r="1099" fill="url(#origin-g2)"/>
+<circle cx="547" cy="1058" r="966" fill="url(#origin-g3)"/>
+<circle cx="1101" cy="594" r="709" fill="url(#origin-g4)"/>
+<circle cx="898" cy="610" r="489" fill="url(#origin-g5)"/>
+<circle cx="661" cy="813" r="993" fill="url(#origin-g6)"/>
+<rect width="1600" height="1067" filter="url(#origin-grain)" opacity="0.1"/>
+<text x="36" y="1031" font-family="Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="2.34" fill="rgba(247,242,232,0.34)">ARCHIVAL COVID-ERA EBMA, 2020–21: VOLUNTEERS PACKING OR DISTRIBUTING.</text>
+</svg>

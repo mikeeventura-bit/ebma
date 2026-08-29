@@ -1,0 +1,31 @@
+<!-- ==========================================================================
+     PARTNER LOGO MARQUEE
+
+     A scrolling band of partner logos reads as credibility. (A scrolling band
+     of slogans, which this replaces, read as noise.)
+
+     Deliberately restrained: 180px tiles, logos capped at 44px tall and held
+     back in opacity, so the strip sits behind the content in the hierarchy
+     rather than competing with it. It fades out at both edges and stops
+     entirely for anyone who has asked their system to reduce motion.
+
+     The track is duplicated by ebma.js, so write each logo ONCE. The clone is
+     marked aria-hidden and the logos are not announced twice.
+
+     TO ADD A LOGO: upload the file in Squarespace (Design -> Custom Files, or
+     any image block, then copy its URL) and paste the URL into a new item.
+     Use the partner's name as the alt text.
+
+     [VERIFY] the partner list itself is unconfirmed. See docs/01-audit.md.
+     ========================================================================== -->
+
+<div class="ebma-logos">
+  <div class="ebma-logos__track" data-ebma-marquee>
+    <div class="ebma-logos__item"><img src="REPLACE-ccc.svg" alt="CCC" loading="lazy"></div>
+    <div class="ebma-logos__item"><img src="REPLACE-rams.svg" alt="RAMS" loading="lazy"></div>
+    <div class="ebma-logos__item"><img src="REPLACE-black-yard-farm.svg" alt="Black Yard Farm" loading="lazy"></div>
+    <div class="ebma-logos__item"><img src="REPLACE-chestnut-commons.svg" alt="Chestnut Commons" loading="lazy"></div>
+    <div class="ebma-logos__item"><img src="REPLACE-partner-5.svg" alt="Partner name" loading="lazy"></div>
+    <div class="ebma-logos__item"><img src="REPLACE-partner-6.svg" alt="Partner name" loading="lazy"></div>
+  </div>
+</div>

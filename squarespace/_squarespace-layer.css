@@ -1,10 +1,10 @@
 /* ==========================================================================
-   EBMA — SQUARESPACE 7.1 ADAPTATION LAYER
+   EBMA, SQUARESPACE 7.1 ADAPTATION LAYER
    --------------------------------------------------------------------------
    Everything above this point is the shared design system, identical to the
    prototype. Everything below adapts it to Squarespace's own markup.
 
-   THE CORE TECHNIQUE — THE MARKER DIV
+   THE CORE TECHNIQUE, THE MARKER DIV
    Squarespace 7.1 gives you no way to put a class on a native section. So:
 
      1. Add ONE Code Block to an otherwise-normal section containing only
@@ -17,7 +17,7 @@
    redesign. Reach for a full Code Block only for the few things Squarespace
    genuinely cannot express.
 
-   Browser support: :has() is supported in all current browsers and inside
+   Browser support:has() is supported in all current browsers and inside
    the Squarespace editor iframe.
    ========================================================================== */
 
@@ -29,7 +29,7 @@
 
    THE UPPERCASE RULE: uppercase belongs on the small tracked eyebrow label
    and nowhere else. Squarespace style packs like to set headings and nav in
-   caps — these rules undo that, because all-caps headings and nav were the
+   caps: these rules undo that, because all-caps headings and nav were the
    single cause of the first pass reading as loud. */
 body, .sqs-block-html p, .sqs-block-html li { font-family: var(--ebma-font-body); }
 h1, h2, h3, h4 {
@@ -132,7 +132,7 @@ h1, h2, h3, h4 {
 
 /* Hero section background: guarantee nav legibility over ANY photograph the
    team uploads. Without a top scrim a bright hero hides the navigation. */
-.page-section:has(.ebma-mark--hero) .section-background::after {
+.page-section:has(.ebma-mark--hero) .section-background:after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: var(--ebma-scrim-top), var(--ebma-scrim-bottom);
 }
@@ -184,7 +184,7 @@ h1, h2, h3, h4 {
 /* --- Utility bar ---------------------------------------------------------
    Squarespace's Announcement Bar is the native home for this. Turn it on
    (Marketing -> Announcement Bar) and it picks up these rules. It carries
-   contact and trust signals so the main nav stays uncluttered — and it is
+   contact and trust signals so the main nav stays uncluttered: and it is
    the right place for the Black Radish storefront link, because it reads
    there as a separate destination rather than as an EBMA page. */
 .sqs-announcement-bar-dropzone .sqs-announcement-bar {

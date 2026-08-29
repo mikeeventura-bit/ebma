@@ -11,7 +11,7 @@ Assign one owner (the PHOTOGRAPHY decision in `01-audit.md`).
 ## Photography
 
 The design is built to let real EBMA photography do the storytelling, so the
-slots are large and unforgiving — a small, low-resolution phone snap will not
+slots are large and unforgiving, a small, low-resolution phone snap will not
 carry a full-bleed hero.
 
 ### Specifications
@@ -23,7 +23,7 @@ carry a full-bleed hero.
 | Section images | 1600px wide minimum |
 | Card images | 1000px wide minimum |
 | File size | Under 500KB after Squarespace processing |
-| Orientation | Shoot wide **and** vertical where possible — the layout uses 4:5 and 3:4 crops |
+| Orientation | Shoot wide **and** vertical where possible, the layout uses 4:5 and 3:4 crops |
 
 Mixed sources are fine. The design applies a unifying grade and warm wash
 precisely so a library shot across several years and a dozen phones still reads
@@ -37,14 +37,14 @@ Every slot in the built homepage, with what it needs:
 | Slot | Shot | Priority |
 |---|---|---|
 | **Hero** | Community members at a market or grocery delivery. Wide, horizontal, faces visible, East Brooklyn context | **Critical** |
-| Card 01 | Grocery delivery — volunteer handing bags to a neighbor | High |
-| Card 02 | Black Radish — produce crates, branded packaging, market stall | High |
+| Card 01 | Grocery delivery: volunteer handing bags to a neighbor | High |
+| Card 02 | Black Radish: produce crates, branded packaging, market stall | High |
 | Card 03 | A New York farmer or producer on their farm | High |
-| Card 04 | Youth program — young people working a market or packing session | High |
-| Card 05 | Community market — RAMS, produce tables, shoppers | High |
+| Card 04 | Youth program: young people working a market or packing session | High |
+| Card 05 | Community market, RAMS, produce tables, shoppers | High |
 | Black Radish ×2 | Close, saturated produce **and** a customer or market moment | **Critical** |
-| Origin story | Archival COVID-era EBMA, 2020–21 — volunteers packing or distributing | **Critical** |
-| Partners | Confirmed partner logos, SVG or transparent PNG | Medium |
+| Origin story | Archival COVID-era EBMA, 2020–21: volunteers packing or distributing | **Critical** |
+| Partners | Confirmed partner logos, SVG or transparent PNG on a transparent ground | Medium |
 
 Also gather, for the remaining pages: Black Yard Farm / Earth Day · CCC
 partnership activity · team and leadership portraits · East Brooklyn
@@ -58,18 +58,18 @@ Non-negotiable before anything goes live:
   programme. A signed release, not a verbal yes.
 - **Photographer credit** where owed.
 - If consent for a face cannot be obtained, use the shot only if the person is
-  genuinely unidentifiable — not merely turned away.
+  genuinely unidentifiable: not merely turned away.
 
 ### Alt text
 
 Every image needs alt text describing **what is happening**, not the filename.
-"Volunteers loading grocery bags into a car in Brownsville" — not "IMG_4471" or
+"Volunteers loading grocery bags into a car in Brownsville": not "IMG_4471" or
 "community". This is a legal accessibility requirement and it is also how the
 photographs become searchable.
 
 ---
 
-## Logo — needed before launch
+## Logo: needed before launch
 
 EBMA's wordmark is ultra-heavy condensed caps, set on two lines optically
 justified to the same width. The prototype currently **rebuilds it in a
@@ -77,11 +77,11 @@ webfont as a stand-in**, which is not acceptable for production: a wordmark
 built from live type reflows if the face fails to load, and will never match
 the original letterforms exactly.
 
-- [ ] **Wordmark as SVG** — vector, outlined text (not live type)
+- [ ] **Wordmark as SVG**, vector, outlined text (not live type)
 - [ ] **Black version** for cream/light grounds
 - [ ] **Cream or white version** for the ink header, hero and footer
 - [ ] A stacked and, if one exists, a single-line horizontal lockup
-- [ ] Favicon / app icon derivation — 512×512 PNG minimum
+- [ ] Favicon / app icon derivation, 512×512 PNG minimum
 - [ ] **The typeface name**, if known. The wordmark is the brand's type anchor;
       knowing the face lets the site's display type relate to it rather than
       merely coexist with it.
@@ -90,10 +90,28 @@ the original letterforms exactly.
 Until the SVG arrives, do not export the CSS stand-in as an image and treat it
 as the logo.
 
+## Partner logos
+
+The partners band is a scrolling marquee of marks, so the files need to sit
+together as one quiet strip:
+
+- [ ] **SVG preferred**, transparent PNG at 2x acceptable
+- [ ] Transparent background, no white box behind the mark
+- [ ] Roughly even visual weight. A very heavy mark beside a very light one
+      makes the band look broken rather than varied
+- [ ] Single-colour versions if the partner permits them. Full-colour logos in
+      a row compete with each other and with the page
+- [ ] The partner's name for alt text, spelled as they spell it
+- [ ] **Permission to display each logo.** Some partners require sign-off, and
+      a few have brand guidelines governing size and clear space
+
+Placeholder marks are in `prototype/assets/img/logo-*.svg`. The partner list
+itself is unconfirmed: see `docs/01-audit.md`.
+
 ## Organizational information
 
 - [ ] Updated mission statement
-- [ ] Current programme descriptions — one paragraph each
+- [ ] Current programme descriptions: one paragraph each
 - [ ] Leadership and team: names, roles, photographs, short bios
 - [ ] Confirmed partner list
 - [ ] Contact: address, phone `[VERIFY 347.450.4446]`, general email, press email
@@ -107,10 +125,10 @@ as the logo.
 For each figure, capture **the number, the period it covers, and the source.**
 A number without a date is what created the problem this refresh is fixing.
 
-- [ ] Youth employed — 2026
-- [ ] Grocery deliveries per cycle — current
-- [ ] Households served — current
-- [ ] Pounds of produce distributed — state the period
+- [ ] Youth employed, 2026
+- [ ] Grocery deliveries per cycle: current
+- [ ] Households served: current
+- [ ] Pounds of produce distributed: state the period
 - [ ] Farmers and producers supported
 - [ ] Markets operated
 - [ ] Community partners
@@ -121,7 +139,7 @@ Public sources cite 1,000,000+ lbs distributed and 100,000+ residents reached.
 COVID-era totals; presenting them beside 2026 operating figures would repeat
 exactly the confusion the refresh exists to correct.
 
-## Historical material — archive, do not erase
+## Historical material: archive, do not erase
 
 Brief §12: *"Important historical information should be archived rather than
 erased."*

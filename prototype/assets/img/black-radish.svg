@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250" role="img" aria-label="Black Radish: produce crates, branded packaging, market stall.">
+<defs>
+<radialGradient id="black-radish-g0" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#EDE4D3" stop-opacity="0.54"/><stop offset="100%" stop-color="#EDE4D3" stop-opacity="0"/></radialGradient>
+<radialGradient id="black-radish-g1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#EDE4D3" stop-opacity="0.38"/><stop offset="100%" stop-color="#EDE4D3" stop-opacity="0"/></radialGradient>
+<radialGradient id="black-radish-g2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8E1F3C" stop-opacity="0.43"/><stop offset="100%" stop-color="#8E1F3C" stop-opacity="0"/></radialGradient>
+<radialGradient id="black-radish-g3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#D08A5A" stop-opacity="0.36"/><stop offset="100%" stop-color="#D08A5A" stop-opacity="0"/></radialGradient>
+<radialGradient id="black-radish-g4" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#EDE4D3" stop-opacity="0.62"/><stop offset="100%" stop-color="#EDE4D3" stop-opacity="0"/></radialGradient>
+<radialGradient id="black-radish-g5" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#D08A5A" stop-opacity="0.71"/><stop offset="100%" stop-color="#D08A5A" stop-opacity="0"/></radialGradient>
+<radialGradient id="black-radish-g6" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#B85C38" stop-opacity="0.54"/><stop offset="100%" stop-color="#B85C38" stop-opacity="0"/></radialGradient>
+<filter id="black-radish-grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3"/><feColorMatrix type="saturate" values="0"/></filter>
+</defs>
+<rect width="1000" height="1250" fill="#12100E"/>
+<circle cx="76" cy="268" r="629" fill="url(#black-radish-g0)"/>
+<circle cx="324" cy="617" r="659" fill="url(#black-radish-g1)"/>
+<circle cx="976" cy="60" r="634" fill="url(#black-radish-g2)"/>
+<circle cx="821" cy="125" r="556" fill="url(#black-radish-g3)"/>
+<circle cx="44" cy="779" r="740" fill="url(#black-radish-g4)"/>
+<circle cx="746" cy="423" r="423" fill="url(#black-radish-g5)"/>
+<circle cx="405" cy="446" r="673" fill="url(#black-radish-g6)"/>
+<rect width="1000" height="1250" filter="url(#black-radish-grain)" opacity="0.1"/>
+<text x="36" y="1214" font-family="Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="2.34" fill="rgba(247,242,232,0.34)">BLACK RADISH: PRODUCE CRATES, BRANDED PACKAGING, MARKET STALL.</text>
+</svg>

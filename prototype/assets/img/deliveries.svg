@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250" role="img" aria-label="Grocery delivery: volunteer handing bags to a neighbor.">
+<defs>
+<radialGradient id="deliveries-g0" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8A7A66" stop-opacity="0.47"/><stop offset="100%" stop-color="#8A7A66" stop-opacity="0"/></radialGradient>
+<radialGradient id="deliveries-g1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8A7A66" stop-opacity="0.47"/><stop offset="100%" stop-color="#8A7A66" stop-opacity="0"/></radialGradient>
+<radialGradient id="deliveries-g2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8A7A66" stop-opacity="0.72"/><stop offset="100%" stop-color="#8A7A66" stop-opacity="0"/></radialGradient>
+<radialGradient id="deliveries-g3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8A7A66" stop-opacity="0.41"/><stop offset="100%" stop-color="#8A7A66" stop-opacity="0"/></radialGradient>
+<radialGradient id="deliveries-g4" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8A7A66" stop-opacity="0.41"/><stop offset="100%" stop-color="#8A7A66" stop-opacity="0"/></radialGradient>
+<radialGradient id="deliveries-g5" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#2A2622" stop-opacity="0.52"/><stop offset="100%" stop-color="#2A2622" stop-opacity="0"/></radialGradient>
+<radialGradient id="deliveries-g6" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8A7A66" stop-opacity="0.30"/><stop offset="100%" stop-color="#8A7A66" stop-opacity="0"/></radialGradient>
+<filter id="deliveries-grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3"/><feColorMatrix type="saturate" values="0"/></filter>
+</defs>
+<rect width="1000" height="1250" fill="#12100E"/>
+<circle cx="179" cy="753" r="645" fill="url(#deliveries-g0)"/>
+<circle cx="100" cy="865" r="592" fill="url(#deliveries-g1)"/>
+<circle cx="942" cy="881" r="354" fill="url(#deliveries-g2)"/>
+<circle cx="976" cy="818" r="751" fill="url(#deliveries-g3)"/>
+<circle cx="845" cy="786" r="445" fill="url(#deliveries-g4)"/>
+<circle cx="531" cy="918" r="556" fill="url(#deliveries-g5)"/>
+<circle cx="176" cy="1046" r="423" fill="url(#deliveries-g6)"/>
+<rect width="1000" height="1250" filter="url(#deliveries-grain)" opacity="0.1"/>
+<text x="36" y="1214" font-family="Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="2.34" fill="rgba(247,242,232,0.34)">GROCERY DELIVERY: VOLUNTEER HANDING BAGS TO A NEIGHBOR.</text>
+</svg>

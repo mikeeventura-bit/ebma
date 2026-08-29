@@ -1,4 +1,4 @@
-# Phase 1 — Site Audit & Decisions
+# Phase 1: Site Audit & Decisions
 
 Brief §13 Phase 1: *"Review every existing page and classify it: KEEP / UPDATE /
 REMOVE / ARCHIVE / REBUILD."*
@@ -9,23 +9,23 @@ REMOVE / ARCHIVE / REBUILD."*
 
 The live site could not be crawled from the build environment (the domain is
 blocked by the network egress proxy), so this inventory was reconstructed from
-search-engine records. **Treat it as a starting point, not a complete list** —
+search-engine records. **Treat it as a starting point, not a complete list** : 
 confirm against the Pages panel in the Squarespace admin, which is the only
 authoritative source and will also show unlinked and draft pages.
 
 | URL | Page title as indexed | Proposed | Notes |
 |---|---|---|---|
-| `/` | East Brooklyn Mutual Aid | **REBUILD** | New homepage — built this pass |
+| `/` | East Brooklyn Mutual Aid | **REBUILD** | New homepage: built this pass |
 | `/about` | About Us | **REBUILD** | Story, mission, history, leadership |
 | `/our-team` | Our Team | **UPDATE** | Fold into About, or keep as a child page |
-| `/what-we-do` | **"General 1"** | **REBUILD** | Title is an unedited Squarespace default — becomes Our Work |
+| `/what-we-do` | **"General 1"** | **REBUILD** | Title is an unedited Squarespace default: becomes Our Work |
 | `/blackradish` | Black Radish | **REBUILD** | Flagship destination; hands off to the storefront |
 | `/impact` | Our Impact | **REBUILD** | Blocked on which stats are publishable |
 | `/donate` | Donate | **REBUILD** | Blocked on the donation-platform decision |
 | `/fundraise` | Fundraise | **UPDATE / MERGE** | Likely duplicates `/donate` |
 | `/take-action` | Join us | **UPDATE / MERGE** | Becomes Get Involved |
 | `/homeold` | **"Home New"** | **REMOVE** | Abandoned draft homepage, publicly reachable |
-| — | News / Stories | **NEW** | No equivalent found; brief §05 asks for one |
+|, | News / Stories | **NEW** | No equivalent found; brief §05 asks for one |
 
 Two findings worth raising with Kelvin directly:
 
@@ -52,7 +52,7 @@ current information" problems named in brief §12.
 Brief §12 is explicit: *"Important historical information should be archived
 rather than erased."* COVID-era numbers, prior impact reports and press coverage
 are ARCHIVE, never REMOVE. They are the evidence for the story the refresh wants
-to tell — that EBMA responded to a crisis and then stayed.
+to tell, that EBMA responded to a crisis and then stayed.
 
 ---
 
@@ -80,7 +80,7 @@ with inbound links gets a redirect even if it seems obsolete.
 
 ---
 
-## 4. Decisions still open — brief §14
+## 4. Decisions still open: brief §14
 
 These are EBMA's calls, not the designer's. Each carries a recommendation so
 the team has something to react to rather than a blank page. **Nothing that
@@ -90,16 +90,16 @@ depends on these is assumed silently anywhere in the build.**
 |---|---|---|
 | **Project lead** | One named owner with Squarespace admin access | Everything |
 | **Website access** | Confirm who holds the Squarespace login and billing before work starts | Build start |
-| **Donation platform** | Support is currently split across GoFundMe, ioby, Cash App and Venmo. Consolidate to **one** primary on-site path — Squarespace donation blocks (Stripe) or a Givebutter embed — with the rest as secondary. Fragmented giving costs conversions and makes impact reporting impossible. | `/donate`, every CTA |
+| **Donation platform** | Support is currently split across GoFundMe, ioby, Cash App and Venmo. Consolidate to **one** primary on-site path, Squarespace donation blocks (Stripe) or a Givebutter embed: with the rest as secondary. Fragmented giving costs conversions and makes impact reporting impossible. | `/donate`, every CTA |
 | **Black Radish depth** | A strong story page on the EBMA site; the storefront stays at `blackradishgrocery.com`. Duplicating the shop splits maintenance and confuses the buying journey. | `/black-radish` |
 | **EBMA ↔ Black Radish relationship** | **Needs an explicit answer.** Public sources describe "Black Radish Home Delivery" as EBMA's longest-running *programme*; the brief (§07) frames Black Radish as something people *purchase through*. Those are different relationships, and copy that splits the difference will mix the two brands. Extends §14's "How prominently should Black Radish live within the EBMA website?" | `/black-radish`, `/our-work`, all copy |
-| **Public food-request process** | Does EBMA have one? If yes, the site needs a clear community-member path. If no, the site should describe programmes and **not** offer a request CTA — a neighbour clicking one and finding nothing is worse than not offering it. Note the brief's §02 actions are all give-side (support, partner, volunteer, donate). | Homepage, `/our-work` |
+| **Public food-request process** | Does EBMA have one? If yes, the site needs a clear community-member path. If no, the site should describe programmes and **not** offer a request CTA, a neighbour clicking one and finding nothing is worse than not offering it. Note the brief's §02 actions are all give-side (support, partner, volunteer, donate). | Homepage, `/our-work` |
 | **Publishable stats** | Publish only what the team can stand behind. The homepage marks unverified metrics with `.ebma-stat--tbd` so a placeholder cannot ship by accident. | `/impact`, homepage |
 | **Photography owner** | One named person to gather and organise the library | Phases 3–4 |
 | **Copy owner** | One named writer and one reviewer | Phase 2 |
-| **Timeline** | Set the launch date after the photo library is in hand — it is the usual bottleneck | Phase 6 |
+| **Timeline** | Set the launch date after the photo library is in hand, it is the usual bottleneck | Phase 6 |
 
-### Figures found in public sources — verify before publishing
+### Figures found in public sources: verify before publishing
 
 Search results attribute these to EBMA. **None is confirmed by the
 organisation**, and several are COVID-era rather than current:

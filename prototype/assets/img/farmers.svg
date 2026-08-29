@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250" role="img" aria-label="A New York farmer or producer on their farm.">
+<defs>
+<radialGradient id="farmers-g0" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#B85C38" stop-opacity="0.75"/><stop offset="100%" stop-color="#B85C38" stop-opacity="0"/></radialGradient>
+<radialGradient id="farmers-g1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#2F5D3A" stop-opacity="0.58"/><stop offset="100%" stop-color="#2F5D3A" stop-opacity="0"/></radialGradient>
+<radialGradient id="farmers-g2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#EDE4D3" stop-opacity="0.72"/><stop offset="100%" stop-color="#EDE4D3" stop-opacity="0"/></radialGradient>
+<radialGradient id="farmers-g3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#6E8F4E" stop-opacity="0.71"/><stop offset="100%" stop-color="#6E8F4E" stop-opacity="0"/></radialGradient>
+<radialGradient id="farmers-g4" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#B85C38" stop-opacity="0.37"/><stop offset="100%" stop-color="#B85C38" stop-opacity="0"/></radialGradient>
+<radialGradient id="farmers-g5" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#B85C38" stop-opacity="0.33"/><stop offset="100%" stop-color="#B85C38" stop-opacity="0"/></radialGradient>
+<radialGradient id="farmers-g6" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#2F5D3A" stop-opacity="0.30"/><stop offset="100%" stop-color="#2F5D3A" stop-opacity="0"/></radialGradient>
+<filter id="farmers-grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3"/><feColorMatrix type="saturate" values="0"/></filter>
+</defs>
+<rect width="1000" height="1250" fill="#12100E"/>
+<circle cx="957" cy="737" r="457" fill="url(#farmers-g0)"/>
+<circle cx="541" cy="574" r="709" fill="url(#farmers-g1)"/>
+<circle cx="868" cy="303" r="701" fill="url(#farmers-g2)"/>
+<circle cx="622" cy="792" r="712" fill="url(#farmers-g3)"/>
+<circle cx="85" cy="713" r="417" fill="url(#farmers-g4)"/>
+<circle cx="697" cy="685" r="799" fill="url(#farmers-g5)"/>
+<circle cx="770" cy="654" r="597" fill="url(#farmers-g6)"/>
+<rect width="1000" height="1250" filter="url(#farmers-grain)" opacity="0.1"/>
+<text x="36" y="1214" font-family="Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="2.34" fill="rgba(247,242,232,0.34)">A NEW YORK FARMER OR PRODUCER ON THEIR FARM.</text>
+</svg>

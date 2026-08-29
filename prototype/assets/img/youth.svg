@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250" role="img" aria-label="Youth program: young people working a market or packing session.">
+<defs>
+<radialGradient id="youth-g0" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8A7A66" stop-opacity="0.32"/><stop offset="100%" stop-color="#8A7A66" stop-opacity="0"/></radialGradient>
+<radialGradient id="youth-g1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#2A2622" stop-opacity="0.33"/><stop offset="100%" stop-color="#2A2622" stop-opacity="0"/></radialGradient>
+<radialGradient id="youth-g2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#B85C38" stop-opacity="0.42"/><stop offset="100%" stop-color="#B85C38" stop-opacity="0"/></radialGradient>
+<radialGradient id="youth-g3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#B85C38" stop-opacity="0.68"/><stop offset="100%" stop-color="#B85C38" stop-opacity="0"/></radialGradient>
+<radialGradient id="youth-g4" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8A7A66" stop-opacity="0.37"/><stop offset="100%" stop-color="#8A7A66" stop-opacity="0"/></radialGradient>
+<radialGradient id="youth-g5" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8E1F3C" stop-opacity="0.47"/><stop offset="100%" stop-color="#8E1F3C" stop-opacity="0"/></radialGradient>
+<radialGradient id="youth-g6" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8E1F3C" stop-opacity="0.56"/><stop offset="100%" stop-color="#8E1F3C" stop-opacity="0"/></radialGradient>
+<filter id="youth-grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3"/><feColorMatrix type="saturate" values="0"/></filter>
+</defs>
+<rect width="1000" height="1250" fill="#12100E"/>
+<circle cx="302" cy="899" r="504" fill="url(#youth-g0)"/>
+<circle cx="180" cy="106" r="377" fill="url(#youth-g1)"/>
+<circle cx="147" cy="478" r="873" fill="url(#youth-g2)"/>
+<circle cx="54" cy="189" r="834" fill="url(#youth-g3)"/>
+<circle cx="681" cy="145" r="511" fill="url(#youth-g4)"/>
+<circle cx="466" cy="1245" r="389" fill="url(#youth-g5)"/>
+<circle cx="937" cy="998" r="806" fill="url(#youth-g6)"/>
+<rect width="1000" height="1250" filter="url(#youth-grain)" opacity="0.1"/>
+<text x="36" y="1214" font-family="Helvetica,Arial,sans-serif" font-size="26" font-weight="600" letter-spacing="2.34" fill="rgba(247,242,232,0.34)">YOUTH PROGRAM: YOUNG PEOPLE WORKING A MARKET OR PACKING SESSION.</text>
+</svg>

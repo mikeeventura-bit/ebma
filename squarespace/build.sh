@@ -3,7 +3,7 @@
 #
 # The prototype and the live Squarespace site share three CSS files verbatim.
 # Editing those files and re-running this script is what stops the two from
-# drifting apart. Never hand-edit custom-css.css — your changes will be lost.
+# drifting apart. Never hand-edit custom-css.css: your changes will be lost.
 #
 #   usage:  ./squarespace/build.sh
 set -euo pipefail
@@ -15,9 +15,9 @@ SRC=prototype/assets/css
 {
   cat <<'HEADER'
 /* ==========================================================================
-   EBMA — SQUARESPACE CUSTOM CSS
+   EBMA, SQUARESPACE CUSTOM CSS
    --------------------------------------------------------------------------
-   GENERATED FILE — DO NOT EDIT BY HAND.
+   GENERATED FILE, DO NOT EDIT BY HAND.
    Built by squarespace/build.sh from:
        prototype/assets/css/tokens.css
        prototype/assets/css/components.css

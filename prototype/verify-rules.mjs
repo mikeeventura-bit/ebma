@@ -1,5 +1,5 @@
 /* ==========================================================================
-   EBMA — house rules, enforced
+   EBMA: house rules, enforced
    --------------------------------------------------------------------------
    Two rules matter enough to check mechanically, because both are the kind
    that regress silently one section at a time:
@@ -49,7 +49,7 @@ const results = await page.evaluate(() => {
   const posters = document.querySelectorAll('.ebma-campaign--poster').length;
   posters <= 1
     ? pass('poster rarity', `${posters} poster statement on the page`)
-    : fail('poster rarity', `${posters} poster statements — max 1 per page`);
+    : fail('poster rarity', `${posters} poster statements: max 1 per page`);
 
   /* --- 3. Brand separation ---------------------------------------------- */
   const brBlocks = document.querySelectorAll('.ebma-radish-feature, .ebma-mark--black-radish');
@@ -88,15 +88,62 @@ const results = await page.evaluate(() => {
     if (px > biggest.px) biggest = { px, what: (el.className || el.tagName).toString().slice(0, 44) };
   });
   biggest.px <= capPx + 0.5
-    ? pass('type hierarchy', `largest type is ${biggest.px}px (headline ${capPx}px) — ${biggest.what}`)
+    ? pass('type hierarchy', `largest type is ${biggest.px}px (headline ${capPx}px), ${biggest.what}`)
     : fail('type hierarchy', `${biggest.what} renders at ${biggest.px}px, larger than the ${capPx}px headline`);
 
-  /* --- 6. Every §02 path reachable from the nav ------------------------- */
+  /* --- 6. Adjacent sections must not share a ground ----------------------
+     The rule whose absence made the hero and impact sections read as one dark
+     mass. It is exactly the kind that returns quietly when a section is added
+     later, so it is asserted rather than trusted. */
+  const grounds = [];
+  document.querySelectorAll('main > section, main > div').forEach(el => {
+    const bg = getComputedStyle(el).backgroundColor;
+    grounds.push({ bg, what: (el.className || el.tagName).toString().slice(0, 40) });
+  });
+  const collisions = [];
+  for (let i = 1; i < grounds.length; i++) {
+    if (grounds[i].bg === grounds[i - 1].bg)
+      collisions.push(`${grounds[i - 1].what} + ${grounds[i].what} both ${grounds[i].bg}`);
+  }
+  collisions.length
+    ? fail('section separation', collisions.join(' | '))
+    : pass('section separation', `${grounds.length} sections, no adjacent pair shares a ground`);
+
+  /* --- 7. No em dashes in rendered copy ---------------------------------- */
+  const dashed = [];
+  document.querySelectorAll('main, header, footer').forEach(root => {
+    const walk = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    let n;
+    while ((n = walk.nextNode())) {
+      if (n.textContent.includes('\u2014')) {
+        const t = n.textContent.trim().slice(0, 48);
+        if (t && !dashed.includes(t)) dashed.push(t);
+      }
+    }
+  });
+  dashed.length
+    ? fail('no em dashes', `${dashed.length}: ${dashed.slice(0, 3).join(' / ')}`)
+    : pass('no em dashes', 'none in rendered copy');
+
+  /* --- 8. Every §02 path reachable from the nav ------------------------- */
   const navText = document.querySelector('nav').textContent.toLowerCase();
   const missing = ['volunteer', 'partner', 'give', 'donate'].filter(v => !navText.includes(v));
   missing.length
     ? fail('brief §02 paths', `not reachable from the nav: ${missing.join(', ')}`)
     : pass('brief §02 paths', 'volunteer, partner, ways to give and donate all present');
+
+  /* --- 9. Nav dropdowns link to real pages or in-page anchors, never to
+     destinations that do not exist. Brief §05 defines exactly eight pages. */
+  const PAGES = ['index','about','our-work','black-radish','impact','stories','get-involved','donate'];
+  const strays = [];
+  document.querySelectorAll('.p-nav__menu a').forEach(a => {
+    const href = a.getAttribute('href') || '';
+    const file = href.split('#')[0].replace('.html', '');
+    if (file && !PAGES.includes(file)) strays.push(href);
+  });
+  strays.length
+    ? fail('§05 page set', `nav points at non-pages: ${strays.join(', ')}`)
+    : pass('§05 page set', 'every dropdown child is one of the eight pages or an anchor on it');
 
   return out;
 });

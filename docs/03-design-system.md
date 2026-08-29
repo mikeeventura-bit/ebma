@@ -4,7 +4,7 @@ The visual direction from brief §04, made concrete: **Brooklyn.
 Community-driven. Modern. Bold. Warm. Food-centered. Established. Human.**
 
 Source of truth is `prototype/assets/css/tokens.css`. That file is copied
-verbatim into the Squarespace Custom CSS — the values below are documentation
+verbatim into the Squarespace Custom CSS, the values below are documentation
 of it, not a second definition.
 
 ---
@@ -47,12 +47,12 @@ Photography supplies most of the colour. The interface is a restrained frame.
 ### Why there are on-dark variants
 
 The base radish and clay are tuned for cream paper. On near-black they fail
-WCAG AA — radish lands at **2.18:1** and clay at **4.18:1**. Both were caught by
+WCAG AA: radish lands at **2.18:1** and clay at **4.18:1**. Both were caught by
 the automated audit, not by eye.
 
 The on-dark tints are calibrated against **`--ebma-ink-soft`, the lightest dark
 surface, not the darkest.** A tint that only clears AA on `--ebma-ink` fails
-silently the moment it lands on a raised tile — clay at `#C46B45` measured 5.00:1
+silently the moment it lands on a raised tile: clay at `#C46B45` measured 5.00:1
 on ink but **3.96:1** on ink-soft, which is exactly how it regressed when stat
 tiles gained a raised surface. Checking the worst case makes the token safe on
 every dark ground:
@@ -90,7 +90,7 @@ browser by `verify-contrast` (see §7). **21/21 pass. 0 failures.**
 | **Clay-on-dark on ink-deep** | 5.21 | 4.5 | ✅ |
 | **Radish-on-dark on ink** (large) | 4.07 | 3.0 | ✅ |
 
-⚠️ **`--ebma-clay` on cream is 4.07:1** — below AA for body text. It is a
+⚠️ **`--ebma-clay` on cream is 4.07:1**, below AA for body text. It is a
 decorative tone on light grounds (rules, focus rings, dashes). Never set small
 cream-ground text in clay; use `--ebma-radish` (7.80:1).
 
@@ -100,17 +100,17 @@ cream-ground text in clay; use `--ebma-radish` (7.80:1).
 
 **The wordmark is the type anchor.** EBMA's existing logo is ultra-heavy
 condensed caps on two lines, justified to equal width. The display face is
-chosen to relate to it, not to compete with it — which is also why headings sit
+chosen to relate to it, not to compete with it, which is also why headings sit
 at weight 800 rather than 900: at 900 they start to read as wordmark rather
 than as heading.
 
-**Display — Archivo.** A grotesque with a genuine 900 weight and tight
+**Display, Archivo.** A grotesque with a genuine 900 weight and tight
 apertures. It holds up at scale, which most Google fonts do not. If the
 wordmark's actual typeface can be identified (see the asset checklist), revisit
-this — a display face drawn from the same family as the logo would tie the
+this, a display face drawn from the same family as the logo would tie the
 system together more tightly than Archivo does.
 
-**Body — Inter.** Neutral, highly legible at small sizes, wide language
+**Body, Inter.** Neutral, highly legible at small sizes, wide language
 coverage.
 
 Both are in Squarespace's built-in library. **Set them in Design → Fonts as well
@@ -126,7 +126,7 @@ Alternates, if Kelvin wants options:
 
 ### Scale
 
-All sizes are fluid `clamp()` — poster-huge on desktop, never overflowing a
+All sizes are fluid `clamp()`, poster-huge on desktop, never overflowing a
 320px phone.
 
 | Token | Range | Use |
@@ -142,12 +142,12 @@ All sizes are fluid `clamp()` — poster-huge on desktop, never overflowing a
 | `--ebma-fs-eyebrow` | 0.75rem | Tracked-out labels |
 
 **Never set a heading below weight 600.** Weight carries "bold" and
-"established"; a light headline reads as the template. Headlines are **800** —
+"established"; a light headline reads as the template. Headlines are **800** : 
 900 paired with all-caps is what read as shouting.
 
 **Nothing may render larger than the hero headline.** Cutting the H1 without
 bringing the rest of the scale down would leave the page's largest type on a
-statistic — stat numbers were 96px and the Black Radish lockup 88px against a
+statistic: stat numbers were 96px and the Black Radish lockup 88px against a
 72px headline. `verify-rules.mjs` asserts this.
 
 ### The uppercase rule
@@ -159,7 +159,7 @@ This is the single most load-bearing rule in the system, and it is drawn from th
 agency house style: Premier Gas, Undiscovered Destinations and Tyneside Marketing
 all set headlines in sentence case with one accent-coloured word, and reserve
 tracked caps for the eyebrow above. Pass 1 set the hero in all-caps at weight 900
-and the nav in all-caps at 0.08em tracking — that one decision is what made the
+and the nav in all-caps at 0.08em tracking, that one decision is what made the
 page read as shouting and the menu as loud.
 
 The dividing line is **14px**: uppercase is fine on a label at or below it
@@ -168,7 +168,7 @@ enforces this by measured font size rather than by class list, so it cannot
 regress one section at a time.
 
 **One exception**: `.ebma-campaign--poster`, for a true poster statement
-(brief §04), used **at most once per page**. Rarity is the whole point — applied
+(brief §04), used **at most once per page**. Rarity is the whole point: applied
 to three sections in pass 1 it stopped being emphasis and became the default
 voice.
 
@@ -186,7 +186,7 @@ Brief §04: *"Key statements can behave like campaign posters."*
 Rules that make it work:
 
 1. **Every line is its own `<span>`.** A campaign statement never wraps by
-   accident — the breaks are a design decision.
+   accident, the breaks are a design decision.
 2. **Never add a `max-width`** to a campaign block. A character constraint on
    top of explicit breaks re-wraps each line to one word and turns the
    statement into a column. (This happened during the build.)
@@ -206,14 +206,14 @@ Brief §04: real EBMA photography does most of the storytelling.
 
 EBMA's library will arrive from many phones, many events and several years.
 Without a unifying treatment that reads as scrappy; with one it reads as
-**established** — which is the word in the brief.
+**established**, which is the word in the brief.
 
-- **Grade:** `--ebma-photo-grade` — `saturate(1.04) contrast(1.06)
+- **Grade:** `--ebma-photo-grade`, `saturate(1.04) contrast(1.06)
   brightness(0.98)`, applied to every image including native Squarespace image
   blocks.
-- **Warm wash:** `--ebma-photo-warmth` — a 10% clay multiply layer that pulls
+- **Warm wash:** `--ebma-photo-warmth`, a 10% clay multiply layer that pulls
   mixed white balances together.
-- **Crops:** editorial, never square by default — `--portrait` (4:5),
+- **Crops:** editorial, never square by default, `--portrait` (4:5),
   `--landscape` (3:2), `--tall` (3:4), `--wide` (16:9).
 - **Captions:** real photography earns a credit. Use `.ebma-caption`.
 
@@ -222,8 +222,8 @@ Without a unifying treatment that reads as scrappy; with one it reads as
 Type sits on photography constantly, so contrast cannot depend on which image
 was uploaded.
 
-- `--ebma-scrim-bottom` — carries the hero headline.
-- `--ebma-scrim-top` — **guarantees the navigation stays legible.** The header
+- `--ebma-scrim-bottom`, carries the hero headline.
+- `--ebma-scrim-top`, **guarantees the navigation stays legible.** The header
   is transparent over the hero, so the *top* of the image is what matters. A
   bottom-only scrim leaves the nav to vanish the first time someone uploads a
   bright, sunny market photograph.
@@ -238,15 +238,15 @@ Both are applied together on the hero, in the prototype and in Squarespace.
 |---|---|
 | `.ebma-campaign` | Poster statement (see above) |
 | `.ebma-eyebrow` | Tracked-out label with a rule; every section's entry point |
-| `.ebma-btn` + `--primary` `--ghost` `--invert` `--solid-cream` | Buttons. Two levels only — a third invites clutter |
+| `.ebma-btn` + `--primary` `--ghost` `--invert` `--solid-cream` | Buttons. Two levels only, a third invites clutter |
 | `.ebma-arrow-link` | Oversized text link with a travelling arrow |
 | `.ebma-stats` / `.ebma-stat` | Impact tiles, hairline rules not card borders |
 | `.ebma-stat--tbd` | **Visibly provisional metric.** Dashed outline, dimmed. Cannot ship by accident |
 | `.ebma-cards` / `.ebma-card` | Photo-led programme cards, capped at 3 columns |
-| `.ebma-index` | Editorial index — replaces bullet lists |
+| `.ebma-index` | Editorial index: replaces bullet lists |
 | `.ebma-photo` | Graded, cropped image frame |
 | `.ebma-reveal` | Scroll-in animation (fail-visible, see §6) |
-| `.ebma-router` | Support router — the four §02 paths as labelled rows |
+| `.ebma-router` | Support router, the four §02 paths as labelled rows |
 
 ### Geometry
 
@@ -270,8 +270,8 @@ Aid while maintaining its own identity"*, and §10 lists *"Build Black Radish"*
 among the things donations fund. So there are two distinct money flows:
 
 ```
-donor    → EBMA         (donation — funds the mission, incl. building Black Radish)
-customer → Black Radish (purchase — low-cost groceries)
+donor    → EBMA         (donation: funds the mission, incl. building Black Radish)
+customer → Black Radish (purchase: low-cost groceries)
 ```
 
 Blurring them is the failure mode. The rules:
@@ -279,7 +279,7 @@ Blurring them is the failure mode. The rules:
 - Black Radish keeps its own ground (`#0B0A09`), clay accent and lockup. EBMA uses
   radish on cream/ink. The palettes never merge.
 - Every Black Radish block carries "An initiative of East Brooklyn Mutual Aid".
-- Its lockup must never out-scale the EBMA headline above it — that is how a
+- Its lockup must never out-scale the EBMA headline above it, that is how a
   sub-brand starts reading as the parent.
 - **Never a Donate CTA inside a Black Radish block; never a shop link inside an
   EBMA support block.** `verify-rules.mjs` asserts both.
@@ -290,7 +290,7 @@ Blurring them is the failure mode. The rules:
 
 ## 6. Accessibility
 
-Not a launch checklist item — built into the tokens.
+Not a launch checklist item: built into the tokens.
 
 - **Contrast:** every rendered pair verified at AA. See §2.
 - **Focus:** 3px clay outline, 3px offset, on everything focusable. Squarespace's
@@ -300,11 +300,11 @@ Not a launch checklist item — built into the tokens.
 - **Skip link:** first focusable element on every page.
 - **Reveals fail visible.** The hiding rule is scoped to `.ebma-js`, which
   `ebma.js` adds *only* after confirming it can animate. No JS, an old browser,
-  a blocked script, an observer that never fires — content shows. A 4-second
+  a blocked script, an observer that never fires: content shows. A 4-second
   safety timer reveals anything still hidden. Verified with JS fully disabled:
   all 24 blocks visible.
 
-  The opposite arrangement — hide in CSS, reveal in JS — can silently blank a
+  The opposite arrangement: hide in CSS, reveal in JS: can silently blank a
   whole page. On a site whose purpose is telling people how to get food, that
   is the wrong failure mode.
 - **Counters** animate to the number already in the DOM, so the real figure is

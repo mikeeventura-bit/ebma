@@ -3,7 +3,7 @@
 Brief §13 Phase 5. Work top to bottom on the **duplicated** site, then again on
 the live site after applying.
 
-Automated checks live with the code — run those first, they catch the
+Automated checks live with the code: run those first, they catch the
 mechanical failures for free:
 
 ```bash
@@ -19,7 +19,7 @@ Everything below needs a human on the real site.
 
 ---
 
-## Accuracy — the reason this project exists
+## Accuracy, the reason this project exists
 
 - [ ] **No COVID-era language describing current operations** in the present tense
 - [ ] **Every statistic is verified and dated**; no `.ebma-stat--tbd` remains
@@ -38,6 +38,8 @@ Everything below needs a human on the real site.
 - [ ] Consistent capitalisation of **Black Radish** and **East Brooklyn Mutual Aid**
 - [ ] "Neighbors", not "beneficiaries" or "clients"
 - [ ] No lorem ipsum, no `REPLACE-`, no `[VERIFY]` left anywhere
+- [ ] **No em dashes.** House style: use a colon, a comma, parentheses, or
+      rewrite. Check copy pasted in from documents, which is where they return
 
 ## Links
 
@@ -45,11 +47,11 @@ Everything below needs a human on the real site.
 - [ ] Every button and CTA resolves
 - [ ] Footer links resolve
 - [ ] External links open correctly (`blackradishgrocery.com`, socials)
-- [ ] **All redirects from `01-audit.md` §3 are in place and tested** — visit each old URL
+- [ ] **All redirects from `01-audit.md` §3 are in place and tested**, visit each old URL
 - [ ] No links to deleted pages
 - [ ] `/homeold` no longer reachable
 
-## Donations — test with real money
+## Donations: test with real money
 
 - [ ] Complete a **real donation end to end**, then refund it. Do not launch on a test-mode pass
 - [ ] Confirmation email arrives and reads correctly
@@ -62,7 +64,7 @@ Everything below needs a human on the real site.
 ## Forms
 
 - [ ] Newsletter signup delivers to the right list
-- [ ] Volunteer form delivers to a monitored inbox — **confirm someone is actually reading it**
+- [ ] Volunteer form delivers to a monitored inbox, **confirm someone is actually reading it**
 - [ ] Contact form delivers
 - [ ] Every form shows a confirmation state
 - [ ] Storage complies with whatever EBMA tells people it does
@@ -90,13 +92,13 @@ Most visitors will be on a phone.
 
 ## Accessibility
 
-- [ ] Tab through every page — focus always visible, order logical
+- [ ] Tab through every page: focus always visible, order logical
 - [ ] Skip link works
 - [ ] Site fully navigable by keyboard alone
 - [ ] Headings in order (one H1, no skipped levels)
-- [ ] Test with reduced motion on — counters and scroll reveals static
+- [ ] Test with reduced motion on: counters and scroll reveals static
 - [ ] Screen-reader pass on the homepage and Donate at minimum
-- [ ] Zoom to 200% — nothing lost or overlapping
+- [ ] Zoom to 200%: nothing lost or overlapping
 
 ## Performance
 
@@ -108,22 +110,22 @@ Most visitors will be on a phone.
 ## SEO & metadata
 
 - [ ] Unique title and meta description per page
-- [ ] Social sharing image set — check how a shared link previews
+- [ ] Social sharing image set: check how a shared link previews
 - [ ] `/what-we-do` no longer titled "General 1"
 - [ ] Sitemap submitted to Google Search Console
 - [ ] Favicon set
 
 ## Browsers
 
-- [ ] Chrome, Safari, Firefox, Edge — desktop
+- [ ] Chrome, Safari, Firefox, Edge: desktop
 - [ ] Safari iOS, Chrome Android
 - [ ] Confirm `:has()` support: all current browsers. If a funder is on a
       genuinely old browser, sections lose their custom styling but stay
-      readable — content never disappears
+      readable: content never disappears
 
 ---
 
-## Launch — brief §13 Phase 6
+## Launch: brief §13 Phase 6
 
 - [ ] Final backup of the current live site
 - [ ] Apply the rebuild
@@ -133,7 +135,7 @@ Most visitors will be on a phone.
 
 ## Week one after launch
 
-- [ ] Watch Search Console for 404s — a missed redirect shows up here
+- [ ] Watch Search Console for 404s, a missed redirect shows up here
 - [ ] Confirm donations are arriving
 - [ ] Confirm form submissions are arriving and being read
 - [ ] Collect team feedback

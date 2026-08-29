@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200" role="img" aria-label="A Black Radish customer or market moment.">
+<defs>
+<radialGradient id="br-customer-g0" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#B85C38" stop-opacity="0.73"/><stop offset="100%" stop-color="#B85C38" stop-opacity="0"/></radialGradient>
+<radialGradient id="br-customer-g1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8A7A66" stop-opacity="0.35"/><stop offset="100%" stop-color="#8A7A66" stop-opacity="0"/></radialGradient>
+<radialGradient id="br-customer-g2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8E1F3C" stop-opacity="0.58"/><stop offset="100%" stop-color="#8E1F3C" stop-opacity="0"/></radialGradient>
+<radialGradient id="br-customer-g3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#B85C38" stop-opacity="0.62"/><stop offset="100%" stop-color="#B85C38" stop-opacity="0"/></radialGradient>
+<radialGradient id="br-customer-g4" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#B85C38" stop-opacity="0.72"/><stop offset="100%" stop-color="#B85C38" stop-opacity="0"/></radialGradient>
+<radialGradient id="br-customer-g5" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#8E1F3C" stop-opacity="0.46"/><stop offset="100%" stop-color="#8E1F3C" stop-opacity="0"/></radialGradient>
+<radialGradient id="br-customer-g6" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#2A2622" stop-opacity="0.66"/><stop offset="100%" stop-color="#2A2622" stop-opacity="0"/></radialGradient>
+<filter id="br-customer-grain"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3"/><feColorMatrix type="saturate" values="0"/></filter>
+</defs>
+<rect width="900" height="1200" fill="#12100E"/>
+<circle cx="51" cy="147" r="830" fill="url(#br-customer-g0)"/>
+<circle cx="212" cy="857" r="523" fill="url(#br-customer-g1)"/>
+<circle cx="263" cy="113" r="403" fill="url(#br-customer-g2)"/>
+<circle cx="594" cy="996" r="718" fill="url(#br-customer-g3)"/>
+<circle cx="639" cy="68" r="731" fill="url(#br-customer-g4)"/>
+<circle cx="409" cy="544" r="655" fill="url(#br-customer-g5)"/>
+<circle cx="75" cy="900" r="360" fill="url(#br-customer-g6)"/>
+<rect width="900" height="1200" filter="url(#br-customer-grain)" opacity="0.1"/>
+<text x="32" y="1168" font-family="Helvetica,Arial,sans-serif" font-size="23" font-weight="600" letter-spacing="2.07" fill="rgba(247,242,232,0.34)">A BLACK RADISH CUSTOMER OR MARKET MOMENT.</text>
+</svg>

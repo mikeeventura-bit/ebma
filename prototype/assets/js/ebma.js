@@ -1,10 +1,10 @@
 /* ==========================================================================
-   EBMA — Behaviour
+   EBMA, Behaviour
    Shared by the prototype AND the Squarespace build (pasted into
    Settings -> Advanced -> Code Injection -> Footer, wrapped in <script>).
 
    Three jobs, all progressive enhancements. If this file fails to load the
-   site is still complete and readable — nothing here reveals content that
+   site is still complete and readable: nothing here reveals content that
    isn't already in the markup.
    ========================================================================== */
 (function () {
@@ -29,7 +29,7 @@
 
   /* --- 2. Scroll reveal --------------------------------------------------
      Content is visible by default in CSS. We only opt in to hiding it once
-     we know we can animate it back — and even then a safety timer guarantees
+     we know we can animate it back: and even then a safety timer guarantees
      nothing stays hidden if the observer never fires.                      */
   function initReveal() {
     var els = document.querySelectorAll(".ebma-reveal");
@@ -88,7 +88,7 @@
     function frame(ts) {
       if (start === null) start = ts;
       var p = Math.min((ts - start) / duration, 1);
-      // easeOutExpo — fast start, soft landing.
+      // easeOutExpo: fast start, soft landing.
       var eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
       var i = -1;
       el.textContent = finalText.replace(/\d[\d,]*/g, function () {
@@ -102,10 +102,25 @@
     requestAnimationFrame(frame);
   }
 
+  /* --- 4. Marquee duplication --------------------------------------------
+     A seamless loop needs the track's content twice. Duplicating in JS keeps
+     the markup (and the editable content in Squarespace) written only once.
+     The duplicate is aria-hidden so it is not announced twice.              */
+  function initMarquee() {
+    document.querySelectorAll("[data-ebma-marquee]").forEach(function (track) {
+      if (track.dataset.ebmaMarqueeReady) return;
+      var clone = track.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      while (clone.firstChild) track.appendChild(clone.firstChild);
+      track.dataset.ebmaMarqueeReady = "1";
+    });
+  }
+
   function init() {
     initHeader();
     initReveal();
     initCounters();
+    initMarquee();
   }
 
   if (document.readyState === "loading") {

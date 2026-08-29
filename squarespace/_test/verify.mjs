@@ -39,7 +39,7 @@ const checks = await p.evaluate(() => {
      Math.abs(px(camp.lineHeight) / px(camp.fontSize) - 1.02) < 0.06);
 
   // 6. hero scrim pseudo-element is generated
-  const scrim = getComputedStyle(document.querySelector('#s-hero .section-background'), '::after');
+  const scrim = getComputedStyle(document.querySelector('#s-hero .section-background'), ':after');
   t('hero top scrim present', scrim.content, '""', scrim.content === '""');
   t('hero scrim has 2 gradients', (scrim.backgroundImage.match(/linear-gradient/g) || []).length, '2',
      (scrim.backgroundImage.match(/linear-gradient/g) || []).length === 2);
