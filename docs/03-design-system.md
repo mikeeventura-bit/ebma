@@ -141,6 +141,21 @@ All sizes are fluid `clamp()`, poster-huge on desktop, never overflowing a
 | `--ebma-fs-nav` | 1.0625rem (17px) | Navigation |
 | `--ebma-fs-eyebrow` | 0.75rem | Tracked-out labels |
 
+### Size follows heading level
+
+Every heading of a given level renders at **one** size, and sizes never invert
+between levels. Two `<h2>`s at different sizes make the hierarchy look broken
+even when the markup is correct: the Partners heading was an `<h2>` wearing
+`.ebma-h3`, and the Black Radish lockup was an `<h2>` at 60px beside section
+`<h2>`s at 38px.
+
+One documented exception: **`.ebma-campaign`**, the poster-statement device from
+brief §04. It is deliberately oversized, sits alone in a full-bleed section and
+reads as a statement rather than a section heading.
+
+Footer column labels are navigation chrome with their own conventions, so the
+rule is scoped to `<main>`. `verify-rules.mjs` asserts all of this.
+
 **Never set a heading below weight 600.** Weight carries "bold" and
 "established"; a light headline reads as the template. Headlines are **800** : 
 900 paired with all-caps is what read as shouting.
@@ -237,7 +252,7 @@ Both are applied together on the hero, in the prototype and in Squarespace.
 | Class | Purpose |
 |---|---|
 | `.ebma-campaign` | Poster statement (see above) |
-| `.ebma-eyebrow` | Tracked-out label with a rule; every section's entry point |
+| `.ebma-eyebrow` | Tracked-out label above a heading; every section's entry point |
 | `.ebma-btn` + `--primary` `--ghost` `--invert` `--solid-cream` | Buttons. Two levels only, a third invites clutter |
 | `.ebma-arrow-link` | Oversized text link with a travelling arrow |
 | `.ebma-stats` / `.ebma-stat` | Impact tiles, hairline rules not card borders |

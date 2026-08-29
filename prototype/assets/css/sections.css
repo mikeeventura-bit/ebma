@@ -135,7 +135,10 @@
    as the parent brand. */
 .ebma-radish-feature__lockup {
   font-family: var(--ebma-font-display);
-  font-size: clamp(2.25rem, 4.6vw, 3.75rem);
+  /* Exactly the section-heading size. As an <h2> at 60px beside other <h2>s at
+     38px the hierarchy looked broken. Its distinction comes from weight, the
+     two-line break and its own ground, not from out-scaling its peers. */
+  font-size: var(--ebma-fs-h2);
   font-weight: var(--ebma-w-campaign);
   line-height: 0.98;
   letter-spacing: var(--ebma-tracking-campaign);

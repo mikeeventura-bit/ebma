@@ -125,14 +125,50 @@ const results = await page.evaluate(() => {
     ? fail('no em dashes', `${dashed.length}: ${dashed.slice(0, 3).join(' / ')}`)
     : pass('no em dashes', 'none in rendered copy');
 
-  /* --- 8. Every §02 path reachable from the nav ------------------------- */
+  /* --- 8. Heading sizes follow heading level ----------------------------
+     Two <h2>s rendering at different sizes make the hierarchy look broken
+     even when the markup is correct. Every heading of a level must share one
+     size, and sizes must never invert between levels.
+
+     ONE documented exception: .ebma-campaign, the poster-statement device
+     from brief §04. It is deliberately oversized, sits alone in a full-bleed
+     section, and reads as a statement rather than as a section heading. */
+  const byLevel = {};
+  // Scoped to <main>: footer column labels and header chrome are navigation
+  // furniture with their own sizing conventions, not content hierarchy.
+  document.querySelectorAll('main h1, main h2, main h3').forEach(el => {
+    if (el.closest('.ebma-campaign') || el.classList.contains('ebma-campaign')) return;
+    const px = Math.round(parseFloat(getComputedStyle(el).fontSize));
+    const lvl = el.tagName;
+    (byLevel[lvl] = byLevel[lvl] || {})[px] = (byLevel[lvl][px] || 0) + 1;
+  });
+  const mixed = Object.entries(byLevel)
+    .filter(([, sizes]) => Object.keys(sizes).length > 1)
+    .map(([lvl, sizes]) => `${lvl} renders at ${Object.keys(sizes).join('px, ')}px`);
+
+  // and levels must not invert: h1 >= h2 >= h3
+  const sizeOf = lvl => {
+    const s = byLevel[lvl]; if (!s) return null;
+    return Math.max.apply(null, Object.keys(s).map(Number));
+  };
+  const h1 = sizeOf('H1'), h2 = sizeOf('H2'), h3 = sizeOf('H3');
+  const inverted = [];
+  if (h1 !== null && h2 !== null && h2 > h1) inverted.push(`H2 ${h2}px > H1 ${h1}px`);
+  if (h2 !== null && h3 !== null && h3 > h2) inverted.push(`H3 ${h3}px > H2 ${h2}px`);
+
+  const problems = mixed.concat(inverted);
+  problems.length
+    ? fail('heading scale', problems.join(' | '))
+    : pass('heading scale', `H1 ${h1}px, H2 ${h2}px, H3 ${h3}px, consistent per level`);
+
+  /* --- 9. Every §02 path reachable from the nav ------------------------- */
   const navText = document.querySelector('nav').textContent.toLowerCase();
   const missing = ['volunteer', 'partner', 'give', 'donate'].filter(v => !navText.includes(v));
   missing.length
     ? fail('brief §02 paths', `not reachable from the nav: ${missing.join(', ')}`)
     : pass('brief §02 paths', 'volunteer, partner, ways to give and donate all present');
 
-  /* --- 9. Nav dropdowns link to real pages or in-page anchors, never to
+  /* --- 10. Nav dropdowns link to real pages or in-page anchors, never to
      destinations that do not exist. Brief §05 defines exactly eight pages. */
   const PAGES = ['index','about','our-work','black-radish','impact','stories','get-involved','donate'];
   const strays = [];

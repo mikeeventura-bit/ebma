@@ -54,6 +54,12 @@
 /* --------------------------------------------------------------------------
    2. HEADINGS & TEXT
    -------------------------------------------------------------------------- */
+/* Size follows heading LEVEL, with no exceptions outside the campaign device.
+   A section heading set two steps down from its neighbours (an <h2> wearing
+   .ebma-h3) makes the hierarchy look broken even when the markup is correct,
+   which is exactly what happened in the Partners section. verify-rules.mjs
+   now asserts that every heading of a given level renders at one size, and
+   that sizes never invert between levels. */
 .ebma-h1, .ebma-h2, .ebma-h3 {
   font-family: var(--ebma-font-display);
   letter-spacing: var(--ebma-tracking-tight);
@@ -74,13 +80,7 @@
   text-transform: uppercase;
   color: var(--ebma-accent-eyebrow, var(--ebma-radish));
   margin: 0 0 var(--ebma-space-4);
-  display: flex;
-  align-items: center;
-  gap: var(--ebma-space-3);
-}
-.ebma-eyebrow:before {
-  content: ""; width: 2rem; height: var(--ebma-border);
-  background: currentColor; flex: none;
+  display: block;
 }
 .ebma-eyebrow--invert { color: var(--ebma-clay-on-dark); }
 
