@@ -22,26 +22,56 @@ the organisation — a number, a partner, a service area — is marked `[VERIFY]
 | Get Involved | `/get-involved` | Volunteer, partner, participate, subscribe |
 | Donate | `/donate` | Clear, compelling support experience |
 
-Navigation carries seven items plus Donate as a button. Black Radish sits in
-the top level rather than nested — brief §07 asks for "a major visual presence."
+### Navigation
+
+Four items plus a Donate pill. Brief §02 requires a visitor to see *"how someone
+can support, partner with, volunteer with, or donate"* — so those four verbs are
+named literally in the dropdown rather than hidden behind a vague label.
+
+```
+About ▾         Our story · Our team · Impact
+Our work ▾      Food access & deliveries · Youth employment · Markets · Partnerships
+Black Radish    (top-level — §05 "dedicated flagship initiative destination")
+Get involved ▾  Volunteer · Partner with us · Ways to give · News & stories
+[Donate]        solid radish pill
+```
+
+Sentence case throughout. Uppercase belongs on the small eyebrow label only.
+
+### Utility bar
+
+A thin dark band above the header: phone `347.450.4446`, 501(c)(3) status, and
+"Shop Black Radish Grocery →". The storefront link lives here deliberately — in
+the utility bar it reads as a **separate destination**, not as an EBMA page.
+
+### The two money flows
+
+The single most important thing not to blur (brief §07, §10):
+
+```
+donor    → EBMA         donation, funds the mission — including building Black Radish
+customer → Black Radish purchase, low-cost groceries
+```
+
+Copy must never describe a donation to EBMA and a purchase from Black Radish as
+the same act, and no page should place a Donate CTA inside a Black Radish block.
 
 ---
 
 ## Homepage — built
 
 ### 1. Hero
-> # FOOD. COMMUNITY. OPPORTUNITY.
+> # Food. Community. **Opportunity.**
 > Building a stronger food system in East Brooklyn.
 >
 > `[Explore Our Work]` `[Support EBMA]`
 
-Straight from brief §06. "OPPORTUNITY." carries the accent — it is the word
-that signals the shift from relief to infrastructure.
+Structure exactly as brief §06 specifies. Set in **sentence case** with
+"Opportunity." carrying the accent — the word that signals the shift from relief
+to infrastructure. Sentence case with one accent word is the house construction;
+all-caps at weight 900 is what made the first pass shout.
 
-### 2. Marquee
-> EAST BROOKLYN FEEDS EAST BROOKLYN. ● BUILDING A STRONGER FOOD SYSTEM. ●
-
-### 3. Impact at a glance
+### 2. Impact at a glance
 > **THE WORK, IN NUMBERS.**
 
 | Value | Label | Note |
@@ -54,19 +84,19 @@ Candidates for the third tile, per brief §06: households served, pounds of
 produce distributed, farmers supported, markets operated, community partners,
 neighborhoods served.
 
-### 4. Positioning statement
+### 3. Positioning statement
 > # WE ARE NOT SIMPLY RESPONDING TO FOOD INSECURITY.
 > We are helping build an alternative food system for our community — one that
 > gives East Brooklyn greater and more consistent access to fresh, locally
 > sourced food while creating economic opportunity throughout that system.
 
-### 5. What we do
+### 4. What we do
 > **FOOD ACCESS, AND EVERYTHING THAT HAS TO HOLD IT UP.**
 
 Five cards: Food Access & Deliveries · Black Radish · Farmers & Producers ·
 Youth Employment · Markets & Partnerships. `[VERIFY]` the service-area list.
 
-### 6. Black Radish
+### 5. Black Radish
 > *An initiative of East Brooklyn Mutual Aid*
 > # BLACK RADISH
 > Our longest-running program. Black Radish sources low-cost groceries from
@@ -79,33 +109,48 @@ Youth Employment · Markets & Partnerships. `[VERIFY]` the service-area list.
 The handoff line matters. The storefront is a separate site; the EBMA page
 tells the story and points onward rather than duplicating the shop.
 
-### 7. Origin story
+### 6. Origin story
 > **IT STARTED WITH NEIGHBORS HELPING NEIGHBORS.**
 
 Brief §08 verbatim, two paragraphs. Captioned as archival — the caption does
 real work here, marking 2020 imagery as history rather than current operations.
 That distinction is the entire point of the refresh.
 
-### 8. 2026: the work happening now
+### 7. 2026: the work happening now
 Brief §09 verbatim: Summer Youth Program · RAMS Farmers Market · Black Yard
 Farm & Earth Day · Grocery Deliveries · Community Partnerships.
 
-### 9. Where we are going
+### 8. Where we are going
 > # EAST BROOKLYN FEEDS EAST BROOKLYN.
 > The next chapter is infrastructure — consistent access to fresh, locally
 > sourced food, and economic opportunity built into every step of getting it here.
 
-### 10. Support
-> **WHAT YOUR SUPPORT MAKES POSSIBLE.**
+### 9. Support router
+> **How you can support EBMA.**
+> Every contribution goes into the same food system — buying from local farmers,
+> getting groceries to neighbors, and employing young people.
 
-Brief §10's six items. Never a bare Donate button — brief §10 asks for
-"context explaining what support makes possible", and that context is what
-converts.
+Brief §10's six items sit on the left as context. On the right, the four §02
+paths as labelled rows:
 
-### 11. Partners
+| Path | Description |
+|---|---|
+| **Donate** | Fund the food system — one-off or monthly |
+| **Volunteer** | Deliveries, packing and community markets |
+| **Partner with us** | Farmers, schools, funders, government and community organizations |
+| **Other ways to give** | Fundraise, give in kind, or spread the word |
+
+Five of §02's named audiences — farmers and producers, schools, foundations,
+government and corporate partners — route through "Partner with us", so that
+page segments internally rather than the menu growing.
+
+Never a bare Donate button: §10 asks for *"context explaining what support makes
+possible"*, and that context is what converts.
+
+### 10. Partners
 `[VERIFY]` — currently placeholder names. Needs the confirmed list.
 
-### 12. Newsletter
+### 11. Newsletter
 > **GET THE WORK IN YOUR INBOX.**
 > Market dates, delivery news, farmer stories and ways to help.
 

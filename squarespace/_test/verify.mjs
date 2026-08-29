@@ -22,7 +22,7 @@ const checks = await p.evaluate(() => {
   // 3. native H2 inside a marked stats section gets stat treatment
   const statH2 = cs('#s-stats .fluid-engine h2');
   t('native H2 -> stat size', Math.round(px(statH2.fontSize)) + 'px', '>=48px', px(statH2.fontSize) >= 48);
-  t('native H2 -> stat weight', statH2.fontWeight, '900', statH2.fontWeight === '900');
+  t('native H2 -> stat weight', statH2.fontWeight, '800', statH2.fontWeight === '800');
   t('native H2 -> cream on ink', statH2.color, 'rgb(247, 242, 232)', statH2.color === 'rgb(247, 242, 232)');
 
   // 4. native P inside stats gets label treatment
@@ -31,9 +31,12 @@ const checks = await p.evaluate(() => {
 
   // 5. native H2 promoted to campaign type
   const camp = cs('#s-campaign .html-block h2');
-  t('native H2 -> campaign case', camp.textTransform, 'uppercase', camp.textTransform === 'uppercase');
-  t('native H2 -> campaign weight', camp.fontWeight, '900', camp.fontWeight === '900');
-  t('native H2 -> campaign leading', camp.lineHeight, 'tight', px(camp.lineHeight) / px(camp.fontSize) < 0.95);
+  // The house rule, enforced inside Squarespace: headings are sentence case.
+  // Squarespace style packs like to force caps, so this must be asserted, not assumed.
+  t('native H2 stays sentence case', camp.textTransform, 'none', camp.textTransform === 'none');
+  t('native H2 -> campaign weight', camp.fontWeight, '800', camp.fontWeight === '800');
+  t('native H2 -> campaign leading', (px(camp.lineHeight) / px(camp.fontSize)).toFixed(2), '~1.02',
+     Math.abs(px(camp.lineHeight) / px(camp.fontSize) - 1.02) < 0.06);
 
   // 6. hero scrim pseudo-element is generated
   const scrim = getComputedStyle(document.querySelector('#s-hero .section-background'), '::after');
@@ -48,8 +51,8 @@ const checks = await p.evaluate(() => {
   // 8. native Squarespace buttons restyled
   const pri = cs('.sqs-button-element--primary');
   t('primary button ground', pri.backgroundColor, 'rgb(142, 31, 60)', pri.backgroundColor === 'rgb(142, 31, 60)');
-  t('primary button case', pri.textTransform, 'uppercase', pri.textTransform === 'uppercase');
-  t('button radius squared', pri.borderRadius, '2px', pri.borderRadius === '2px');
+  t('button stays sentence case', pri.textTransform, 'none', pri.textTransform === 'none');
+  t('button is a pill', pri.borderRadius, '999px', pri.borderRadius === '999px');
 
   // 9. image grade reaches native image blocks
   const img = cs('#s-hero .section-background img');

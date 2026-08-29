@@ -94,7 +94,7 @@ Most visitors will be on a phone.
 - [ ] Skip link works
 - [ ] Site fully navigable by keyboard alone
 - [ ] Headings in order (one H1, no skipped levels)
-- [ ] Test with reduced motion on — marquee and counters static
+- [ ] Test with reduced motion on — counters and scroll reveals static
 - [ ] Screen-reader pass on the homepage and Donate at minimum
 - [ ] Zoom to 200% — nothing lost or overlapping
 

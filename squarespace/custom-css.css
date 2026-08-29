@@ -36,7 +36,14 @@
      NO centered-everything symmetry                -> left-aligned, asymmetric
      NO rounded cards w/ icon circles in a 3-up grid-> hard edges, full-bleed
      NO stock photography of anonymous smiles       -> real EBMA photography
-     NO timid type                                  -> campaign-poster scale
+     NO timid type                                  -> confident editorial scale
+
+   THE UPPERCASE RULE
+   Uppercase is reserved for the small tracked eyebrow label. Never an H1,
+   never an H2, never a nav link. Headlines are sentence case with ONE
+   accent-coloured word. The single exception is .ebma-campaign--poster,
+   used at most once per page for a true poster statement (brief §04).
+   All-caps at 900 weight was what made the first pass shout.
 
    Photography does the storytelling. The interface is a restrained
    black + cream frame around it, and nothing more.
@@ -55,11 +62,21 @@
 
   /* On-dark tints. The base radish and clay are tuned for warm cream paper;
      on a near-black ground they fall under WCAG AA (radish 2.18:1, clay
-     4.18:1). These lightened tints carry the same hues onto dark surfaces:
-     radish 4.07:1 and clay 5.00:1 on --ebma-ink. Measured, not estimated —
-     see docs/03-design-system.md for the full table. */
+     4.18:1). These lightened tints carry the same hues onto dark surfaces.
+
+     Calibrated against --ebma-ink-soft, the LIGHTEST dark surface, not the
+     darkest. A tint that only clears AA on --ebma-ink silently fails the
+     moment it lands on a raised tile: clay at #C46B45 measured 5.00:1 on ink
+     but 3.96:1 on ink-soft. Checking the worst case makes the token safe on
+     every dark ground.
+
+       clay   #CE7A50 -> ink 5.90 | ink-soft 4.66 | ink-deep 6.15  (AA text)
+       radish #C9455F -> ink 4.07 | ink-soft 3.22 | ink-deep 4.24  (AA large)
+
+     radish-on-dark is for LARGE display type only (>=24px); it does not meet
+     the 4.5:1 small-text threshold on ink-soft. */
   --ebma-radish-on-dark: #C9455F;
-  --ebma-clay-on-dark:   #C46B45;
+  --ebma-clay-on-dark:   #CE7A50;
 
   /* --- Semantic roles ---------------------------------------------------- */
   --ebma-text:         var(--ebma-ink);
@@ -75,31 +92,32 @@
   --ebma-font-display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --ebma-font-body:    "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  /* Weight is the whole ballgame for "bold + established". Never go below
-     600 on a headline. Campaign statements are 900. */
+  /* Weight carries "bold + established". Never go below 600 on a headline.
+     Headlines are 800 — 900 read as shouting once paired with all-caps. */
   --ebma-w-body:      400;
   --ebma-w-medium:    500;
   --ebma-w-bold:      700;
   --ebma-w-display:   800;
-  --ebma-w-campaign:  900;
+  --ebma-w-campaign:  800;
 
   /* Fluid scale. clamp() keeps campaign type poster-huge on desktop without
      overflowing a 320px phone. */
-  --ebma-fs-campaign:  clamp(2.75rem, 10.5vw, 8.5rem); /* FOOD. COMMUNITY.  */
-  --ebma-fs-h1:        clamp(2.25rem, 6.2vw, 4.75rem);
-  --ebma-fs-h2:        clamp(1.85rem, 4.4vw, 3.25rem);
-  --ebma-fs-h3:        clamp(1.3rem,  2.3vw, 1.75rem);
-  --ebma-fs-stat:      clamp(3rem,    8vw,   6rem);
+  --ebma-fs-campaign:  clamp(2.5rem,  5.6vw, 4.5rem);   /* hero headline     */
+  --ebma-fs-h1:        clamp(2rem,    4.4vw, 3.25rem);
+  --ebma-fs-h2:        clamp(1.6rem,  3.2vw, 2.375rem);
+  --ebma-fs-h3:        clamp(1.2rem,  1.9vw, 1.5rem);
+  --ebma-fs-stat:      clamp(2.5rem,  5vw,   4rem);
   --ebma-fs-lead:      clamp(1.075rem, 1.5vw, 1.375rem);
   --ebma-fs-body:      1.0625rem;
+  --ebma-fs-nav:       1.0625rem;   /* sentence-case nav, not tracked caps  */
   --ebma-fs-small:     0.875rem;
   --ebma-fs-eyebrow:   0.75rem;
 
-  --ebma-lh-campaign:  0.88;  /* poster-tight. lines nearly touch.          */
+  --ebma-lh-campaign:  1.02;  /* sentence case needs room for descenders    */
   --ebma-lh-tight:     0.94;
   --ebma-lh-snug:      1.1;
   --ebma-lh-body:      1.6;
-  --ebma-tracking-campaign: -0.035em;
+  --ebma-tracking-campaign: -0.02em;
   --ebma-tracking-tight:    -0.02em;
   --ebma-tracking-eyebrow:   0.16em;
 
@@ -144,8 +162,14 @@
   --ebma-maxw:      1280px;
 
   /* --- Form ------------------------------------------------------------- */
-  --ebma-radius:     2px;   /* near-square. Established, not bubbly.         */
-  --ebma-radius-img: 3px;
+  /* Geometry follows the agency house style: pill buttons, generously
+     rounded cards. Hard square edges read colder than a brief asking for
+     "warm" and "human". Photography crops stay near-square so the
+     editorial feel survives. */
+  --ebma-radius:      6px;    /* inputs, small surfaces                     */
+  --ebma-radius-pill: 999px;  /* every button                               */
+  --ebma-radius-card: 14px;   /* router rows, stat tiles, form fields       */
+  --ebma-radius-img:  10px;
   --ebma-border:     1.5px;
   --ebma-ease:       cubic-bezier(0.22, 0.61, 0.36, 1);
   --ebma-dur:        360ms;
@@ -171,11 +195,21 @@
   font-size: var(--ebma-fs-campaign);
   line-height: var(--ebma-lh-campaign);
   letter-spacing: var(--ebma-tracking-campaign);
-  text-transform: uppercase;
   text-wrap: balance;
   margin: 0;
-  /* Optical alignment: heavy uppercase leaves a visible left sidebearing.
+  /* Optical alignment: heavy display type leaves a visible left sidebearing.
      Pulling back makes the block align flush with body copy beneath it. */
+  margin-left: -0.03em;
+}
+
+/* The poster exception. Uppercase belongs ONLY here, and only once per page —
+   brief §04 asks for campaign-poster statements, and rarity is what gives them
+   their force. Applied to three sections in pass 1, it became the page's
+   default voice instead of its emphasis. */
+.ebma-campaign--poster {
+  text-transform: uppercase;
+  line-height: 0.94;
+  letter-spacing: -0.03em;
   margin-left: -0.045em;
 }
 /* One line of a campaign statement. Stack them for controlled breaks. */
@@ -204,7 +238,7 @@
   margin: 0;
   text-wrap: balance;
 }
-.ebma-h1 { font-size: var(--ebma-fs-h1); font-weight: var(--ebma-w-campaign); line-height: var(--ebma-lh-tight); text-transform: uppercase; }
+.ebma-h1 { font-size: var(--ebma-fs-h1); font-weight: var(--ebma-w-campaign); line-height: var(--ebma-lh-tight); }
 .ebma-h2 { font-size: var(--ebma-fs-h2); font-weight: var(--ebma-w-display);  line-height: var(--ebma-lh-tight); }
 .ebma-h3 { font-size: var(--ebma-fs-h3); font-weight: var(--ebma-w-bold);     line-height: var(--ebma-lh-snug); }
 
@@ -307,13 +341,12 @@
 .ebma-btn {
   display: inline-flex; align-items: center; gap: var(--ebma-space-2);
   font-family: var(--ebma-font-body);
-  font-size: var(--ebma-fs-small);
+  font-size: var(--ebma-fs-body);
   font-weight: var(--ebma-w-bold);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   text-decoration: none;
-  padding: 1.05em 1.9em;
-  border-radius: var(--ebma-radius);
+  padding: 0.85em 1.7em;
+  border-radius: var(--ebma-radius-pill);
   border: var(--ebma-border) solid transparent;
   cursor: pointer;
   transition: background-color var(--ebma-dur) var(--ebma-ease),
@@ -342,7 +375,6 @@
   font-size: var(--ebma-fs-h3);
   font-weight: var(--ebma-w-display);
   letter-spacing: var(--ebma-tracking-tight);
-  text-transform: uppercase;
   text-decoration: none;
   color: inherit;
   padding-bottom: var(--ebma-space-2);
@@ -359,13 +391,14 @@
 .ebma-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 1px;                       /* hairline rules, not card borders */
-  background: var(--ebma-rule-invert);
-  border-block: 1px solid var(--ebma-rule-invert);
+  gap: var(--ebma-space-3);
 }
+/* Raised surface, not the section ground — with gap-based tiles rather than
+   hairline rules, ink-on-ink made the tiles disappear entirely. */
 .ebma-stat {
-  background: var(--ebma-ink);
+  background: var(--ebma-ink-soft);
   padding: var(--ebma-space-8) var(--ebma-space-6);
+  border-radius: var(--ebma-radius-card);
 }
 .ebma-stat__value {
   font-family: var(--ebma-font-display);
@@ -394,32 +427,13 @@
 /* A metric the team hasn't verified yet (brief marks several TBD). Visibly
    provisional so it can never ship by accident. */
 .ebma-stat--tbd .ebma-stat__value { color: var(--ebma-muted-invert); opacity: 0.5; }
-.ebma-stat--tbd { outline: 1px dashed var(--ebma-clay-on-dark); outline-offset: -1px; }
+.ebma-stat--tbd {
+  background: transparent;
+  outline: 1px dashed var(--ebma-clay-on-dark);
+  outline-offset: -1px;
+  border-radius: var(--ebma-radius-card);
+}
 
-/* --------------------------------------------------------------------------
-   6. MARQUEE  ("EAST BROOKLYN FEEDS EAST BROOKLYN")
-   -------------------------------------------------------------------------- */
-.ebma-marquee {
-  overflow: hidden;
-  background: var(--ebma-radish);
-  color: var(--ebma-cream);
-  padding-block: var(--ebma-space-4);
-  border-block: var(--ebma-border) solid var(--ebma-ink);
-}
-.ebma-marquee__track {
-  display: flex; width: max-content;
-  animation: ebma-marquee-scroll 34s linear infinite;
-}
-.ebma-marquee__item {
-  font-family: var(--ebma-font-display);
-  font-size: clamp(1.15rem, 2.6vw, 2rem);
-  font-weight: var(--ebma-w-campaign);
-  letter-spacing: var(--ebma-tracking-tight);
-  text-transform: uppercase;
-  white-space: nowrap;
-  padding-inline: var(--ebma-space-6);
-}
-@keyframes ebma-marquee-scroll { to { transform: translateX(-50%); } }
 
 /* --------------------------------------------------------------------------
    7. PROGRAM / WORK CARDS
@@ -444,7 +458,6 @@
   font-family: var(--ebma-font-display);
   font-size: var(--ebma-fs-h3);
   font-weight: var(--ebma-w-display);
-  text-transform: uppercase;
   letter-spacing: var(--ebma-tracking-tight);
   margin: 0 0 var(--ebma-space-3);
 }
@@ -477,7 +490,6 @@
   font-family: var(--ebma-font-display);
   font-size: var(--ebma-fs-h3);
   font-weight: var(--ebma-w-display);
-  text-transform: uppercase;
   letter-spacing: var(--ebma-tracking-tight);
   margin: 0;
 }
@@ -527,12 +539,93 @@
 
 /* Motion is decoration here — never the only way meaning is conveyed. */
 @media (prefers-reduced-motion: reduce) {
-  .ebma-marquee__track { animation: none; transform: none; }
-  .ebma-marquee { overflow-x: auto; }
   .ebma-js .ebma-reveal { opacity: 1; transform: none; transition: none; }
   .ebma-card:hover .ebma-photo > img { transform: none; }
   .ebma-arrow-link:hover span[aria-hidden] { transform: none; }
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+
+/* --------------------------------------------------------------------------
+   11. SUPPORT ROUTER  (brief §02, §10)
+   The four ways in — support, partner, volunteer, donate — as one card of
+   labelled paths rather than a list of links. Each row states what it is and
+   what it means, so a visitor picks in one read.
+
+   Deliberately NOT in the hero: brief §06 specifies the hero exactly
+   (headline, subline, Explore Our Work / Support EBMA), and the client's
+   spec wins over the pattern.
+   -------------------------------------------------------------------------- */
+.ebma-router {
+  background: var(--ebma-cream);
+  border-radius: var(--ebma-radius-card);
+  padding: var(--ebma-space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ebma-space-2);
+  box-shadow: 0 24px 60px -32px rgba(18, 16, 14, 0.45);
+}
+.ebma-router__row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--ebma-space-4);
+  padding: var(--ebma-space-4) var(--ebma-space-4);
+  border-radius: var(--ebma-radius-card);
+  border: var(--ebma-border) solid transparent;
+  background: var(--ebma-cream-deep);
+  text-decoration: none;
+  color: var(--ebma-text);
+  transition: background-color var(--ebma-dur) var(--ebma-ease),
+              border-color var(--ebma-dur) var(--ebma-ease);
+}
+.ebma-router__row:hover { background: #E4D9C4; border-color: var(--ebma-radish); }
+
+/* The first row is the one most people want. Marked, not shouted. */
+.ebma-router__row--lead { background: var(--ebma-radish); color: var(--ebma-cream); }
+.ebma-router__row--lead:hover { background: var(--ebma-radish-deep); border-color: var(--ebma-radish-deep); }
+.ebma-router__row--lead .ebma-router__desc { color: rgba(247, 242, 232, 0.82); }
+.ebma-router__row--lead .ebma-router__icon { background: rgba(247, 242, 232, 0.16); color: var(--ebma-cream); }
+
+.ebma-router__icon {
+  width: 2.75rem; height: 2.75rem;
+  display: grid; place-items: center;
+  border-radius: var(--ebma-radius);
+  background: rgba(142, 31, 60, 0.10);
+  color: var(--ebma-radish);
+  flex: none;
+}
+.ebma-router__icon svg { width: 1.25rem; height: 1.25rem; }
+/* Both are <span> inside a grid cell, so they need to be block-level or the
+   description runs on after the title on one line. */
+.ebma-router__row > span { min-width: 0; }
+.ebma-router__title {
+  display: block;
+  font-family: var(--ebma-font-display);
+  font-size: var(--ebma-fs-h3);
+  font-weight: var(--ebma-w-bold);
+  letter-spacing: var(--ebma-tracking-tight);
+  margin: 0;
+  line-height: 1.2;
+}
+.ebma-router__desc {
+  display: block;
+  font-size: var(--ebma-fs-small);
+  color: var(--ebma-text-muted);
+  margin: 0.15rem 0 0;
+  line-height: 1.4;
+}
+.ebma-router__go { font-size: var(--ebma-fs-h3); line-height: 1; opacity: 0.5; transition: transform var(--ebma-dur) var(--ebma-ease); }
+.ebma-router__row:hover .ebma-router__go { transform: translateX(0.25em); opacity: 1; }
+.ebma-router__foot {
+  font-size: var(--ebma-fs-small);
+  color: var(--ebma-text-muted);
+  text-align: center;
+  margin: var(--ebma-space-2) 0 var(--ebma-space-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ebma-router__row:hover .ebma-router__go { transform: none; }
 }
 
 /* ===== sections.css ===== */
@@ -563,7 +656,9 @@
    -------------------------------------------------------------------------- */
 .ebma-hero {
   position: relative;
-  min-height: min(92svh, 900px);
+  /* Reduced with the type scale — at 92svh the shorter sentence-case
+     headline floated in dead space rather than sitting in it. */
+  min-height: min(76svh, 720px);
   display: flex;
   align-items: flex-end;
   background: var(--ebma-ink);
@@ -651,13 +746,15 @@
    -------------------------------------------------------------------------- */
 .ebma-radish-feature { background: #0B0A09; color: var(--ebma-text-invert); position: relative; }
 .ebma-radish-feature .ebma-eyebrow { color: var(--ebma-clay-on-dark); }
+/* Black Radish keeps its own identity (brief §07) but must never out-scale
+   the EBMA headline it sits beneath — that is how a sub-brand starts reading
+   as the parent brand. */
 .ebma-radish-feature__lockup {
   font-family: var(--ebma-font-display);
-  font-size: clamp(2.5rem, 7.5vw, 5.5rem);
+  font-size: clamp(2.25rem, 4.6vw, 3.75rem);
   font-weight: var(--ebma-w-campaign);
-  line-height: 0.9;
+  line-height: 0.98;
   letter-spacing: var(--ebma-tracking-campaign);
-  text-transform: uppercase;
   margin: 0 0 var(--ebma-space-6);
 }
 .ebma-radish-feature__list { list-style: none; margin: var(--ebma-space-8) 0; padding: 0; }
@@ -690,10 +787,14 @@
 @media (min-width: 640px) { .ebma-support__list { columns: 2; column-gap: var(--ebma-space-8); } }
 .ebma-support__list li {
   break-inside: avoid;
-  padding-block: var(--ebma-space-4);
-  border-bottom: 1px solid rgba(247, 242, 232, 0.28);
+  padding-block: var(--ebma-space-3);
   font-weight: var(--ebma-w-medium);
   line-height: 1.4;
+  padding-left: 1.25em;
+  position: relative;
+}
+.ebma-support__list li::before {
+  content: "\2014"; position: absolute; left: 0; opacity: 0.6;
 }
 .ebma-support__actions { margin-top: var(--ebma-space-8); display: flex; flex-wrap: wrap; gap: var(--ebma-space-4); }
 
@@ -757,9 +858,19 @@
 .ebma-mark { display: none !important; }
 
 /* --- Global type ---------------------------------------------------------
-   Also set these in Design -> Fonts so the team can adjust without CSS. */
+   Also set these in Design -> Fonts so the team can adjust without CSS.
+
+   THE UPPERCASE RULE: uppercase belongs on the small tracked eyebrow label
+   and nowhere else. Squarespace style packs like to set headings and nav in
+   caps — these rules undo that, because all-caps headings and nav were the
+   single cause of the first pass reading as loud. */
 body, .sqs-block-html p, .sqs-block-html li { font-family: var(--ebma-font-body); }
-h1, h2, h3, h4 { font-family: var(--ebma-font-display); letter-spacing: var(--ebma-tracking-tight); }
+h1, h2, h3, h4 {
+  font-family: var(--ebma-font-display);
+  letter-spacing: var(--ebma-tracking-tight);
+  text-transform: none !important;
+}
+.header-nav-item a, .header-nav-folder-item { text-transform: none !important; }
 
 /* --- Section grounds -----------------------------------------------------
    Set the background in the section's own settings where you can; these are
@@ -799,11 +910,11 @@ h1, h2, h3, h4 { font-family: var(--ebma-font-display); letter-spacing: var(--eb
 .sqs-button-element--secondary {
   font-family: var(--ebma-font-body) !important;
   font-weight: var(--ebma-w-bold) !important;
-  font-size: var(--ebma-fs-small) !important;
-  letter-spacing: 0.06em !important;
-  text-transform: uppercase !important;
-  border-radius: var(--ebma-radius) !important;
-  padding: 1.05em 1.9em !important;
+  font-size: var(--ebma-fs-body) !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  border-radius: var(--ebma-radius-pill) !important;
+  padding: 0.85em 1.7em !important;
   transition: background-color var(--ebma-dur) var(--ebma-ease),
               color var(--ebma-dur) var(--ebma-ease),
               border-color var(--ebma-dur) var(--ebma-ease) !important;
@@ -834,9 +945,8 @@ h1, h2, h3, h4 { font-family: var(--ebma-font-display); letter-spacing: var(--eb
 .header .header-title-text a {
   font-family: var(--ebma-font-body);
   font-weight: var(--ebma-w-medium);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: var(--ebma-fs-small);
+  letter-spacing: 0.01em;
+  font-size: var(--ebma-fs-nav);
 }
 .header .header-title-text a {
   font-family: var(--ebma-font-display);
@@ -902,3 +1012,46 @@ h1, h2, h3, h4 { font-family: var(--ebma-font-display); letter-spacing: var(--eb
    Code Blocks render as a grey placeholder INSIDE the editor and only appear
    correctly on the live site or in Preview. That is expected Squarespace
    behaviour, not a broken paste. */
+
+
+/* --- Utility bar ---------------------------------------------------------
+   Squarespace's Announcement Bar is the native home for this. Turn it on
+   (Marketing -> Announcement Bar) and it picks up these rules. It carries
+   contact and trust signals so the main nav stays uncluttered — and it is
+   the right place for the Black Radish storefront link, because it reads
+   there as a separate destination rather than as an EBMA page. */
+.sqs-announcement-bar-dropzone .sqs-announcement-bar {
+  background: var(--ebma-ink) !important;
+  color: var(--ebma-muted-invert) !important;
+  font-size: var(--ebma-fs-small);
+}
+.sqs-announcement-bar-dropzone a { color: var(--ebma-cream) !important; }
+
+/* --- Nav folders (dropdowns) --------------------------------------------- */
+.header-nav-folder-content {
+  background: var(--ebma-cream) !important;
+  border-radius: var(--ebma-radius-card) !important;
+  box-shadow: 0 24px 60px -28px rgba(18, 16, 14, 0.5) !important;
+  padding: var(--ebma-space-3) !important;
+  border: 0 !important;
+}
+.header-nav-folder-item a {
+  border-radius: var(--ebma-radius) !important;
+  padding: var(--ebma-space-3) var(--ebma-space-4) !important;
+}
+.header-nav-folder-item a:hover { background: var(--ebma-cream-deep) !important; }
+
+/* --- Header Donate button ------------------------------------------------
+   Design -> Header -> add a Button, label it "Donate". It is the primary
+   action on the site, so it is a solid pill, not an outline. */
+.header-actions .btn,
+.header-actions-action--cta .btn {
+  background: var(--ebma-radish) !important;
+  color: var(--ebma-cream) !important;
+  border-radius: var(--ebma-radius-pill) !important;
+  border: 0 !important;
+  font-weight: var(--ebma-w-bold) !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+.header-actions .btn:hover { background: var(--ebma-radish-deep) !important; }

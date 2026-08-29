@@ -22,21 +22,69 @@
   Photography is placeholder; every slot names the shot it needs.
 </p>
 
+<div class="p-topbar">
+<div class="p-utility">
+  <div class="p-utility__inner">
+    <div class="p-utility__group">
+      <a href="tel:+13474504446">347.450.4446</a>
+      <span class="p-utility__sep p-utility__hide-sm">|</span>
+      <span class="p-utility__hide-sm">A 501(c)(3) nonprofit serving East Brooklyn</span>
+    </div>
+    <div class="p-utility__group">
+      <a href="https://blackradishgrocery.com">Shop Black Radish Grocery &rarr;</a>
+    </div>
+  </div>
+</div>
+
 <header class="p-header" data-ebma-header>
   <div class="p-header__inner">
     <a class="p-logo" href="index.html"><span>East Brooklyn</span><span>Mutual Aid</span></a>
+
     <nav class="p-nav" aria-label="Primary">
-      <a href="about.html">About</a>
-      <a href="our-work.html">Our Work</a>
+      <div class="p-nav__item">
+        <button class="p-nav__toggle" type="button" aria-expanded="false" aria-controls="nav-about">
+          About <span class="p-nav__caret" aria-hidden="true">&#9662;</span>
+        </button>
+        <ul class="p-nav__menu" id="nav-about">
+          <li><a href="about.html">Our story</a></li>
+          <li><a href="about.html">Our team</a></li>
+          <li><a href="impact.html">Impact</a></li>
+        </ul>
+      </div>
+
+      <div class="p-nav__item">
+        <button class="p-nav__toggle" type="button" aria-expanded="false" aria-controls="nav-work">
+          Our work <span class="p-nav__caret" aria-hidden="true">&#9662;</span>
+        </button>
+        <ul class="p-nav__menu" id="nav-work">
+          <li><a href="our-work.html">Food access &amp; deliveries</a></li>
+          <li><a href="our-work.html">Youth employment</a></li>
+          <li><a href="our-work.html">Markets</a></li>
+          <li><a href="our-work.html">Partnerships</a></li>
+        </ul>
+      </div>
+
       <a href="black-radish.html">Black Radish</a>
-      <a href="impact.html">Impact</a>
-      <a href="stories.html">Stories</a>
-      <a href="get-involved.html">Get Involved</a>
-      <a class="ebma-btn ebma-btn--invert" href="donate.html">Donate</a>
+
+      <div class="p-nav__item">
+        <button class="p-nav__toggle" type="button" aria-expanded="false" aria-controls="nav-involved">
+          Get involved <span class="p-nav__caret" aria-hidden="true">&#9662;</span>
+        </button>
+        <ul class="p-nav__menu" id="nav-involved">
+          <li><a href="get-involved.html">Volunteer</a></li>
+          <li><a href="get-involved.html">Partner with us</a></li>
+          <li><a href="get-involved.html">Ways to give</a></li>
+          <li><a href="stories.html">News &amp; stories</a></li>
+        </ul>
+      </div>
+
+      <span class="p-nav__donate"><a class="ebma-btn ebma-btn--primary" href="donate.html">Donate</a></span>
     </nav>
+
     <button class="p-menu-btn" type="button" aria-expanded="false">Menu</button>
   </div>
 </header>
+</div>
 
 <main id="main">
 
@@ -50,8 +98,7 @@
     <div class="ebma-hero__inner">
       <div class="ebma-wrap">
         <h1 class="ebma-campaign">
-          <span class="ebma-campaign__line">Food.</span>
-          <span class="ebma-campaign__line">Community.</span>
+          <span class="ebma-campaign__line">Food. Community.</span>
           <span class="ebma-campaign__line ebma-campaign__accent">Opportunity.</span>
         </h1>
         <p class="ebma-hero__sub">Building a stronger food system in East Brooklyn.</p>
@@ -64,17 +111,6 @@
     <p class="ebma-hero__cue">Scroll</p>
   </section>
 
-  <!-- ==================================================================
-       2. MARQUEE
-       =================================================================== -->
-  <div class="ebma-marquee">
-    <div class="ebma-marquee__track" data-ebma-marquee>
-      <span class="ebma-marquee__item">East Brooklyn feeds East Brooklyn.</span>
-      <span class="ebma-marquee__item" aria-hidden="true">&#9679;</span>
-      <span class="ebma-marquee__item">Building a stronger food system.</span>
-      <span class="ebma-marquee__item" aria-hidden="true">&#9679;</span>
-    </div>
-  </div>
 
   <!-- ==================================================================
        3. IMPACT AT A GLANCE  (brief §06)
@@ -118,9 +154,8 @@
     <div class="ebma-wrap ebma-reveal">
       <div class="ebma-statement__inner">
         <h2 class="ebma-campaign">
-          <span class="ebma-campaign__line">We are not simply</span>
-          <span class="ebma-campaign__line">responding to</span>
-          <span class="ebma-campaign__line">food insecurity.</span>
+          <span class="ebma-campaign__line">We are not simply responding</span>
+          <span class="ebma-campaign__line">to food insecurity.</span>
         </h2>
       </div>
       <p class="ebma-lead">We are helping build an alternative food system for our community &mdash; one that gives East Brooklyn greater and more consistent access to fresh, locally sourced food while creating economic opportunity throughout that system.</p>
@@ -271,9 +306,8 @@
     <div class="ebma-wrap ebma-reveal">
       <p class="ebma-eyebrow" style="color:var(--ebma-cream)">Where we are going</p>
       <div class="ebma-statement__inner">
-        <h2 class="ebma-campaign ebma-campaign--invert">
-          <span class="ebma-campaign__line">East Brooklyn</span>
-          <span class="ebma-campaign__line">feeds</span>
+        <h2 class="ebma-campaign ebma-campaign--poster">
+          <span class="ebma-campaign__line">East Brooklyn feeds</span>
           <span class="ebma-campaign__line">East Brooklyn.</span>
         </h2>
       </div>
@@ -282,28 +316,76 @@
   </section>
 
   <!-- ==================================================================
-       10. DONATION IMPACT  (brief §10)
+       10. SUPPORT ROUTER  (brief §02, §10)
+       The four ways in, as labelled paths. Brief §02 requires a visitor to
+       understand "how someone can support, partner with, volunteer with, or
+       donate to EBMA"; §10 asks for context on what support makes possible.
        =================================================================== -->
-  <section class="ebma-section ebma-section--cream" aria-labelledby="support-h">
+  <section class="ebma-section ebma-section--ink" aria-labelledby="support-h">
     <div class="ebma-wrap">
       <div class="ebma-support__grid">
         <div class="ebma-reveal">
-          <p class="ebma-eyebrow">Support</p>
-          <h2 class="ebma-h2" id="support-h">What your support makes possible.</h2>
-          <div class="ebma-support__actions">
-            <a class="ebma-btn ebma-btn--primary" href="donate.html">Donate</a>
-            <a class="ebma-btn ebma-btn--ghost" href="get-involved.html">Get Involved</a>
-          </div>
+          <p class="ebma-eyebrow ebma-eyebrow--invert">Support</p>
+          <h2 class="ebma-h2" id="support-h">How you can support EBMA.</h2>
+          <p class="ebma-lead" style="color:var(--ebma-muted-invert);margin-top:var(--ebma-space-6)">Every contribution goes into the same food system &mdash; buying from local farmers, getting groceries to neighbors, and employing young people.</p>
+
+          <ul class="ebma-support__list" style="color:var(--ebma-muted-invert);margin-top:var(--ebma-space-8)">
+            <li>Purchase food from local farmers</li>
+            <li>Deliver groceries to neighbors</li>
+            <li>Employ young people</li>
+            <li>Operate community markets</li>
+            <li>Build Black Radish</li>
+            <li>Develop sustainable food infrastructure</li>
+          </ul>
         </div>
 
-        <ul class="ebma-support__list ebma-reveal" style="color:var(--ebma-text)">
-          <li>Purchase food from local farmers</li>
-          <li>Deliver groceries to neighbors</li>
-          <li>Employ young people</li>
-          <li>Operate community markets</li>
-          <li>Build Black Radish</li>
-          <li>Develop sustainable food infrastructure in East Brooklyn</li>
-        </ul>
+        <div class="ebma-router ebma-reveal">
+          <a class="ebma-router__row ebma-router__row--lead" href="donate.html">
+            <span class="ebma-router__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            </span>
+            <span>
+              <span class="ebma-router__title">Donate</span>
+              <span class="ebma-router__desc">Fund the food system &mdash; one-off or monthly</span>
+            </span>
+            <span class="ebma-router__go" aria-hidden="true">&rarr;</span>
+          </a>
+
+          <a class="ebma-router__row" href="get-involved.html">
+            <span class="ebma-router__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </span>
+            <span>
+              <span class="ebma-router__title">Volunteer</span>
+              <span class="ebma-router__desc">Deliveries, packing and community markets</span>
+            </span>
+            <span class="ebma-router__go" aria-hidden="true">&rarr;</span>
+          </a>
+
+          <a class="ebma-router__row" href="get-involved.html">
+            <span class="ebma-router__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
+            </span>
+            <span>
+              <span class="ebma-router__title">Partner with us</span>
+              <span class="ebma-router__desc">Farmers, schools, funders, government and community organizations</span>
+            </span>
+            <span class="ebma-router__go" aria-hidden="true">&rarr;</span>
+          </a>
+
+          <a class="ebma-router__row" href="get-involved.html">
+            <span class="ebma-router__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7ZM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7Z"/></svg>
+            </span>
+            <span>
+              <span class="ebma-router__title">Other ways to give</span>
+              <span class="ebma-router__desc">Fundraise, give in kind, or spread the word</span>
+            </span>
+            <span class="ebma-router__go" aria-hidden="true">&rarr;</span>
+          </a>
+
+          <p class="ebma-router__foot">Not sure where you fit? <a href="get-involved.html">Tell us what you have in mind.</a></p>
+        </div>
       </div>
     </div>
   </section>

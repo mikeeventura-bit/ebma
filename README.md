@@ -96,12 +96,15 @@ cd prototype && python3 -m http.server 8099 &
 node verify-contrast.mjs     # 21/21 WCAG AA pairs
 node verify-render.mjs       # 1440/768/390 — overflow, console errors, screenshots
 node verify-fallbacks.mjs    # prefers-reduced-motion, JS disabled
+node verify-rules.mjs        # 6/6 house rules — uppercase, poster rarity,
+                             # brand separation, badge, hierarchy, §02 paths
 
 cd ../squarespace && python3 -m http.server 8098 &
 node _test/verify.mjs        # 17/17 — Squarespace marker technique
 ```
 
-Current state: **all passing.** No horizontal overflow at any width, no console
+Current state: **all passing** — 24/24 contrast pairs, 6/6 house rules, 17/17
+Squarespace marker checks. No horizontal overflow at any width, no console
 errors, every content block visible with JavaScript fully disabled.
 
 ---

@@ -25,7 +25,9 @@
    -------------------------------------------------------------------------- */
 .ebma-hero {
   position: relative;
-  min-height: min(92svh, 900px);
+  /* Reduced with the type scale — at 92svh the shorter sentence-case
+     headline floated in dead space rather than sitting in it. */
+  min-height: min(76svh, 720px);
   display: flex;
   align-items: flex-end;
   background: var(--ebma-ink);
@@ -113,13 +115,15 @@
    -------------------------------------------------------------------------- */
 .ebma-radish-feature { background: #0B0A09; color: var(--ebma-text-invert); position: relative; }
 .ebma-radish-feature .ebma-eyebrow { color: var(--ebma-clay-on-dark); }
+/* Black Radish keeps its own identity (brief §07) but must never out-scale
+   the EBMA headline it sits beneath — that is how a sub-brand starts reading
+   as the parent brand. */
 .ebma-radish-feature__lockup {
   font-family: var(--ebma-font-display);
-  font-size: clamp(2.5rem, 7.5vw, 5.5rem);
+  font-size: clamp(2.25rem, 4.6vw, 3.75rem);
   font-weight: var(--ebma-w-campaign);
-  line-height: 0.9;
+  line-height: 0.98;
   letter-spacing: var(--ebma-tracking-campaign);
-  text-transform: uppercase;
   margin: 0 0 var(--ebma-space-6);
 }
 .ebma-radish-feature__list { list-style: none; margin: var(--ebma-space-8) 0; padding: 0; }
@@ -152,10 +156,14 @@
 @media (min-width: 640px) { .ebma-support__list { columns: 2; column-gap: var(--ebma-space-8); } }
 .ebma-support__list li {
   break-inside: avoid;
-  padding-block: var(--ebma-space-4);
-  border-bottom: 1px solid rgba(247, 242, 232, 0.28);
+  padding-block: var(--ebma-space-3);
   font-weight: var(--ebma-w-medium);
   line-height: 1.4;
+  padding-left: 1.25em;
+  position: relative;
+}
+.ebma-support__list li::before {
+  content: "\2014"; position: absolute; left: 0; opacity: 0.6;
 }
 .ebma-support__actions { margin-top: var(--ebma-space-8); display: flex; flex-wrap: wrap; gap: var(--ebma-space-4); }
 

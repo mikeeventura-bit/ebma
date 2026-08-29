@@ -26,9 +26,32 @@ body {
 img { max-width: 100%; }
 a { color: var(--ebma-radish); }
 
-/* --- Header / nav -------------------------------------------------------- */
+/* --- Utility bar ---------------------------------------------------------
+   House pattern: a thin, quiet band above the header carrying contact and
+   trust signals, so the main nav stays uncluttered. It also gives the Black
+   Radish storefront a home that makes clear it is a separate destination. */
+.p-utility {
+  background: var(--ebma-ink);
+  color: var(--ebma-muted-invert);
+  font-size: var(--ebma-fs-small);
+}
+.p-utility__inner {
+  max-width: var(--ebma-maxw); margin-inline: auto;
+  padding: var(--ebma-space-2) var(--ebma-gutter);
+  display: flex; flex-wrap: wrap; gap: var(--ebma-space-3) var(--ebma-space-6);
+  align-items: center; justify-content: space-between;
+}
+.p-utility a { color: var(--ebma-cream); text-decoration: none; }
+.p-utility a:hover { text-decoration: underline; }
+.p-utility__group { display: flex; flex-wrap: wrap; gap: var(--ebma-space-3) var(--ebma-space-6); align-items: center; }
+.p-utility__sep { opacity: 0.35; }
+@media (max-width: 640px) { .p-utility__hide-sm { display: none; } }
+
+/* --- Header / nav --------------------------------------------------------
+   The utility bar and header travel together as ONE fixed stack. Fixing only
+   the header let it sit on top of the utility bar and collide with it. */
+.p-topbar { position: fixed; inset: 0 0 auto; z-index: 100; }
 .p-header {
-  position: fixed; inset: 0 0 auto; z-index: 100;
   transition: background-color var(--ebma-dur) var(--ebma-ease),
               border-color var(--ebma-dur) var(--ebma-ease);
   border-bottom: 1px solid transparent;
@@ -52,29 +75,88 @@ a { color: var(--ebma-radish); }
 .p-logo span { display: block; }
 .p-nav { display: none; gap: var(--ebma-space-6); align-items: center; }
 @media (min-width: 940px) { .p-nav { display: flex; } }
-.p-nav a {
-  font-size: var(--ebma-fs-small);
+/* Sentence case at 17px, near-zero tracking — the house standard. Uppercase
+   at 0.08em was what made the previous nav shout. */
+.p-nav a:not(.ebma-btn) {
+  font-size: var(--ebma-fs-nav);
   font-weight: var(--ebma-w-medium);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.01em;
   text-decoration: none;
   color: var(--ebma-cream);
   padding-block: var(--ebma-space-2);
   border-bottom: 2px solid transparent;
   transition: color var(--ebma-dur) var(--ebma-ease), border-color var(--ebma-dur) var(--ebma-ease);
 }
-.p-nav a:hover, .p-nav a[aria-current="page"] { border-bottom-color: currentColor; }
+.p-nav a:not(.ebma-btn):hover,
+.p-nav a[aria-current="page"]:not(.ebma-btn) { border-bottom-color: currentColor; }
 
 /* Solid state once scrolled past the hero. */
 .p-header.is-stuck { background: var(--ebma-cream); border-bottom-color: var(--ebma-rule); }
 .p-header.is-stuck .p-logo,
-.p-header.is-stuck .p-nav a { color: var(--ebma-ink); }
-.p-header.is-stuck .ebma-btn--invert { color: var(--ebma-ink); border-color: var(--ebma-ink); }
-.p-header.is-stuck .ebma-btn--invert:hover { background: var(--ebma-ink); color: var(--ebma-cream); }
+.p-header.is-stuck .p-nav a:not(.ebma-btn) { color: var(--ebma-ink); }
 
 /* Pages without a dark hero start solid. */
 .p-header--solid { background: var(--ebma-cream); border-bottom-color: var(--ebma-rule); }
-.p-header--solid .p-logo, .p-header--solid .p-nav a { color: var(--ebma-ink); }
+.p-header--solid .p-logo, .p-header--solid .p-nav a:not(.ebma-btn) { color: var(--ebma-ink); }
+
+/* Donate is the primary action: a solid pill, set apart from the link row by
+   a real gap and a hairline rule. As an outline button at the same 24px gap
+   as the links it read as weaker than the navigation it sat in. */
+.p-nav__donate {
+  margin-left: var(--ebma-space-4);
+  padding-left: var(--ebma-space-6);
+  border-left: 1px solid var(--ebma-rule-invert);
+  display: flex; align-items: center;
+}
+.p-header.is-stuck .p-nav__donate,
+.p-header--solid .p-nav__donate { border-left-color: var(--ebma-rule); }
+
+/* Dropdowns. CSS-driven so they work without JS; kept open on focus-within
+   so they are reachable by keyboard. */
+.p-nav__item { position: relative; display: flex; align-items: center; }
+.p-nav__toggle {
+  display: inline-flex; align-items: center; gap: 0.35em;
+  background: none; border: 0; padding: var(--ebma-space-2) 0;
+  font: inherit;
+  font-size: var(--ebma-fs-nav);
+  font-weight: var(--ebma-w-medium);
+  letter-spacing: 0.01em;
+  color: var(--ebma-cream);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color var(--ebma-dur) var(--ebma-ease), border-color var(--ebma-dur) var(--ebma-ease);
+}
+.p-header.is-stuck .p-nav__toggle, .p-header--solid .p-nav__toggle { color: var(--ebma-ink); }
+.p-nav__item:hover .p-nav__toggle,
+.p-nav__item:focus-within .p-nav__toggle { border-bottom-color: currentColor; }
+.p-nav__caret { transition: transform var(--ebma-dur) var(--ebma-ease); }
+.p-nav__item:hover .p-nav__caret, .p-nav__item:focus-within .p-nav__caret { transform: rotate(180deg); }
+
+.p-nav__menu {
+  position: absolute; top: 100%; left: 50%; transform: translate(-50%, 6px);
+  min-width: 15rem;
+  background: var(--ebma-cream);
+  border-radius: var(--ebma-radius-card);
+  box-shadow: 0 24px 60px -28px rgba(18, 16, 14, 0.5);
+  padding: var(--ebma-space-3);
+  list-style: none; margin: 0;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 180ms var(--ebma-ease), transform 180ms var(--ebma-ease), visibility 180ms;
+}
+.p-nav__item:hover .p-nav__menu,
+.p-nav__item:focus-within .p-nav__menu {
+  opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0);
+}
+.p-nav__menu li { margin: 0; }
+.p-nav__menu a {
+  display: block;
+  padding: var(--ebma-space-3) var(--ebma-space-4);
+  border-radius: var(--ebma-radius);
+  font-size: var(--ebma-fs-body);
+  color: var(--ebma-ink) !important;
+  border-bottom: 0 !important;
+}
+.p-nav__menu a:hover { background: var(--ebma-cream-deep); }
 
 .p-menu-btn {
   display: inline-flex; align-items: center; gap: var(--ebma-space-2);
@@ -83,7 +165,66 @@ a { color: var(--ebma-radish); }
   text-transform: uppercase; letter-spacing: 0.08em;
   color: inherit;
 }
-@media (min-width: 940px) { .p-menu-btn { display: none; } }
+@media (min-width: 940px) { /* Donate is the primary action: a solid pill, set apart from the link row by
+   a real gap and a hairline rule. As an outline button at the same 24px gap
+   as the links it read as weaker than the navigation it sat in. */
+.p-nav__donate {
+  margin-left: var(--ebma-space-4);
+  padding-left: var(--ebma-space-6);
+  border-left: 1px solid var(--ebma-rule-invert);
+  display: flex; align-items: center;
+}
+.p-header.is-stuck .p-nav__donate,
+.p-header--solid .p-nav__donate { border-left-color: var(--ebma-rule); }
+
+/* Dropdowns. CSS-driven so they work without JS; kept open on focus-within
+   so they are reachable by keyboard. */
+.p-nav__item { position: relative; display: flex; align-items: center; }
+.p-nav__toggle {
+  display: inline-flex; align-items: center; gap: 0.35em;
+  background: none; border: 0; padding: var(--ebma-space-2) 0;
+  font: inherit;
+  font-size: var(--ebma-fs-nav);
+  font-weight: var(--ebma-w-medium);
+  letter-spacing: 0.01em;
+  color: var(--ebma-cream);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color var(--ebma-dur) var(--ebma-ease), border-color var(--ebma-dur) var(--ebma-ease);
+}
+.p-header.is-stuck .p-nav__toggle, .p-header--solid .p-nav__toggle { color: var(--ebma-ink); }
+.p-nav__item:hover .p-nav__toggle,
+.p-nav__item:focus-within .p-nav__toggle { border-bottom-color: currentColor; }
+.p-nav__caret { transition: transform var(--ebma-dur) var(--ebma-ease); }
+.p-nav__item:hover .p-nav__caret, .p-nav__item:focus-within .p-nav__caret { transform: rotate(180deg); }
+
+.p-nav__menu {
+  position: absolute; top: 100%; left: 50%; transform: translate(-50%, 6px);
+  min-width: 15rem;
+  background: var(--ebma-cream);
+  border-radius: var(--ebma-radius-card);
+  box-shadow: 0 24px 60px -28px rgba(18, 16, 14, 0.5);
+  padding: var(--ebma-space-3);
+  list-style: none; margin: 0;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 180ms var(--ebma-ease), transform 180ms var(--ebma-ease), visibility 180ms;
+}
+.p-nav__item:hover .p-nav__menu,
+.p-nav__item:focus-within .p-nav__menu {
+  opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0);
+}
+.p-nav__menu li { margin: 0; }
+.p-nav__menu a {
+  display: block;
+  padding: var(--ebma-space-3) var(--ebma-space-4);
+  border-radius: var(--ebma-radius);
+  font-size: var(--ebma-fs-body);
+  color: var(--ebma-ink) !important;
+  border-bottom: 0 !important;
+}
+.p-nav__menu a:hover { background: var(--ebma-cream-deep); }
+
+.p-menu-btn { display: none; } }
 
 /* --- Footer -------------------------------------------------------------- */
 .p-footer {
@@ -94,7 +235,7 @@ a { color: var(--ebma-radish); }
   background: var(--ebma-ink); color: var(--ebma-text-invert); padding-block: var(--ebma-space-16) var(--ebma-space-8); }
 .p-footer__grid { display: grid; gap: var(--ebma-space-12); }
 @media (min-width: 800px) { .p-footer__grid { grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)); } }
-.p-footer h2 { font-family: var(--ebma-font-display); font-size: var(--ebma-fs-h3); font-weight: var(--ebma-w-display); text-transform: uppercase; letter-spacing: var(--ebma-tracking-tight); margin: 0 0 var(--ebma-space-4); }
+.p-footer h2 { font-family: var(--ebma-font-display); font-size: var(--ebma-fs-h3); font-weight: var(--ebma-w-display); letter-spacing: var(--ebma-tracking-tight); margin: 0 0 var(--ebma-space-4); }
 .p-footer__col h3 {
   font-size: var(--ebma-fs-eyebrow); letter-spacing: var(--ebma-tracking-eyebrow);
   text-transform: uppercase; color: var(--ebma-clay-on-dark); margin: 0 0 var(--ebma-space-4);
@@ -149,6 +290,6 @@ a { color: var(--ebma-radish); }
   align-items: flex-start;
   justify-content: flex-end;
   text-align: right;
-  padding: var(--ebma-space-8) var(--ebma-gutter);
-  opacity: 0.55;
+  padding: 9rem var(--ebma-gutter) 0;
+  opacity: 0.32;
 }

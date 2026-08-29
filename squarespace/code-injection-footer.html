@@ -114,25 +114,10 @@
       requestAnimationFrame(frame);
     }
   
-    /* --- 4. Marquee duplication --------------------------------------------
-       A seamless loop needs the track's content twice. Duplicating in JS keeps
-       the markup (and the editable copy in Squarespace) written only once.
-       The duplicate is aria-hidden so it isn't read out twice.                */
-    function initMarquee() {
-      document.querySelectorAll("[data-ebma-marquee]").forEach(function (track) {
-        if (track.dataset.ebmaMarqueeReady) return;
-        var clone = track.cloneNode(true);
-        clone.setAttribute("aria-hidden", "true");
-        while (clone.firstChild) track.appendChild(clone.firstChild);
-        track.dataset.ebmaMarqueeReady = "1";
-      });
-    }
-  
     function init() {
       initHeader();
       initReveal();
       initCounters();
-      initMarquee();
     }
   
     if (document.readyState === "loading") {

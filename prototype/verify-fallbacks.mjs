@@ -6,11 +6,10 @@ await p.goto('http://127.0.0.1:8099/index.html', { waitUntil: 'load' });
 await p.waitForTimeout(900);
 
 const r = await p.evaluate(() => {
-  const track = document.querySelector('[data-ebma-marquee]');
-  const cs = getComputedStyle(track);
+  const card = document.querySelector('.ebma-card .ebma-photo > *');
+  const cardCs = card ? getComputedStyle(card) : null;
   return {
-    marqueeAnimation: cs.animationName,
-    marqueeDuration: cs.animationDuration,
+    cardHoverTransition: cardCs ? cardCs.transitionDuration : 'n/a',
     htmlHasJsClass: document.documentElement.classList.contains('ebma-js'),
     revealsHidden: document.querySelectorAll('.ebma-reveal:not(.is-visible)').length,
     totalReveals: document.querySelectorAll('.ebma-reveal').length,
@@ -21,7 +20,8 @@ const r = await p.evaluate(() => {
 console.log('--- prefers-reduced-motion: reduce ---');
 console.log(JSON.stringify(r, null, 2));
 console.log(r.anyZeroOpacity === 0 ? 'PASS: all content visible' : 'FAIL: content hidden');
-console.log(r.marqueeAnimation === 'none' ? 'PASS: marquee static' : 'FAIL: marquee animating');
+const noMotion = parseFloat(r.cardHoverTransition) < 0.01;
+console.log(noMotion ? 'PASS: transitions suppressed' : 'FAIL: motion still active');
 await p.screenshot({ path: (process.env.EBMA_SHOTS || './shots') + '/home-reduced-motion.png', fullPage: true });
 
 // --- JS entirely disabled ---

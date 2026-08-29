@@ -42,14 +42,28 @@ Photography supplies most of the colour. The interface is a restrained frame.
 | `--ebma-green` | `#2F5D3A` | Natural green. Secondary accent. |
 | `--ebma-clay` | `#B85C38` | Earth tone. Tertiary, decorative. |
 | `--ebma-radish-on-dark` | `#C9455F` | Radish accent **on dark grounds**. |
-| `--ebma-clay-on-dark` | `#C46B45` | Clay accent **on dark grounds**. |
+| `--ebma-clay-on-dark` | `#CE7A50` | Clay accent **on dark grounds**. |
 
 ### Why there are on-dark variants
 
 The base radish and clay are tuned for cream paper. On near-black they fail
 WCAG AA — radish lands at **2.18:1** and clay at **4.18:1**. Both were caught by
-the automated audit, not by eye. The lightened tints carry the same hues onto
-dark grounds at **4.07:1** and **5.00:1**.
+the automated audit, not by eye.
+
+The on-dark tints are calibrated against **`--ebma-ink-soft`, the lightest dark
+surface, not the darkest.** A tint that only clears AA on `--ebma-ink` fails
+silently the moment it lands on a raised tile — clay at `#C46B45` measured 5.00:1
+on ink but **3.96:1** on ink-soft, which is exactly how it regressed when stat
+tiles gained a raised surface. Checking the worst case makes the token safe on
+every dark ground:
+
+| | on ink | on ink-soft | on ink-deep |
+|---|---|---|---|
+| `--ebma-clay-on-dark` `#CE7A50` | 5.90 | **4.66** | 6.15 |
+| `--ebma-radish-on-dark` `#C9455F` | 4.07 | **3.22** | 4.24 |
+
+`--ebma-radish-on-dark` is for **large display type only** (≥24px); it does not
+meet the 4.5:1 small-text threshold on ink-soft.
 
 You never select these by hand. Dark surfaces set `--ebma-accent-campaign` and
 `--ebma-accent-eyebrow` in one place in `components.css`, so an accent cannot be
@@ -108,27 +122,54 @@ All sizes are fluid `clamp()` — poster-huge on desktop, never overflowing a
 
 | Token | Range | Use |
 |---|---|---|
-| `--ebma-fs-campaign` | 2.75 → 8.5rem | Campaign statements only |
-| `--ebma-fs-h1` | 2.25 → 4.75rem | Page titles |
-| `--ebma-fs-h2` | 1.85 → 3.25rem | Section headings |
-| `--ebma-fs-h3` | 1.3 → 1.75rem | Card and index titles |
-| `--ebma-fs-stat` | 3 → 6rem | Stat numbers |
+| `--ebma-fs-campaign` | 2.5 → 4.5rem (72px) | Hero headline and statements |
+| `--ebma-fs-h1` | 2 → 3.25rem (52px) | Page titles |
+| `--ebma-fs-h2` | 1.6 → 2.375rem (38px) | Section headings |
+| `--ebma-fs-h3` | 1.2 → 1.5rem (24px) | Card and index titles |
+| `--ebma-fs-stat` | 2.5 → 4rem (64px) | Stat numbers |
 | `--ebma-fs-lead` | 1.075 → 1.375rem | Standfirst |
 | `--ebma-fs-body` | 1.0625rem | Body |
+| `--ebma-fs-nav` | 1.0625rem (17px) | Navigation |
 | `--ebma-fs-eyebrow` | 0.75rem | Tracked-out labels |
 
-**Never set a heading below weight 600.** Weight is what carries "bold" and
-"established"; a light headline reads as the template.
+**Never set a heading below weight 600.** Weight carries "bold" and
+"established"; a light headline reads as the template. Headlines are **800** —
+900 paired with all-caps is what read as shouting.
+
+**Nothing may render larger than the hero headline.** Cutting the H1 without
+bringing the rest of the scale down would leave the page's largest type on a
+statistic — stat numbers were 96px and the Black Radish lockup 88px against a
+72px headline. `verify-rules.mjs` asserts this.
+
+### The uppercase rule
+
+**Uppercase belongs on the small tracked label and nowhere else.** Not an H1,
+not an H2, not a nav link, not a button.
+
+This is the single most load-bearing rule in the system, and it is drawn from the
+agency house style: Premier Gas, Undiscovered Destinations and Tyneside Marketing
+all set headlines in sentence case with one accent-coloured word, and reserve
+tracked caps for the eyebrow above. Pass 1 set the hero in all-caps at weight 900
+and the nav in all-caps at 0.08em tracking — that one decision is what made the
+page read as shouting and the menu as loud.
+
+The dividing line is **14px**: uppercase is fine on a label at or below it
+(eyebrow, footer column heading, stat note), wrong above it. `verify-rules.mjs`
+enforces this by measured font size rather than by class list, so it cannot
+regress one section at a time.
+
+**One exception**: `.ebma-campaign--poster`, for a true poster statement
+(brief §04), used **at most once per page**. Rarity is the whole point — applied
+to three sections in pass 1 it stopped being emphasis and became the default
+voice.
 
 ### Campaign type
 
-The signature of the design. Brief §04: *"Key statements can behave like
-campaign posters."*
+Brief §04: *"Key statements can behave like campaign posters."*
 
 ```html
 <h1 class="ebma-campaign">
-  <span class="ebma-campaign__line">Food.</span>
-  <span class="ebma-campaign__line">Community.</span>
+  <span class="ebma-campaign__line">Food. Community.</span>
   <span class="ebma-campaign__line ebma-campaign__accent">Opportunity.</span>
 </h1>
 ```
@@ -192,11 +233,49 @@ Both are applied together on the hero, in the prototype and in Squarespace.
 | `.ebma-arrow-link` | Oversized text link with a travelling arrow |
 | `.ebma-stats` / `.ebma-stat` | Impact tiles, hairline rules not card borders |
 | `.ebma-stat--tbd` | **Visibly provisional metric.** Dashed outline, dimmed. Cannot ship by accident |
-| `.ebma-marquee` | Scrolling statement band |
 | `.ebma-cards` / `.ebma-card` | Photo-led programme cards, capped at 3 columns |
 | `.ebma-index` | Editorial index — replaces bullet lists |
 | `.ebma-photo` | Graded, cropped image frame |
 | `.ebma-reveal` | Scroll-in animation (fail-visible, see §6) |
+| `.ebma-router` | Support router — the four §02 paths as labelled rows |
+
+### Geometry
+
+House style is generous: pill buttons, generously rounded cards. Pass 1 used a 2px
+radius, justified as "established, not bubbly"; the reference disagrees, and hard
+square edges read colder than a brief asking for *warm* and *human*.
+
+| Token | Value | Use |
+|---|---|---|
+| `--ebma-radius-pill` | `999px` | Every button |
+| `--ebma-radius-card` | `14px` | Router rows, stat tiles, dropdowns, form fields |
+| `--ebma-radius` | `6px` | Inputs, small surfaces |
+| `--ebma-radius-img` | `10px` | Photography |
+
+Photography crops stay near-square so the editorial feel survives.
+
+### Black Radish separation
+
+Brief §07 requires Black Radish to read as *"an initiative of East Brooklyn Mutual
+Aid while maintaining its own identity"*, and §10 lists *"Build Black Radish"*
+among the things donations fund. So there are two distinct money flows:
+
+```
+donor    → EBMA         (donation — funds the mission, incl. building Black Radish)
+customer → Black Radish (purchase — low-cost groceries)
+```
+
+Blurring them is the failure mode. The rules:
+
+- Black Radish keeps its own ground (`#0B0A09`), clay accent and lockup. EBMA uses
+  radish on cream/ink. The palettes never merge.
+- Every Black Radish block carries "An initiative of East Brooklyn Mutual Aid".
+- Its lockup must never out-scale the EBMA headline above it — that is how a
+  sub-brand starts reading as the parent.
+- **Never a Donate CTA inside a Black Radish block; never a shop link inside an
+  EBMA support block.** `verify-rules.mjs` asserts both.
+- Shopping hands off to `blackradishgrocery.com`; the EBMA site never duplicates
+  the storefront.
 
 ---
 
@@ -207,7 +286,7 @@ Not a launch checklist item — built into the tokens.
 - **Contrast:** every rendered pair verified at AA. See §2.
 - **Focus:** 3px clay outline, 3px offset, on everything focusable. Squarespace's
   default focus style is overridden.
-- **Motion:** `prefers-reduced-motion` stops the marquee, the counters, the
+- **Motion:** `prefers-reduced-motion` stops the counters, the
   card zooms and the reveals. Verified.
 - **Skip link:** first focusable element on every page.
 - **Reveals fail visible.** The hiding rule is scoped to `.ebma-js`, which
@@ -231,6 +310,8 @@ cd prototype && python3 -m http.server 8099 &
 node verify-contrast.mjs      # 21/21 AA pairs
 node verify-render.mjs        # 3 widths, overflow + console errors
 node verify-fallbacks.mjs     # reduced-motion and no-JS
+node verify-rules.mjs         # 6/6 house rules: uppercase, poster rarity,
+                              # brand separation, badge, hierarchy, §02 paths
 cd ../squarespace && python3 -m http.server 8098 &
 node _test/verify.mjs         # 17/17 Squarespace marker checks
 ```

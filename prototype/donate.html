@@ -23,21 +23,69 @@
   in <strong>docs/02-content-and-copy.md</strong> and built in the next pass.
 </p>
 
+<div class="p-topbar">
+<div class="p-utility">
+  <div class="p-utility__inner">
+    <div class="p-utility__group">
+      <a href="tel:+13474504446">347.450.4446</a>
+      <span class="p-utility__sep p-utility__hide-sm">|</span>
+      <span class="p-utility__hide-sm">A 501(c)(3) nonprofit serving East Brooklyn</span>
+    </div>
+    <div class="p-utility__group">
+      <a href="https://blackradishgrocery.com">Shop Black Radish Grocery &rarr;</a>
+    </div>
+  </div>
+</div>
+
 <header class="p-header p-header--solid" data-ebma-header>
   <div class="p-header__inner">
     <a class="p-logo" href="index.html"><span>East Brooklyn</span><span>Mutual Aid</span></a>
+
     <nav class="p-nav" aria-label="Primary">
-      <a href="about.html">About</a>
-      <a href="our-work.html">Our Work</a>
+      <div class="p-nav__item">
+        <button class="p-nav__toggle" type="button" aria-expanded="false" aria-controls="nav-about">
+          About <span class="p-nav__caret" aria-hidden="true">&#9662;</span>
+        </button>
+        <ul class="p-nav__menu" id="nav-about">
+          <li><a href="about.html">Our story</a></li>
+          <li><a href="about.html">Our team</a></li>
+          <li><a href="impact.html">Impact</a></li>
+        </ul>
+      </div>
+
+      <div class="p-nav__item">
+        <button class="p-nav__toggle" type="button" aria-expanded="false" aria-controls="nav-work">
+          Our work <span class="p-nav__caret" aria-hidden="true">&#9662;</span>
+        </button>
+        <ul class="p-nav__menu" id="nav-work">
+          <li><a href="our-work.html">Food access &amp; deliveries</a></li>
+          <li><a href="our-work.html">Youth employment</a></li>
+          <li><a href="our-work.html">Markets</a></li>
+          <li><a href="our-work.html">Partnerships</a></li>
+        </ul>
+      </div>
+
       <a href="black-radish.html">Black Radish</a>
-      <a href="impact.html">Impact</a>
-      <a href="stories.html">Stories</a>
-      <a href="get-involved.html">Get Involved</a>
-      <a class="ebma-btn ebma-btn--invert" href="donate.html">Donate</a>
+
+      <div class="p-nav__item">
+        <button class="p-nav__toggle" type="button" aria-expanded="false" aria-controls="nav-involved">
+          Get involved <span class="p-nav__caret" aria-hidden="true">&#9662;</span>
+        </button>
+        <ul class="p-nav__menu" id="nav-involved">
+          <li><a href="get-involved.html">Volunteer</a></li>
+          <li><a href="get-involved.html">Partner with us</a></li>
+          <li><a href="get-involved.html">Ways to give</a></li>
+          <li><a href="stories.html">News &amp; stories</a></li>
+        </ul>
+      </div>
+
+      <span class="p-nav__donate"><a class="ebma-btn ebma-btn--primary" href="donate.html">Donate</a></span>
     </nav>
+
     <button class="p-menu-btn" type="button" aria-expanded="false">Menu</button>
   </div>
 </header>
+</div>
 
 <main id="main">
   <section class="ebma-section ebma-section--cream" style="padding-top:calc(var(--ebma-section-y) + 4rem)">

@@ -25,9 +25,19 @@
 .ebma-mark { display: none !important; }
 
 /* --- Global type ---------------------------------------------------------
-   Also set these in Design -> Fonts so the team can adjust without CSS. */
+   Also set these in Design -> Fonts so the team can adjust without CSS.
+
+   THE UPPERCASE RULE: uppercase belongs on the small tracked eyebrow label
+   and nowhere else. Squarespace style packs like to set headings and nav in
+   caps — these rules undo that, because all-caps headings and nav were the
+   single cause of the first pass reading as loud. */
 body, .sqs-block-html p, .sqs-block-html li { font-family: var(--ebma-font-body); }
-h1, h2, h3, h4 { font-family: var(--ebma-font-display); letter-spacing: var(--ebma-tracking-tight); }
+h1, h2, h3, h4 {
+  font-family: var(--ebma-font-display);
+  letter-spacing: var(--ebma-tracking-tight);
+  text-transform: none !important;
+}
+.header-nav-item a, .header-nav-folder-item { text-transform: none !important; }
 
 /* --- Section grounds -----------------------------------------------------
    Set the background in the section's own settings where you can; these are
@@ -67,11 +77,11 @@ h1, h2, h3, h4 { font-family: var(--ebma-font-display); letter-spacing: var(--eb
 .sqs-button-element--secondary {
   font-family: var(--ebma-font-body) !important;
   font-weight: var(--ebma-w-bold) !important;
-  font-size: var(--ebma-fs-small) !important;
-  letter-spacing: 0.06em !important;
-  text-transform: uppercase !important;
-  border-radius: var(--ebma-radius) !important;
-  padding: 1.05em 1.9em !important;
+  font-size: var(--ebma-fs-body) !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  border-radius: var(--ebma-radius-pill) !important;
+  padding: 0.85em 1.7em !important;
   transition: background-color var(--ebma-dur) var(--ebma-ease),
               color var(--ebma-dur) var(--ebma-ease),
               border-color var(--ebma-dur) var(--ebma-ease) !important;
@@ -102,9 +112,8 @@ h1, h2, h3, h4 { font-family: var(--ebma-font-display); letter-spacing: var(--eb
 .header .header-title-text a {
   font-family: var(--ebma-font-body);
   font-weight: var(--ebma-w-medium);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: var(--ebma-fs-small);
+  letter-spacing: 0.01em;
+  font-size: var(--ebma-fs-nav);
 }
 .header .header-title-text a {
   font-family: var(--ebma-font-display);
@@ -170,3 +179,46 @@ h1, h2, h3, h4 { font-family: var(--ebma-font-display); letter-spacing: var(--eb
    Code Blocks render as a grey placeholder INSIDE the editor and only appear
    correctly on the live site or in Preview. That is expected Squarespace
    behaviour, not a broken paste. */
+
+
+/* --- Utility bar ---------------------------------------------------------
+   Squarespace's Announcement Bar is the native home for this. Turn it on
+   (Marketing -> Announcement Bar) and it picks up these rules. It carries
+   contact and trust signals so the main nav stays uncluttered — and it is
+   the right place for the Black Radish storefront link, because it reads
+   there as a separate destination rather than as an EBMA page. */
+.sqs-announcement-bar-dropzone .sqs-announcement-bar {
+  background: var(--ebma-ink) !important;
+  color: var(--ebma-muted-invert) !important;
+  font-size: var(--ebma-fs-small);
+}
+.sqs-announcement-bar-dropzone a { color: var(--ebma-cream) !important; }
+
+/* --- Nav folders (dropdowns) --------------------------------------------- */
+.header-nav-folder-content {
+  background: var(--ebma-cream) !important;
+  border-radius: var(--ebma-radius-card) !important;
+  box-shadow: 0 24px 60px -28px rgba(18, 16, 14, 0.5) !important;
+  padding: var(--ebma-space-3) !important;
+  border: 0 !important;
+}
+.header-nav-folder-item a {
+  border-radius: var(--ebma-radius) !important;
+  padding: var(--ebma-space-3) var(--ebma-space-4) !important;
+}
+.header-nav-folder-item a:hover { background: var(--ebma-cream-deep) !important; }
+
+/* --- Header Donate button ------------------------------------------------
+   Design -> Header -> add a Button, label it "Donate". It is the primary
+   action on the site, so it is a solid pill, not an outline. */
+.header-actions .btn,
+.header-actions-action--cta .btn {
+  background: var(--ebma-radish) !important;
+  color: var(--ebma-cream) !important;
+  border-radius: var(--ebma-radius-pill) !important;
+  border: 0 !important;
+  font-weight: var(--ebma-w-bold) !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+.header-actions .btn:hover { background: var(--ebma-radish-deep) !important; }

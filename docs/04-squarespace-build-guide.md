@@ -87,28 +87,42 @@ Section by section. `[N]` = native and client-editable. `[C]` = Code Block.
 
 | # | Section | How | Source |
 |---|---|---|---|
-| 1 | **Hero** | `[C]` — blank section, hero photo as section background, height Full | `blocks/01-hero.html` + `--hero` marker |
-| 2 | **Marquee** | `[C]` — own section, zero padding | `blocks/02-marquee.html` |
-| 3 | **Impact at a glance** | `[N]` preferred — `--ink --stats` marker, one Text Block per stat (number as H2, label as paragraph) | `blocks/03-impact-stats.html` for the exact hairline treatment |
-| 4 | **Positioning statement** | `[C]` | `blocks/04-campaign-statement.html` |
-| 5 | **What we do** | `[N]` — Fluid Engine, 5 image+text cards, styled by the CSS | — |
-| 6 | **Black Radish** | `[C]` — needs the two-image offset pair | `blocks/05-black-radish-feature.html` |
-| 7 | **Origin story** | `[N]` — two-column image + text | — |
-| 8 | **2026: work happening now** | `[C]` — `--ink` marker | `blocks/06-work-index.html` |
-| 9 | **Where we are going** | `[C]` — radish ground | `blocks/04-campaign-statement.html`, swap the ground class |
-| 10 | **Support** | `[C]` | `blocks/07-support.html` |
-| 11 | **Partners** | `[N]` — `--deep` marker, logo grid | — |
-| 12 | **Newsletter** | `[N]` — Squarespace Newsletter Block, inherits button styling | — |
+| 1 | **Hero** | `[C]` — blank section, hero photo as section background | `blocks/01-hero.html` + `--hero` marker |
+| 2 | **Impact at a glance** | `[N]` preferred — `--ink --stats` marker, one Text Block per stat (number as H2, label as paragraph) | `blocks/03-impact-stats.html` |
+| 3 | **Positioning statement** | `[C]` | `blocks/04-campaign-statement.html` |
+| 4 | **What we do** | `[N]` — Fluid Engine, 5 image+text cards, styled by the CSS | — |
+| 5 | **Black Radish** | `[C]` — needs the two-image offset pair | `blocks/05-black-radish-feature.html` |
+| 6 | **Origin story** | `[N]` — two-column image + text | — |
+| 7 | **2026: work happening now** | `[C]` — `--ink` marker | `blocks/06-work-index.html` |
+| 8 | **Where we are going** | `[C]` — the page's ONE poster statement | `blocks/04-campaign-statement.html` + `--poster` |
+| 9 | **Support router** | `[C]` — the four §02 paths | `blocks/08-support-router.html` |
+| 10 | **Partners** | `[N]` — `--deep` marker, logo grid | — |
+| 11 | **Newsletter** | `[N]` — Squarespace Newsletter Block, inherits button styling | — |
 
-Sections 3, 5, 7, 11 and 12 — the ones that change most often — are all native.
+Sections 2, 4, 6, 10 and 11 — the ones that change most often — are all native.
 That is deliberate.
+
+### Utility bar
+
+Marketing → **Announcement Bar**. Turn it on and the Custom CSS styles it. It
+carries the phone number, 501(c)(3) status and the Black Radish storefront link.
+
+Put the storefront link here rather than in the main nav: in the utility bar it
+reads as a **separate destination**, which is exactly what it is.
 
 ### Header
 
 Design → Header:
-- Layout with the logo left, navigation right, Donate as a **button**
+- Logo left, navigation right, Donate as a **button** (it renders as a solid
+  radish pill — it is the primary action on the site, so never an outline)
 - Enable **Fixed position**
 - Enable the transparent/overlay option so it sits over the hero
+- Build About / Our work / Get involved as **folders** so they get dropdowns;
+  Black Radish stays a single page at the top level
+
+**Set the nav to sentence case.** If the style pack forces caps, the Custom CSS
+overrides it — but set it correctly in the panel too so the team sees the right
+thing while editing.
 
 The CSS handles the transparent → solid transition on scroll, and the hero's
 top scrim keeps the nav legible over any photograph.
@@ -162,3 +176,43 @@ Worth pasting into a note for whoever maintains the site:
 | Counters don't animate | Footer injection missing, or reduced-motion is on (correct behaviour) |
 | Marquee doesn't scroll | Footer injection missing — it duplicates the track |
 | Nav unreadable over hero | Hero section is missing the `--hero` marker, so it has no top scrim |
+
+
+---
+
+## House rules
+
+Four rules carry most of the design. Breaking any one of them is what makes the
+site drift back toward a generic template.
+
+### 1. Uppercase is for small labels only
+
+Not an H1, not an H2, not a nav link, not a button. The dividing line is **14px**:
+caps are fine at or below it (eyebrow, footer column heading, stat note), wrong
+above it. Headlines are sentence case with **one** accent-coloured word.
+
+One exception: `.ebma-campaign--poster`, **at most once per page**.
+
+### 2. Nothing renders larger than the hero headline
+
+If you scale a stat or a lockup up, the page's biggest type stops being the
+headline. `prototype/verify-rules.mjs` asserts this.
+
+### 3. Keep EBMA and Black Radish separate
+
+```
+donor    → EBMA         donation, funds the mission — including building Black Radish
+customer → Black Radish purchase, low-cost groceries
+```
+
+- Every Black Radish block carries "An initiative of East Brooklyn Mutual Aid".
+- **Never** a Donate CTA inside a Black Radish block.
+- **Never** a shop link inside an EBMA support block — it belongs in the utility bar.
+- The Black Radish lockup never out-scales the EBMA headline above it.
+
+### 4. The four §02 paths stay reachable
+
+Volunteer, Partner with us, Ways to give and Donate must all be one hover or tap
+from any page. If the nav is restructured, check them.
+
+Run `node prototype/verify-rules.mjs` after any change — it checks all four.
